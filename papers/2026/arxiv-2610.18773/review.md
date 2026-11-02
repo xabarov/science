@@ -73,8 +73,8 @@ flowchart TD
 ### Конкретные строки на входе encoder
 
 В Python API `state` задаёт данные случая, `Choice.instructions` — вопрос, а класс
-`Choice` определяет тип `choice`. Имена вопросов и ключи criteria используются
-как идентификаторы интерфейса. Encoder получает токенизированный обычный текст:
+`Choice` определяет тип `choice`. Имя вопроса используется как идентификатор интерфейса. Для criteria в виде списка
+строк encoder получает токенизированный обычный текст по следующим шаблонам:
 
 ```text
 Decision type: choice
@@ -96,6 +96,15 @@ Option for choice: Technical support
 ```text
 Option for choice: Delivery
 ```
+
+Уточнение по Python API, сверенное с `inference.py::_criteria`: при передаче
+`criteria={"billing": "Billing"}` описание кандидата собирается как
+`billing: Billing`, а encoder получает `Option for choice: billing: Billing`.
+Показанные выше короткие строки соответствуют `criteria=["Billing", ...]` или
+прямым options низкоуровневого `predict`. В предыдущем объяснении о неучастии
+ключей словаря была ошибка: для mapping ключи добавляются в текст. Имя вопроса
+`team` в request template не добавляется. Объект state, если он не строка,
+сериализуется через json.dumps; encoder по-прежнему получает текст.
 
 Список кандидатов не включается в строку запроса. Для этого примера encoder
 обрабатывает четыре независимые последовательности; варианты можно объединить
@@ -226,6 +235,38 @@ Noul и null имеют разные значения. В Noul варианты 
 — вероятность `true`. У Score численные значения задают шкалу интерпретации, а не
 добавляются отдельным полем в encoder-вход. Например, вероятности уровней Low,
 Medium, High с values 0,1,2 дают `score = q_Medium + 2*q_High`.
+
+### Точные преобразования scores в выходы API
+
+Сначала из `s_i = z_1 dot u_i` вычисляется `q = softmax(s/tau_dec)`.
+Температура обучается. Каждый typed вопрос имеет свои request input, кандидатов и
+scores; общее состояние случая не означает одну и ту же q для всех типов.
+
+- **Choice, allow_null=false:** вероятности равны q, выбирается первый argmax.
+- **Choice, allow_null=true:** `rho = sigmoid((max(s)-b_cov)/tau_cov)`,
+  `p_null=1-rho`, `p_i=rho*q_i`. Возвращается None, если `p_null >= max_i p_i`,
+  иначе ключ максимального кандидата. Это сравнение с отдельным кандидатом,
+  а не просто порог rho=0.5.
+- **Noul:** публичный API задаёт false/true, возвращает `q_true`. При двух
+  кандидатах это `sigmoid((s_true-s_false)/tau_dec)`. Бинарный threshold API
+  автоматически не применяет.
+- **Score:** возвращает `sum_i q_i*values_i`; значения задают единицы шкалы и
+  соответствуют rubric-кандидатам. Дробное ожидание допустимо.
+
+Иллюстративная арифметика (tau_dec=1; это не запуск модели):
+
+```text
+Choice: scores=[2,1,0] → q≈[0.6652,0.2447,0.0900] → первый вариант.
+С null и rho=0.2: p≈[0.1330,0.0489,0.0180], p_null=0.8 → None.
+Noul: scores_false,true=[0,2] → q_true≈0.8808.
+Score: scores_Low,Medium,High=[0,1,2] → q≈[0.0900,0.2447,0.6652].
+При values=[0,1,2] ожидаемый score≈1.5752.
+```
+
+В высокоуровневом API Noul и Score используют conditional q без null; низкоуровневый
+predict может дополнительно возвращать null-related metadata, но значения noul/score
+всё равно считаются из q. Источник: [inference.py](https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/inference.py),
+`_question`, `_predict`; основной head — `MatrixDecisionStack.forward_from_cache`.
 
 ## Обучение
 
