@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.22740",
+  "kind": "paper",
+  "title": "R²Orch: Recursive Self-Improvement for Agent Orchestration via Self-Play within a Skill-Internalization Loop",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-orchestration",
+    "curriculum-learning",
+    "skill-internalization",
+    "llm-training"
+  ],
+  "authors": [
+    "Mingda Zhang",
+    "Yun Huang",
+    "Qiang Huang",
+    "Yanjin Li",
+    "Rui Qian",
+    "Qichao Zhao",
+    "Tiesunlong Shen",
+    "Na Zhao",
+    "Jian Wang",
+    "Xiaoying Tang"
+  ],
+  "methods": [
+    "r2orch",
+    "self-play",
+    "skill-withdrawal",
+    "grpo"
+  ],
+  "datasets": [
+    "hotpotqa",
+    "nq-open",
+    "medqa",
+    "aime26",
+    "mbpp-plus",
+    "alfworld",
+    "triviaqa",
+    "musique",
+    "gpqa",
+    "math-hard",
+    "swe-bench",
+    "webshop"
+  ],
+  "aliases": [
+    "doi:10.48550/arxiv.2610.22740"
+  ],
+  "source": "https://arxiv.org/abs/2610.22740",
+  "source_version": "v2",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "empirical",
+  "summary": "R²Orch обучает оркестратор агентов: Proposer выбирает задачи, Director строит граф, а рандомизированные сравнения позволяют постепенно убрать внешние инструкции. Результаты проверены по v2 на небольших тестовых подвыборках.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "R²Orch совместно обучает выбор задач и построение графа агентов; внешние инструкции снимаются по рандомизированному сравнению с инструкцией и без неё. Workers заморожены.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Sections 3–4; Appendix B–C; Table 4"
+    },
+    {
+      "id": "c2",
+      "text": "В Table 1 R²Orch без skills получает на AIME 2026 accuracy 81.33±2.98% против 74.00±3.65% у PATS; на SWE-Bench resolved 42.81±0.35% против 40.16±0.70%. Workers Qwen3.5-9B, среднее±std пяти запусков; тест 30 и 128 задач соответственно. ALFWorld success rate: 90.63±0.96% против 87.97±0.70%; WebShop success rate: 91.09±0.70% против 87.97±1.52%; оба теста по 128 задач.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Table 1; Appendix D: Benchmarks and splits, Baselines and fairness, Repeated runs"
+    },
+    {
+      "id": "c3",
+      "text": "На AIME 2026 полная R²Orch даёт 81.33% против 66.67% при равномерном выборе задач и 66.67% при фиксированных skills; все варианты Table 2 тестируются без skills, пять запусков, остальные компоненты зафиксированы.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Table 2; Appendix D: Ablation variants"
+    },
+    {
+      "id": "c4",
+      "text": "Рандомизированное скрытие skill даёт несмещённый контраст на выбранной задаче. Переход от журнала адаптивных проверок к текущему эффекту на другом распределении требует учёта дрейфа и несовпадения распределений.",
+      "epistemic_status": "theoretical_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Appendix A.5 Eq. 33; A.7 Eqs. 37–40"
+    },
+    {
+      "id": "c5",
+      "text": "При стохастических Workers дисперсия результата p(1-p) включает неуправляемый шум; прогресс от перераспределения графов связан с Var(E[Y|g]). Поэтому смешанные исходы не гарантируют обучаемость оркестратора.",
+      "epistemic_status": "theoretical_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Appendix A.2: Stochastic Workers, Eqs. 20–21"
+    },
+    {
+      "id": "c6",
+      "text": "Автоматическое получение начальных skills для нового домена остаётся открытым вопросом: исходные инструкции в экспериментах составлены вручную для каждого датасета.",
+      "epistemic_status": "open_question",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Limitations"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2507.04632",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Sections 4.2–4.3; Appendix A.5/A.7",
+      "note": "Общий вопрос полезного выбора обучающих задач; здесь обучается оркестратор и учитывается снятие skills, результаты разных работ напрямую не сравнимы."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.39497",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Sections 4.2–4.3; Appendix A.5/A.7",
+      "note": "Связь по выбору дорогих действий и обратной связи; это отдельная постановка, Director/Proposer имеют тот же базовый размер 9B, что и Workers."
+    },
+    {
+      "type": "related",
+      "target": "question:auditing-under-shift",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Sections 4.2–4.3; Appendix A.5/A.7",
+      "note": "Оценка полезности skills по адаптивно выбранным задачам связана с вопросом переноса свидетельств при смене распределения."
+    },
+    {
+      "type": "related",
+      "target": "idea:domain-shift-audit",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.22740v2",
+      "locator": "Sections 4.2–4.3; Appendix A.5/A.7",
+      "note": "Возможный объект для проверки независимого аудита снятых skills; статья уже использует повторные проверки, поэтому сама идея re-test не новая."
+    }
+  ],
+  "extra": {
+    "code_url": "https://github.com/beita6969/R2Orch",
+    "checked_sections": [
+      "1–6",
+      "Tables 1–2, 4",
+      "Appendices B–D",
+      "Appendix A.2 (stochastic Workers), A.5, A.7 (selected results)"
+    ],
+    "unchecked": [
+      "Full proof audit of Appendix A",
+      "Reproduction and code/config audit",
+      "Numerical extraction of plots and six transfer backbones"
+    ],
+    "research": {
+      "measurements": [
+        {
+          "id": "r2orch-v2-table1-aime-2026-r2orch",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-aime-2026",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "AIME 2026",
+          "method": "R2Orch",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 81.33,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": 106
+          },
+          "uncertainty": "mean ± std over 5 runs; std=2.98 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 30,
+            "test_split": "IID",
+            "skills_at_test": "zero",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-aime-2026-pats",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-aime-2026",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "AIME 2026",
+          "method": "PATS",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 74.0,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": null
+          },
+          "uncertainty": "mean ± std over 5 runs; std=3.65 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 30,
+            "test_split": "IID",
+            "skills_at_test": "best configuration per paper; not verified as zero-skill",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-alfworld-r2orch",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-alfworld",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "ALFWorld",
+          "method": "R2Orch",
+          "metric": "success_rate",
+          "unit": "percent",
+          "value": 90.63,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": 106
+          },
+          "uncertainty": "mean ± std over 5 runs; std=0.96 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "IID",
+            "skills_at_test": "zero",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-alfworld-pats",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-alfworld",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "ALFWorld",
+          "method": "PATS",
+          "metric": "success_rate",
+          "unit": "percent",
+          "value": 87.97,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": null
+          },
+          "uncertainty": "mean ± std over 5 runs; std=0.7 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "IID",
+            "skills_at_test": "best configuration per paper; not verified as zero-skill",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-swe-bench-r2orch",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-swe-bench",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "SWE-Bench",
+          "method": "R2Orch",
+          "metric": "resolved",
+          "unit": "percent",
+          "value": 42.81,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": 106
+          },
+          "uncertainty": "mean ± std over 5 runs; std=0.35 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "OOD",
+            "skills_at_test": "zero",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-swe-bench-pats",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-swe-bench",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "SWE-Bench",
+          "method": "PATS",
+          "metric": "resolved",
+          "unit": "percent",
+          "value": 40.16,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": null
+          },
+          "uncertainty": "mean ± std over 5 runs; std=0.7 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "OOD",
+            "skills_at_test": "best configuration per paper; not verified as zero-skill",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-webshop-r2orch",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-webshop",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "WebShop",
+          "method": "R2Orch",
+          "metric": "success_rate",
+          "unit": "percent",
+          "value": 91.09,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": 106
+          },
+          "uncertainty": "mean ± std over 5 runs; std=0.7 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "OOD",
+            "skills_at_test": "zero",
+            "reproduced": false
+          }
+        },
+        {
+          "id": "r2orch-v2-table1-webshop-pats",
+          "claim": "arxiv:2610.22740#c2",
+          "group": "r2orch-v2-table1-webshop",
+          "model": "Frozen Workers: Qwen3.5-9B",
+          "train_data": "IID pools: HotpotQA, NQ-Open, MedQA, earlier-year AIME, MBPP+, ALFWorld",
+          "test_data": "WebShop",
+          "method": "PATS",
+          "metric": "success_rate",
+          "unit": "percent",
+          "value": 87.97,
+          "baseline": "PATS",
+          "budget": {
+            "matching": "Authors state shared training tasks and compute budget; independently unverified",
+            "r2orch_training_a100_hours": null
+          },
+          "uncertainty": "mean ± std over 5 runs; std=1.52 percentage points",
+          "source": "https://arxiv.org/html/2610.22740v2",
+          "locator": "Table 1; Appendix D",
+          "conditions": {
+            "test_items": 128,
+            "test_split": "OOD",
+            "skills_at_test": "best configuration per paper; not verified as zero-skill",
+            "reproduced": false
+          }
+        }
+      ]
+    }
+  }
+}

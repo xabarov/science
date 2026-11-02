@@ -1,25 +1,159 @@
 {
   "topics": {
-    "conditional-computation": ["Conditional computation", "условные вычисления", "System-1", "System-2", "System One", "predictive gating"],
-    "llm-training": ["LLM training", "обучение языковых моделей", "RLVR", "reinforcement learning"],
-    "test-time-compute": ["Test-time compute", "вычисления при инференсе", "inference-time scaling"],
-    "uncertainty-calibration": ["Uncertainty and calibration", "неопределённость", "калибровка", "confidence"],
-    "distribution-shift": ["Distribution shift", "смена домена", "сдвиг распределения", "OOD"],
-    "active-learning": ["Active learning", "активное обучение", "exploration", "исследование неопределённых случаев"]
+    "conditional-computation": [
+      "Conditional computation",
+      "условные вычисления",
+      "System-1",
+      "System-2",
+      "System One",
+      "predictive gating"
+    ],
+    "llm-training": [
+      "LLM training",
+      "обучение языковых моделей",
+      "RLVR",
+      "reinforcement learning"
+    ],
+    "test-time-compute": [
+      "Test-time compute",
+      "вычисления при инференсе",
+      "inference-time scaling"
+    ],
+    "uncertainty-calibration": [
+      "Uncertainty and calibration",
+      "неопределённость",
+      "калибровка",
+      "confidence"
+    ],
+    "distribution-shift": [
+      "Distribution shift",
+      "смена домена",
+      "сдвиг распределения",
+      "OOD"
+    ],
+    "active-learning": [
+      "Active learning",
+      "активное обучение",
+      "exploration",
+      "исследование неопределённых случаев"
+    ],
+    "agent-orchestration": [
+      "Agent orchestration",
+      "оркестрация агентов",
+      "multi-agent workflows"
+    ],
+    "curriculum-learning": [
+      "Curriculum learning",
+      "выбор обучающих задач",
+      "учебная программа"
+    ],
+    "skill-internalization": [
+      "Skill internalization",
+      "перенос инструкций в параметры",
+      "усвоение навыков"
+    ]
   },
   "methods": {
-    "conditional-interaction": ["Conditional interaction", "predict–gate–execute–update", "предиктивный отбор"],
-    "mopps": ["MoPPS", "Model Predictive Prompt Selection"],
-    "gps": ["GPS", "Generalizable Predictive Prompt Selection"],
-    "mpts": ["MPTS", "Model Predictive Task Sampling"],
-    "dynamic-sampling": ["Dynamic Sampling", "DS", "выбор после выполнения"],
-    "grpo": ["GRPO", "Group Relative Policy Optimization"],
-    "independent-audit": ["Independent audit", "независимый аудит", "проверка отклонённых задач"]
+    "conditional-interaction": [
+      "Conditional interaction",
+      "predict–gate–execute–update",
+      "предиктивный отбор"
+    ],
+    "mopps": [
+      "MoPPS",
+      "Model Predictive Prompt Selection"
+    ],
+    "gps": [
+      "GPS",
+      "Generalizable Predictive Prompt Selection"
+    ],
+    "mpts": [
+      "MPTS",
+      "Model Predictive Task Sampling"
+    ],
+    "dynamic-sampling": [
+      "Dynamic Sampling",
+      "DS",
+      "выбор после выполнения"
+    ],
+    "grpo": [
+      "GRPO",
+      "Group Relative Policy Optimization"
+    ],
+    "independent-audit": [
+      "Independent audit",
+      "независимый аудит",
+      "проверка отклонённых задач"
+    ],
+    "r2orch": [
+      "R²Orch",
+      "R2Orch",
+      "Recursive Self-Play Orchestration"
+    ],
+    "self-play": [
+      "Self-play",
+      "самоигра"
+    ],
+    "skill-withdrawal": [
+      "Skill Withdrawal",
+      "снятие инструкций",
+      "randomized skill ablation"
+    ]
   },
   "datasets": {
-    "math": ["MATH", "mathematical reasoning"],
-    "aime24": ["AIME24", "AIME 2024"],
-    "countdown": ["Countdown", "арифметическое планирование"],
-    "geometry3k": ["Geometry3k", "геометрия"]
+    "math": [
+      "MATH",
+      "mathematical reasoning"
+    ],
+    "aime24": [
+      "AIME24",
+      "AIME 2024"
+    ],
+    "countdown": [
+      "Countdown",
+      "арифметическое планирование"
+    ],
+    "geometry3k": [
+      "Geometry3k",
+      "геометрия"
+    ],
+    "hotpotqa": [
+      "HotpotQA"
+    ],
+    "nq-open": [
+      "NQ-Open",
+      "Natural Questions Open"
+    ],
+    "medqa": [
+      "MedQA"
+    ],
+    "aime26": [
+      "AIME 2026",
+      "AIME26"
+    ],
+    "mbpp-plus": [
+      "MBPP+"
+    ],
+    "alfworld": [
+      "ALFWorld"
+    ],
+    "triviaqa": [
+      "TriviaQA"
+    ],
+    "musique": [
+      "MuSiQue"
+    ],
+    "gpqa": [
+      "GPQA"
+    ],
+    "math-hard": [
+      "MATH-Hard"
+    ],
+    "swe-bench": [
+      "SWE-Bench"
+    ],
+    "webshop": [
+      "WebShop"
+    ]
   }
 }
