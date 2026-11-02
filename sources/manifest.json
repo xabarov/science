@@ -98,6 +98,48 @@
       "local_path": "attachments/ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558/source.txt",
       "text_path": "attachments/ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558/text.txt",
       "text_sha256": "ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558"
+    },
+    {
+      "id": "53b7eed4471b434590af21282cd622f755c192b68f1032dcdfd17c57c456a64b",
+      "document": "arxiv:2610.18773",
+      "requested_url": "https://arxiv.org/html/2610.18773v2",
+      "resolved_url": "https://arxiv.org/html/2610.18773v2",
+      "version": "v2",
+      "retrieved_at": "2026-11-02T21:05:39.301083+00:00",
+      "sha256": "53b7eed4471b434590af21282cd622f755c192b68f1032dcdfd17c57c456a64b",
+      "bytes": 379134,
+      "content_type": "text/html",
+      "local_path": "attachments/53b7eed4471b434590af21282cd622f755c192b68f1032dcdfd17c57c456a64b/source.html",
+      "text_path": "attachments/53b7eed4471b434590af21282cd622f755c192b68f1032dcdfd17c57c456a64b/text.txt",
+      "text_sha256": "0ef7600b65cda5d389289bbffa08f0e32ec8431299a9faec4772f80bf26f7ca1"
+    },
+    {
+      "id": "79f21802104e6c12075d71d51673725c948b549efc8f819802cfec058ba1d10d",
+      "document": "arxiv:2610.18773",
+      "requested_url": "https://raw.githubusercontent.com/LiQiiiii/Jeva/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/matrix_decision.py",
+      "resolved_url": "https://raw.githubusercontent.com/LiQiiiii/Jeva/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/matrix_decision.py",
+      "version": "e2104e0720100f979f2cdd456a1cbbee96da0abd",
+      "retrieved_at": "2026-11-02T21:08:19.155979+00:00",
+      "sha256": "79f21802104e6c12075d71d51673725c948b549efc8f819802cfec058ba1d10d",
+      "bytes": 15946,
+      "content_type": "text/plain",
+      "local_path": "attachments/79f21802104e6c12075d71d51673725c948b549efc8f819802cfec058ba1d10d/source.txt",
+      "text_path": "attachments/79f21802104e6c12075d71d51673725c948b549efc8f819802cfec058ba1d10d/text.txt",
+      "text_sha256": "79f21802104e6c12075d71d51673725c948b549efc8f819802cfec058ba1d10d"
+    },
+    {
+      "id": "4ea56318a2c1625eaa57abe53ce47dfd1545c4517e07a59226ef52f0d0d07654",
+      "document": "arxiv:2610.18773",
+      "requested_url": "https://raw.githubusercontent.com/LiQiiiii/Jeva/e2104e0720100f979f2cdd456a1cbbee96da0abd/README.md",
+      "resolved_url": "https://raw.githubusercontent.com/LiQiiiii/Jeva/e2104e0720100f979f2cdd456a1cbbee96da0abd/README.md",
+      "version": "e2104e0720100f979f2cdd456a1cbbee96da0abd",
+      "retrieved_at": "2026-11-02T21:08:19.467975+00:00",
+      "sha256": "4ea56318a2c1625eaa57abe53ce47dfd1545c4517e07a59226ef52f0d0d07654",
+      "bytes": 11543,
+      "content_type": "text/plain",
+      "local_path": "attachments/4ea56318a2c1625eaa57abe53ce47dfd1545c4517e07a59226ef52f0d0d07654/source.txt",
+      "text_path": "attachments/4ea56318a2c1625eaa57abe53ce47dfd1545c4517e07a59226ef52f0d0d07654/text.txt",
+      "text_sha256": "4ea56318a2c1625eaa57abe53ce47dfd1545c4517e07a59226ef52f0d0d07654"
     }
   ]
 }

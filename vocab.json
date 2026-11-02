@@ -61,6 +61,23 @@
       "Agent harnessing",
       "агентная обвязка",
       "оптимизация среды агента"
+    ],
+    "typed-decisions": [
+      "Typed decisions",
+      "типизированные решения",
+      "Choice",
+      "Noul",
+      "Score"
+    ],
+    "set-modeling": [
+      "Set modeling",
+      "моделирование множеств",
+      "permutation equivariance"
+    ],
+    "open-set-recognition": [
+      "Open-set recognition",
+      "отсутствующий ответ",
+      "null detection"
     ]
   },
   "methods": {
@@ -127,6 +144,22 @@
     ],
     "maspo": [
       "MASPO"
+    ],
+    "jeva": [
+      "Jeva",
+      "System One Models from First Principles"
+    ],
+    "candidate-conditioned-state": [
+      "Candidate-conditioned state refinement",
+      "уточнение запроса по множеству кандидатов"
+    ],
+    "option-memory": [
+      "Reusable option memory",
+      "кэширование представлений кандидатов"
+    ],
+    "coverage-gate": [
+      "Coverage gate",
+      "оценка наличия допустимого ответа"
     ]
   },
   "datasets": {
@@ -227,6 +260,26 @@
       "LAB",
       "Legal Agent Benchmark",
       "Harvey LAB"
+    ],
+    "typed-decisions": [
+      "Typed Decisions",
+      "LocalLLaMA Typed Decisions"
+    ],
+    "banking77": [
+      "BANKING77"
+    ],
+    "massive": [
+      "MASSIVE"
+    ],
+    "mind2web": [
+      "Mind2Web"
+    ],
+    "toolret": [
+      "ToolRet"
+    ],
+    "mldr": [
+      "MLDR",
+      "Multilingual Long-Document Retrieval"
     ]
   }
 }

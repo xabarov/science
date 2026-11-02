@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.18773",
+  "kind": "paper",
+  "title": "Jeva: System One Models from First Principles",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "typed-decisions",
+    "set-modeling",
+    "open-set-recognition",
+    "uncertainty-calibration"
+  ],
+  "authors": [
+    "Qi Li",
+    "Xinchao Wang"
+  ],
+  "methods": [
+    "jeva",
+    "candidate-conditioned-state",
+    "option-memory",
+    "coverage-gate"
+  ],
+  "datasets": [
+    "typed-decisions",
+    "banking77",
+    "massive",
+    "mind2web",
+    "toolret",
+    "mldr"
+  ],
+  "aliases": [
+    "doi:10.48550/arxiv.2610.18773"
+  ],
+  "source": "https://arxiv.org/abs/2610.18773",
+  "source_version": "v2",
+  "accessed": "2026-11-03",
+  "reading_scope": "partial",
+  "paper_type": "empirical",
+  "summary": "Jeva кодирует запрос и кандидатов независимо общим Qwen3.5-4B, затем один небольшой attention-блок уточняет только состояние запроса по неизменной памяти кандидатов. Общий readout и отдельный coverage gate дают Choice/Noul/Score, симметрию по порядку и переиспользование кандидатов.",
+  "created": "2026-11-03",
+  "updated": "2026-11-03",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Архитектура Jeva отделяет независимое кодирование запроса и каждого typed option от set-dependent решения: только состояние запроса обновляется через attention к неизменным option vectors и K/V.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 3.1–3.2, Eqs. 1–4"
+    },
+    {
+      "id": "c2",
+      "text": "При фиксированных весах, детерминированном вычислении и точной арифметике перестановка кандидатов переставляет их вероятности, сохраняя состояние запроса и null probability. Для единственного победителя сохраняется его идентичность; ties и float требуют оговорок.",
+      "epistemic_status": "theoretical_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Proposition 3; Appendix B.5"
+    },
+    {
+      "id": "c3",
+      "text": "Coverage rho=sigmoid((max s-b)/tau_cov) и условное распределение q=softmax(s/tau_dec) решают разные вопросы; p_null=1-rho, p_i=rho*q_i. Noul читает вероятность положительного Boolean-кандидата, а не p_null.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 3.3, Eq. 6; Appendix C.6"
+    },
+    {
+      "id": "c4",
+      "text": "Jeva-4B: backbone Qwen3.5-4B, pooled width 2560, decision width 768, один блок, восемь голов по 96, SwiGLU 3072. Проекции и decision core вместе имеют 13,370,117 параметров; LoRA rank 64 обучается дополнительно к ним.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 3.5; Appendix B.7"
+    },
+    {
+      "id": "c5",
+      "text": "На 600 Choice-примерах Jeva-4B имеет 0% flips по проверенным перестановкам и 76.67% all-order accuracy; на BANKING77 K=16, 3080 запросов/588 absent, null AUROC 98.66%, TPR 93.88% при FPR 5.02%. Это разные наборы и метрики.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 4.1–4.2; Table 2; Appendix C.3"
+    },
+    {
+      "id": "c6",
+      "text": "При полном переиспользовании кандидатов MLDR на H200 p50 latency уменьшается с 2102.0 до 75.1 ms; priming исключён. Кэшируются candidate computations, не ответы; решений не изменилось, но вероятности могли отличаться до 0.00736 в cache study.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 4.4; Appendix C.5"
+    },
+    {
+      "id": "c7",
+      "text": "На ToolRet при 2048 кандидатах Jeva даёт 69.88% accuracy и p50 12.040 s против JevK5 67.47% и 28 s. Линейный head не отменяет стоимость кодирования новых кандидатов; batching существенно влияет на скорость.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 4.3; Figure 8; Appendix C.4"
+    },
+    {
+      "id": "c8",
+      "text": "Отдельный coverage gate не даёт универсальной гарантии обнаружения незнания модели при смене домена; такую проверку надо проводить отдельно.",
+      "epistemic_status": "open_question",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Section 3.3; Section 4.2 (scope: BANKING77), interpreted limitation"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.39497",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 1–3; analytical comparison",
+      "note": "Конкретный архитектурный кандидат для System One, способный выбирать среди готовых действий; эффективность предиктора в большом цикле System Two отдельно не проверена."
+    },
+    {
+      "type": "related",
+      "target": "question:auditing-under-shift",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 1–3; analytical comparison",
+      "note": "Coverage/null и численная уверенность требуют аудита при изменении задач."
+    },
+    {
+      "type": "related",
+      "target": "topic:conditional-computation",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 1–3; analytical comparison",
+      "note": "Связь с быстрым отбором действий и повторным использованием вычислений."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 1–3; analytical comparison",
+      "note": "Jeva могла бы выбирать уже сформированные harness-кандидаты; онлайн-редактирование Harness² само по себе она не реализует."
+    }
+  ],
+  "extra": {
+    "code_url": "https://github.com/LiQiiiii/Jeva",
+    "code_commit": "e2104e0720100f979f2cdd456a1cbbee96da0abd",
+    "model_url": "https://huggingface.co/LIQIIIII/Jeva-4B",
+    "model_revision": "25ca454b3522615a243c06703ba410ecf152a128",
+    "architecture": {
+      "backbone": "Qwen3.5-4B",
+      "pooling": "last_nonpadding",
+      "pooled_dim": 2560,
+      "decision_dim": 768,
+      "decision_blocks": 1,
+      "heads": 8,
+      "head_dim": 96,
+      "ffn": "SwiGLU",
+      "ffn_dim": 3072,
+      "projection_and_core_parameters": 13370117,
+      "lora_rank": 64,
+      "query_state_normalized": false,
+      "option_vectors_normalized": true,
+      "option_memory": "vector plus per-layer key/value"
+    },
+    "checked_sections": [
+      "Sections 1–4",
+      "Tables 1–2",
+      "Appendices B.5–B.8, C",
+      "Selected A symmetry/reuse/loss derivations"
+    ],
+    "code_read": [
+      "src/jeva/_runtime/model.py",
+      "src/jeva/_runtime/matrix_decision.py",
+      "config.py, selected backbone/layers functions",
+      "HF config.yaml, metadata.json, adapter_config.json"
+    ],
+    "not_checked": [
+      "Independent inference/training reproduction",
+      "Full proof audit",
+      "Training data deduplication and contamination audit"
+    ],
+    "research": {
+      "measurements": [
+        {
+          "id": "jeva-null-auroc",
+          "claim": "arxiv:2610.18773#c5",
+          "group": "jeva-v2-banking77-null",
+          "model": "Jeva-4B",
+          "train_data": "Staged mixed curriculum; Appendix C.1",
+          "test_data": "BANKING77, K=16, 3080 requests/588 answer-absent",
+          "method": "native coverage gate",
+          "metric": "null_auroc",
+          "unit": "percent",
+          "value": 98.66,
+          "baseline": "KEV-BF16 (93.61%)",
+          "budget": {},
+          "conditions": {
+            "reproduced": false
+          },
+          "uncertainty": "Repeated runs/CI not reported in checked result",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Section 4.2"
+        },
+        {
+          "id": "jeva-choice-flip",
+          "claim": "arxiv:2610.18773#c5",
+          "group": "jeva-v2-choice-permutations",
+          "model": "Jeva-4B",
+          "train_data": "Staged mixed curriculum",
+          "test_data": "Typed Decisions: 600 Choice examples",
+          "method": "original/reversed/up to 3 seeded permutations",
+          "metric": "decision_flip_rate",
+          "unit": "percent",
+          "value": 0.0,
+          "baseline": "Jev-1.13.0: 17%",
+          "budget": {},
+          "conditions": {
+            "all_order_accuracy_percent": 76.67,
+            "reproduced": false
+          },
+          "uncertainty": "Finite tested permutations; exact ties and floating point caveats apply",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Table 2; Section 4.1"
+        },
+        {
+          "id": "jeva-mldr-cache-off",
+          "claim": "arxiv:2610.18773#c6",
+          "group": "jeva-v2-mldr-full-reuse",
+          "model": "Jeva-4B / H200",
+          "train_data": "Same fixed checkpoint",
+          "test_data": "MLDR novel candidate sets, 100% option reuse",
+          "method": "Cache-Off",
+          "metric": "request_latency_p50",
+          "unit": "ms",
+          "value": 2102.0,
+          "baseline": "Cache-Off",
+          "budget": {
+            "encoder_batch_rows": 32,
+            "encoder_padded_token_budget": 16384,
+            "priming_included": false
+          },
+          "conditions": {
+            "weights_fixed": true,
+            "cached_answers": false,
+            "set_cache_hits": 0,
+            "reproduced": false
+          },
+          "uncertainty": "p50 across query stream, not CI; main text says 50 requests/level, Appendix C.5 says 46; unresolved discrepancy",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Section 4.4; Figure 9; Appendix C.5"
+        },
+        {
+          "id": "jeva-mldr-hybrid-full-reuse",
+          "claim": "arxiv:2610.18773#c6",
+          "group": "jeva-v2-mldr-full-reuse",
+          "model": "Jeva-4B / H200",
+          "train_data": "Same fixed checkpoint",
+          "test_data": "MLDR novel candidate sets, 100% option reuse",
+          "method": "Hybrid-full-reuse",
+          "metric": "request_latency_p50",
+          "unit": "ms",
+          "value": 75.1,
+          "baseline": "Cache-Off",
+          "budget": {
+            "encoder_batch_rows": 32,
+            "encoder_padded_token_budget": 16384,
+            "priming_included": false
+          },
+          "conditions": {
+            "weights_fixed": true,
+            "cached_answers": false,
+            "set_cache_hits": 0,
+            "reproduced": false
+          },
+          "uncertainty": "p50 across query stream, not CI; main text says 50 requests/level, Appendix C.5 says 46; unresolved discrepancy",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Section 4.4; Figure 9; Appendix C.5"
+        },
+        {
+          "id": "jeva-toolret-jeva",
+          "claim": "arxiv:2610.18773#c7",
+          "group": "jeva-v2-toolret-k2048",
+          "model": "Jeva-4B",
+          "train_data": "Different model training curricula; not matched",
+          "test_data": "ToolRet K=2048 cohort",
+          "method": "Jeva",
+          "metric": "top_target_accuracy",
+          "unit": "percent",
+          "value": 69.88,
+          "baseline": "Recursive-JevK5",
+          "budget": {
+            "latency_p50_seconds": 12.04,
+            "hardware": "one NVIDIA H200"
+          },
+          "conditions": {
+            "candidate_count": 2048,
+            "same_queries_within_comparison": true,
+            "weak_or_unjudged_added_negatives": true,
+            "reproduced": false
+          },
+          "uncertainty": "About 83–84 queries in distinct-query cohort; CI not provided",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Section 4.3; Appendix C.4"
+        },
+        {
+          "id": "jeva-toolret-recursive-jevk5",
+          "claim": "arxiv:2610.18773#c7",
+          "group": "jeva-v2-toolret-k2048",
+          "model": "JevK5",
+          "train_data": "Different model training curricula; not matched",
+          "test_data": "ToolRet K=2048 cohort",
+          "method": "Recursive-JevK5",
+          "metric": "top_target_accuracy",
+          "unit": "percent",
+          "value": 67.47,
+          "baseline": "Recursive-JevK5",
+          "budget": {
+            "latency_p50_seconds": 28.0,
+            "hardware": "one NVIDIA H200"
+          },
+          "conditions": {
+            "candidate_count": 2048,
+            "same_queries_within_comparison": true,
+            "weak_or_unjudged_added_negatives": true,
+            "reproduced": false
+          },
+          "uncertainty": "About 83–84 queries in distinct-query cohort; CI not provided",
+          "source": "https://arxiv.org/html/2610.18773v2",
+          "locator": "Section 4.3; Appendix C.4"
+        }
+      ]
+    }
+  }
+}
