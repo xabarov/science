@@ -4,8 +4,8 @@
 эксперименты. Рабочий язык — русский; оригинальные названия и идентификаторы сохраняются.
 
 Исходные данные — Markdown + JSON. SQLite, поисковые векторы и Neo4j — восстанавливаемые
-проекции. Ядро работает на Python 3.9+ без внешних пакетов. Поиск по смыслу использует
-отдельное окружение Python 3.12 и локальную мультиязычную модель.
+проекции. Python CLI работает на Python 3.9+ без внешних пакетов. Поиск по смыслу использует
+мультиязычную baai/bge-m3 через OpenRouter и отдельный сервер Qdrant.
 
 ## Быстрый старт
 
@@ -65,18 +65,23 @@ flowchart LR
 ## Поиск по смыслу
 
 ```sh
-uv venv --python python3.12 .venv
-uv pip install --python .venv/bin/python -r requirements-semantic.txt
-.venv/bin/python science.py semantic-index
-.venv/bin/python science.py semantic-search 'как обнаружить уверенные ошибки в новом домене' --limit 5
-.venv/bin/python science.py semantic-search 'predictive prompt selection' --hybrid
-.venv/bin/python science.py eval-search --k 3
+cp .env.example .env
+chmod 600 .env
+# Укажите OPENROUTER_API_KEY в .env через редактор.
+docker compose up -d
+python3 science.py semantic-index --with-sources
+python3 science.py semantic-search 'как обнаружить уверенные ошибки в новом домене' --limit 5
+python3 science.py semantic-search 'predictive prompt selection' --hybrid
+python3 science.py semantic-status
+python3 science.py eval-search --k 3
 ```
 
-С `semantic-index --with-sources` индексируются также локальные снимки первоисточников.
-Тексты кодируются локально; первое использование скачивает веса. Веса и векторы
-в Git не хранятся. При изменении карточек семантический индекс требует пересборки.
-[Устройство и ограничения](docs/semantic-search.md), [протокол оценки](docs/search-evaluation.json).
+На исходном Mac `.env` уже заполнен, Qdrant запущен и индекс построен.
+Фрагменты текстов и поисковые запросы отправляются в OpenRouter для эмбеддингов;
+поиск по векторам выполняется в локальном Qdrant. `--with-sources` добавляет
+сохранённые первоисточники. Ключ и базы не публикуются. Повторные тексты используют
+дисковый кэш; переключение на новую версию индекса атомарно.
+[Устройство и эксплуатация](docs/semantic-search.md), [протокол оценки](docs/search-evaluation.json).
 
 ## Хранение
 
@@ -92,11 +97,13 @@ attachments/          Локальные первоисточники; вне Gi
 vocab.json            Темы, методы, датасеты и синонимы
 research.py           Утверждения, измерения, стадии и пересмотр
 preservation.py       Снимки, архивы и восстановление
-semantic.py           Локальные embeddings и оценка поиска
+semantic.py           Индексация Qdrant, поиск и оценка
+search_backend.py     OpenRouter, кэш эмбеддингов и Qdrant REST
+compose.yaml          Локальный сервер Qdrant
 science.py            CLI, SQLite и экспорт графа
 ```
 
-SQLite и кэши находятся в data/, выгрузки — в exports/; всё восстанавливается.
+SQLite, кэши и хранилище Qdrant находятся в data/, выгрузки — в exports/; всё восстанавливается.
 Версии одной работы объединяются стабильным ID и aliases. У каждой карточки есть
 reading_scope: abstract/partial/full; source_checked не означает воспроизведения.
 

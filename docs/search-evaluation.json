@@ -2,8 +2,17 @@
   "k": 3,
   "queries": 8,
   "corpus_documents": 10,
-  "model": "intfloat/multilingual-e5-small",
-  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "embedding": {
+    "provider": "openrouter",
+    "model": "baai/bge-m3",
+    "dimension": 1024,
+    "version": "1",
+    "input_format": "plain-text-v1"
+  },
+  "backend": "qdrant",
+  "fingerprint": "1ec9cead14ca4662b14280491c09abebc48951bb3b0a61bd4f865ea02ea57430",
+  "chunk_format": "chars-2000-overlap-200-v1",
+  "built_at": "2026-11-02T20:24:08.139613+00:00",
   "dataset_sha256": "ba5c6e1947e331ac8f37c43ff5b5768b251ce136250fbb7fddaa27e74e0a4869",
   "average": {
     "lexical": {
@@ -13,18 +22,18 @@
     },
     "lexical_or": {
       "recall": 0.8125,
-      "mrr": 0.6458333333333334,
+      "mrr": 0.6458333333333333,
       "ndcg": 0.6796879187442734
     },
     "semantic": {
       "recall": 1.0,
-      "mrr": 0.75,
-      "ndcg": 0.8024650986435234
+      "mrr": 0.8541666666666666,
+      "ndcg": 0.8991783004521589
     },
     "hybrid": {
       "recall": 0.8125,
-      "mrr": 0.6666666666666666,
-      "ndcg": 0.6718758374885467
+      "mrr": 0.6875,
+      "ndcg": 0.7060890392971821
     }
   },
   "details": [
@@ -47,7 +56,7 @@
         "semantic": [
           "arxiv:2507.04632",
           "arxiv:2610.39497",
-          "arxiv:2602.01970"
+          "doi:10.1038/s41467-026-74004-0"
         ],
         "hybrid": [
           "arxiv:2507.04632",
@@ -92,14 +101,14 @@
           "idea:domain-shift-audit"
         ],
         "semantic": [
+          "arxiv:2610.39497",
           "idea:domain-shift-audit",
-          "topic:conditional-computation",
           "question:auditing-under-shift"
         ],
         "hybrid": [
+          "arxiv:2610.39497",
           "idea:domain-shift-audit",
-          "experiment:auditing-replay",
-          "arxiv:2610.39497"
+          "experiment:auditing-replay"
         ]
       },
       "metrics": {
@@ -115,13 +124,13 @@
         },
         "semantic": {
           "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 0.9197207891481876
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172708
         },
         "hybrid": {
           "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.6131471927654584
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163
         }
       }
     },
@@ -138,14 +147,14 @@
           "arxiv:2610.39497"
         ],
         "semantic": [
-          "idea:domain-shift-audit",
-          "topic:conditional-computation",
-          "arxiv:2610.39497"
+          "arxiv:2610.39497",
+          "arxiv:2507.04632",
+          "topic:conditional-computation"
         ],
         "hybrid": [
-          "topic:conditional-computation",
           "arxiv:2507.04632",
-          "arxiv:2610.39497"
+          "arxiv:2610.39497",
+          "topic:conditional-computation"
         ]
       },
       "metrics": {
@@ -161,13 +170,13 @@
         },
         "semantic": {
           "recall": 1.0,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.5
+          "mrr": 1.0,
+          "ndcg": 1.0
         },
         "hybrid": {
           "recall": 1.0,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.5
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
         }
       }
     },
@@ -185,13 +194,13 @@
         ],
         "semantic": [
           "arxiv:2507.04632",
-          "idea:domain-shift-audit",
-          "topic:conditional-computation"
+          "arxiv:2610.34751",
+          "arxiv:2610.39497"
         ],
         "hybrid": [
           "arxiv:2507.04632",
-          "idea:domain-shift-audit",
-          "arxiv:2602.01970"
+          "arxiv:2602.01970",
+          "idea:domain-shift-audit"
         ]
       },
       "metrics": {
@@ -230,14 +239,14 @@
           "arxiv:2602.01970"
         ],
         "semantic": [
-          "arxiv:2507.04632",
-          "arxiv:2610.39497",
-          "experiment:auditing-replay"
+          "experiment:auditing-replay",
+          "idea:domain-shift-audit",
+          "arxiv:2610.34751"
         ],
         "hybrid": [
-          "arxiv:2507.04632",
           "experiment:auditing-replay",
-          "arxiv:2610.33262"
+          "arxiv:2507.04632",
+          "arxiv:2610.34751"
         ]
       },
       "metrics": {
@@ -253,13 +262,13 @@
         },
         "semantic": {
           "recall": 1.0,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.5
+          "mrr": 1.0,
+          "ndcg": 1.0
         },
         "hybrid": {
           "recall": 1.0,
-          "mrr": 0.5,
-          "ndcg": 0.6309297535714575
+          "mrr": 1.0,
+          "ndcg": 1.0
         }
       }
     },
@@ -277,13 +286,13 @@
         ],
         "semantic": [
           "arxiv:2610.34751",
-          "arxiv:2610.39497",
-          "arxiv:2507.04632"
+          "arxiv:2610.33262",
+          "arxiv:2610.39497"
         ],
         "hybrid": [
-          "arxiv:2610.39497",
+          "arxiv:2610.33262",
           "experiment:auditing-replay",
-          "arxiv:2610.33262"
+          "arxiv:2610.39497"
         ]
       },
       "metrics": {
@@ -323,13 +332,13 @@
         ],
         "semantic": [
           "arxiv:2610.33262",
-          "idea:domain-shift-audit",
-          "arxiv:2602.01970"
+          "arxiv:2507.04632",
+          "doi:10.1038/s41467-026-74004-0"
         ],
         "hybrid": [
           "arxiv:2610.33262",
-          "idea:domain-shift-audit",
-          "experiment:auditing-replay"
+          "experiment:auditing-replay",
+          "arxiv:2507.04632"
         ]
       },
       "metrics": {

@@ -126,9 +126,9 @@ def source_files(root):
                          and (relative != Path('.') or d in directories))
         for name in sorted(files):
             path = Path(folder) / name
-            if path.is_symlink() or name.startswith('.env') or name == '.DS_Store':
+            if path.is_symlink() or (name.startswith('.env') and name != '.env.example') or name == '.DS_Store':
                 continue
-            if relative != Path('.') or path.suffix in ('.py', '.md', '.json', '.txt') or name == '.gitignore':
+            if relative != Path('.') or path.suffix in ('.py', '.md', '.json', '.txt', '.yaml', '.yml') or name in ('.gitignore', '.env.example'):
                 yield path
 
 

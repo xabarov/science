@@ -104,6 +104,9 @@ class ResearchTest(unittest.TestCase):
 
     def test_backup_restore_preserves_sources_excludes_secrets(self):
         (self.root/'.env').write_text('secret')
+        (self.root/'.env.local').write_text('secret')
+        (self.root/'.env.example').write_text('OPENROUTER_API_KEY=')
+        (self.root/'compose.yaml').write_text('services: {}')
         (self.root/'attachments').mkdir(); (self.root/'attachments/example.html').write_text('source')
         (self.root/'data').mkdir(); (self.root/'data/cache').write_text('cache')
         result=preservation.backup(self.root,self.root.parent/'backups')
@@ -112,6 +115,9 @@ class ResearchTest(unittest.TestCase):
         target=self.root.parent/'restored'
         preservation.restore(archive,target)
         self.assertFalse((target/'.env').exists()); self.assertFalse((target/'data').exists())
+        self.assertFalse((target/'.env.local').exists())
+        self.assertEqual((target/'.env.example').read_text(), 'OPENROUTER_API_KEY=')
+        self.assertEqual((target/'compose.yaml').read_text(), 'services: {}')
         self.assertEqual((target/'attachments/example.html').read_text(),'source')
         self.assertEqual(science.rebuild(target),2)
         with self.assertRaisesRegex(ValueError,'новый каталог'):

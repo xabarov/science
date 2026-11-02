@@ -20,3 +20,18 @@ jobs:
       - run: python science.py check
       - run: python science.py check-sources
       - run: python science.py export-neo4j
+  qdrant:
+    runs-on: ubuntu-24.04
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.20.0
+        ports:
+          - 6333:6333
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_semantic.py -v
+        env:
+          SCIENCE_TEST_QDRANT_URL: http://127.0.0.1:6333
