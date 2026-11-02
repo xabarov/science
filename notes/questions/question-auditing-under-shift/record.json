@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "question:auditing-under-shift",
+  "kind": "question",
+  "title": "Какой бюджет аудита сохраняет качество отбора при смене домена?",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "distribution-shift",
+    "uncertainty-calibration"
+  ],
+  "authors": [],
+  "methods": [],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Открытый вопрос: минимальный бюджет проверок для сохранения качества при смене домена.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "research": {
+      "stage": "open",
+      "depends_on": [
+        "arxiv:2610.39497#c3"
+      ],
+      "question": "Как выбирать частоту независимого аудита отвергнутых действий при смене домена?",
+      "success_criteria": "Измерить компромисс полного бюджета, пропуска полезных действий и восстановления после сдвига.",
+      "open_gaps": [
+        "Границы применимости дешёвого предиктора",
+        "Отличия от CAD и ATLAS",
+        "Устойчивость к уверенным ошибкам"
+      ],
+      "dependency_state": {
+        "arxiv:2610.39497#c3": "a4511ea1206f3cf79a31bc382e36eecbe7b1db2f4132d1fc6630f83598dae268"
+      },
+      "history": [
+        {
+          "at": "2026-11-02T19:51:26.571994+00:00",
+          "action": "review_ack",
+          "note": "Вопрос соответствует открытому ограничению источника c3; эмпирического ответа нет."
+        }
+      ]
+    }
+  }
+}

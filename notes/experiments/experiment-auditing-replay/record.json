@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "experiment:auditing-replay",
+  "kind": "experiment",
+  "title": "План: сравнение политик аудита на потоке со сдвигом",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 2,
+  "topics": [
+    "conditional-computation",
+    "distribution-shift"
+  ],
+  "authors": [],
+  "methods": [],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Невыполненный план контролируемого сравнения аудита; данных и результатов пока нет.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "research": {
+      "stage": "planned",
+      "depends_on": [
+        "idea:domain-shift-audit#h1",
+        "question:auditing-under-shift"
+      ],
+      "protocol": {
+        "hypothesis": "idea:domain-shift-audit#h1",
+        "baselines": [
+          "Execute all",
+          "Gate without audit",
+          "Fixed random audit",
+          "Uncertainty sampling",
+          "Adaptive audit with random floor"
+        ],
+        "primary_metric": "False-negative rate at matched total execution-equivalent budget",
+        "budget": {
+          "amount": null,
+          "unit": "executor-equivalent calls"
+        },
+        "falsification": "No improvement over fixed random audit at equal total budget and predefined uncertainty interval.",
+        "seeds": [],
+        "data": "Not selected: offline replay with complete outcomes followed by controlled domain shift.",
+        "quality_gate": "Before running: select data, numerical budget, exact seeds and statistical threshold.",
+        "ready": false
+      },
+      "artifacts": [],
+      "measurements": [],
+      "outcome": "not_run",
+      "dependency_state": {
+        "idea:domain-shift-audit#h1": "df19157c26d69ffd639690b8c355bb87ba6ace592906313f4a2976f2c4acf16a",
+        "question:auditing-under-shift": "e24ae6c0859ebdc6b6791f95b0182772c5dbecf0b46fe6b5e428253f45003945"
+      },
+      "history": [
+        {
+          "at": "2026-11-02T19:51:26.626030+00:00",
+          "action": "review_ack",
+          "note": "План сопоставлен с вопросом и гипотезой; ready=false, данные и бюджет ещё не выбраны."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "id": "c3a9e808c1df14783e80b08f61a8f54e0dc650338f7312879c41bf5b71d03356",
+      "document": "arxiv:2610.39497",
+      "requested_url": "https://arxiv.org/html/2610.39497v1",
+      "resolved_url": "https://arxiv.org/html/2610.39497v1",
+      "version": "v1",
+      "retrieved_at": "2026-11-02T19:47:43.147305+00:00",
+      "sha256": "c3a9e808c1df14783e80b08f61a8f54e0dc650338f7312879c41bf5b71d03356",
+      "bytes": 1829654,
+      "content_type": "text/html",
+      "local_path": "attachments/c3a9e808c1df14783e80b08f61a8f54e0dc650338f7312879c41bf5b71d03356/source.html",
+      "text_path": "attachments/c3a9e808c1df14783e80b08f61a8f54e0dc650338f7312879c41bf5b71d03356/text.txt",
+      "text_sha256": "ea9bc8759da9e751809f2680ea160ffebb77e46a237cb3403a5439ba087a3c4e"
+    },
+    {
+      "id": "4d6ba4cfc65405dfccc9e8d099ecff479b50fdbbc08c5f444db1f2ef30843771",
+      "document": "arxiv:2507.04632",
+      "requested_url": "https://arxiv.org/html/2507.04632v2",
+      "resolved_url": "https://arxiv.org/html/2507.04632v2",
+      "version": "v2",
+      "retrieved_at": "2026-11-02T19:48:23.117546+00:00",
+      "sha256": "4d6ba4cfc65405dfccc9e8d099ecff479b50fdbbc08c5f444db1f2ef30843771",
+      "bytes": 433680,
+      "content_type": "text/html",
+      "local_path": "attachments/4d6ba4cfc65405dfccc9e8d099ecff479b50fdbbc08c5f444db1f2ef30843771/source.html",
+      "text_path": "attachments/4d6ba4cfc65405dfccc9e8d099ecff479b50fdbbc08c5f444db1f2ef30843771/text.txt",
+      "text_sha256": "bc69a3e7396a4ecf46c8af9c47da5bf2ad07ecfcaff68e9d2c5be00ed0c44dd8"
+    }
+  ]
+}

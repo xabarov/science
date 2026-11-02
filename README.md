@@ -1,108 +1,129 @@
 # Science — исследовательская картотека
 
-Разборы публикаций, связи между работами и проверяемые исследовательские идеи.
-Рабочий язык заметок — русский; названия, авторы и идентификаторы сохраняются в оригинале.
-Структура допускает любые научные области, первая тема — эффективность ИИ.
+Разборы публикаций, проверяемые утверждения, исследовательские вопросы, гипотезы и
+эксперименты. Рабочий язык — русский; оригинальные названия и идентификаторы сохраняются.
 
-## Начать
+Исходные данные — Markdown + JSON. SQLite, поисковые векторы и Neo4j — восстанавливаемые
+проекции. Ядро работает на Python 3.9+ без внешних пакетов. Поиск по смыслу использует
+отдельное окружение Python 3.12 и локальную мультиязычную модель.
 
-Требуется Python 3.9+ с SQLite FTS5. На этом компьютере проверено; устанавливать зависимости не нужно.
+## Быстрый старт
 
 ```sh
-cd /Users/roman/dev/repos/science
-python3 science.py search 'System-1'
-python3 science.py search 'неопределённость'
-python3 science.py search 'предиктор* OR predictor*' --fts
+git clone https://github.com/xabarov/science.git
+cd science
+python3 science.py validate
+python3 science.py index
+python3 science.py search 'MoPPS'
 python3 science.py list --topic conditional-computation
-python3 science.py list --kind idea
-python3 science.py list --epistemic reported_result
 python3 science.py related arxiv:2610.39497 --depth 2
 python3 science.py show arxiv:2610.39497
 ```
 
-Результаты содержат путь к Markdown. Их можно открывать в обычном редакторе,
-VS Code или Obsidian. `--json` у search/list позволяет использовать картотеку в скриптах.
-`related` обходит связи в обоих направлениях, сохраняя направление и основания
-прямых связей в `direct_relations`. Тематические совпадения ищутся через `--topic`.
-
-Добавить публикацию или собственную идею:
+Поиск возвращает пути к заметкам, открываемым в редакторе или Obsidian.
+У search/list есть `--json`, фильтры kind/status/year/topic/method/dataset/epistemic.
+Обычный запрос ищет все слова; `--fts` включает фразы, OR, NOT и префиксы:
 
 ```sh
-python3 science.py new 'https://arxiv.org/abs/2602.01970' --title 'Small Generalizable Prompt Predictive Models Can Steer Efficient RL Post-Training of Large Reasoning Models'
-python3 science.py note idea my-research-question --title 'Проверяемая исследовательская гипотеза'
+python3 science.py search 'предиктор* OR predictor*' --fts
 ```
 
-`new` создаёт заготовку inbox, ничего не скачивает и не выдаёт её за разбор.
-Если запись уже есть, команда покажет её путь. Заполнить `record.json` и `review.md`, затем:
+## Исследовательская работа
 
 ```sh
-python3 science.py validate
-python3 science.py index
-python3 science.py check
-python3 science.py stats
+python3 science.py note question my-question --title 'Исследовательский вопрос'
+python3 science.py note idea my-hypothesis --title 'Проверяемая гипотеза'
+python3 science.py note experiment my-test --title 'Минимальный эксперимент'
+python3 science.py research-list
+python3 science.py claim 'arxiv:2610.39497#c3'
+python3 science.py compare --group mopps-v2-table1-r1distill1.5b-aime24
+python3 science.py novelty --id idea:domain-shift-audit
+python3 science.py impact 'arxiv:2610.39497#c3'
+python3 science.py review-queue
 ```
 
-После ручного редактирования нужно выполнить `index`. `check` обнаруживает
-устаревание индекса, включая изменения текста и словаря. Сам поиск читает последний
-успешный индекс и не сканирует все исходники при каждом запросе.
+Для новой статьи: `python3 science.py new ARXIV_ID_OR_DOI --title 'Название'`.
+Заготовка inbox не считается разбором. Заполнять record.json и review.md,
+затем `validate`, `index`, `check`. Обычный поиск читает последний успешный индекс.
 
-## Где что хранится
+```mermaid
+flowchart LR
+  P[Статья и версия источника] --> C[Утверждение и условия]
+  C --> Q[Исследовательский вопрос]
+  C --> H[Гипотеза]
+  Q --> H
+  H --> N[Проверка новизны]
+  N --> E[План эксперимента]
+  E --> R[Измерения и вывод]
+  R --> Q
+```
+
+Связи поддерживают адреса `document#claim`. Зависимости пересматриваются при изменении
+основания; научные выводы не меняются автоматически. В источниках и наших идеях
+различаются экспериментальные сообщения, теоретические результаты и гипотезы.
+
+## Поиск по смыслу
+
+```sh
+uv venv --python python3.12 .venv
+uv pip install --python .venv/bin/python -r requirements-semantic.txt
+.venv/bin/python science.py semantic-index
+.venv/bin/python science.py semantic-search 'как обнаружить уверенные ошибки в новом домене' --limit 5
+.venv/bin/python science.py semantic-search 'predictive prompt selection' --hybrid
+.venv/bin/python science.py eval-search --k 3
+```
+
+С `semantic-index --with-sources` индексируются также локальные снимки первоисточников.
+Тексты кодируются локально; первое использование скачивает веса. Веса и векторы
+в Git не хранятся. При изменении карточек семантический индекс требует пересборки.
+[Устройство и ограничения](docs/semantic-search.md), [протокол оценки](docs/search-evaluation.json).
+
+## Хранение
 
 ```text
-papers/2026/arxiv-2610.39497/
-  record.json                 Метаданные, утверждения, связи, уровень проверки
-  review.md                   Человеческий разбор со ссылками на первоисточники
-notes/topics/                 Карты предметных областей
-notes/ideas/                  Гипотезы и минимальные эксперименты
-notes/syntheses/              Сравнения нескольких работ и состояния направления
-templates/                    Шаблоны новых записей
-vocab.json                    Общие термины и русско-английские синонимы
-data/catalog.sqlite3          Производный полнотекстовый индекс и граф
-exports/neo4j/                Производная выгрузка графа
-attachments/                  PDF, HTML, код и другие локальные материалы
-docs/                         Формат, рабочий процесс, архитектура
-AGENTS.md                     Инструкции будущим сессиям ассистента
+papers/<year>/<id>/record.json + review.md
+notes/topics/          Карты направлений
+notes/questions/       Исследовательские вопросы
+notes/ideas/           Гипотезы и проверка новизны
+notes/experiments/     Протоколы, измерения, исходы
+notes/syntheses/       Сопоставления работ
+sources/manifest.json Версии, URL и хеши снимков
+attachments/          Локальные первоисточники; вне Git
+vocab.json            Темы, методы, датасеты и синонимы
+research.py           Утверждения, измерения, стадии и пересмотр
+preservation.py       Снимки, архивы и восстановление
+semantic.py           Локальные embeddings и оценка поиска
+science.py            CLI, SQLite и экспорт графа
 ```
 
-**Источник истины — файлы записей.** Они подготовлены для хранения в Git;
-локальный репозиторий инициализирован, коммитов и remote пока нет. Базу и экспорт можно удалить
-и восстановить; локальные вложения, базы и секреты исключены из Git.
-Удаление файлов записи и повторный `index` удаляет её из индекса.
+SQLite и кэши находятся в data/, выгрузки — в exports/; всё восстанавливается.
+Версии одной работы объединяются стабильным ID и aliases. У каждой карточки есть
+reading_scope: abstract/partial/full; source_checked не означает воспроизведения.
 
-Каждая работа имеет один стабильный ID: `arxiv:2610.39497`, `doi:10.…` или
-`paper:slug`. Версия arXiv — отдельное поле; DOI опубликованной версии можно
-добавить в aliases той же записи. Внешняя ссылка в графе может существовать без
-разбора: она помечается как stub, а не как прочитанная работа.
+## Первые исследования
 
-## Поиск и его границы
+- [Обсуждавшаяся концептуальная работа](papers/2026/arxiv-2610.39497/review.md).
+- [Часть экспериментов MoPPS](papers/2025/arxiv-2507.04632/review.md).
+- [Вопрос об аудите при смене домена](notes/questions/question-auditing-under-shift/review.md).
+- [Гипотеза и первичный поиск новизны](notes/ideas/idea-domain-shift-audit/review.md).
+- [План эксперимента — пока не выполнен](notes/experiments/experiment-auditing-replay/review.md).
 
-- Полнотекстовый поиск охватывает заголовок, summary, review.md, авторов,
-  утверждения, описания связей и словарные синонимы тем/методов/датасетов.
-- Обычный запрос ищет все введённые слова, без учёта регистра. `--fts` включает
-  фразы, `OR`, `NOT` и префиксы: `предиктор*`.
-- Фильтры: `--kind`, `--status`, `--year`, `--topic`, `--method`, `--dataset`,
-  `--epistemic`. Точные ID терминов находятся в vocab.json.
-- Русская морфология, смысловая близость, автоматический перевод и поиск
-  по несохранённым PDF пока не реализованы. Общие синонимы из словаря индексируются;
-  произвольные русско-английские формулировки не становятся эквивалентными.
-- Фильтр `--epistemic reported_result` находит записи с экспериментальными
-  утверждениями, но статус `source_checked` не означает воспроизведения.
-
-Подробности: [рабочий процесс](docs/workflow.md), [формат](docs/format.md),
-[архитектура и развитие](docs/architecture.md), [Neo4j](docs/neo4j.md).
-
-## Первые записи
-
-- [System-1 / System-2: обсуждавшаяся статья](papers/2026/arxiv-2610.39497/review.md).
-- [MoPPS: частичная сверка экспериментальных результатов](papers/2025/arxiv-2507.04632/review.md).
-- [Карта направления](notes/topics/topic-conditional-computation/review.md).
-- [Кандидат идеи: аудит ошибок предиктора при смене домена](notes/ideas/idea-domain-shift-audit/review.md).
-
-Нет фоновых процессов, платных API и ежедневного расписания. Автоматизация
-сбора и чтения — отдельный следующий этап, когда определим источники и критерии отбора.
-
-## Проверка кода
+## Сохранность и проверки
 
 ```sh
+python3 science.py check-sources
+python3 science.py backup --destination /path/outside/repository
+python3 science.py export-neo4j
 python3 -m unittest discover -s tests -v
 ```
+
+GitHub хранит код и записи. Снимки статей не публикуются; архивы резервируют их
+вместе с записями и Git-историей. На исходном Mac установлен ежедневный backup в
+23:30; установка на другом Mac — через install_backup.py. Локальный архив на том
+же диске не защищает от потери диска; для вложений нужен отдельный носитель.
+Полного сервера Neo4j и автоматического ежедневного чтения статей нет.
+
+Документация: [процесс](docs/workflow.md), [формат](docs/format.md),
+[исследовательский слой](docs/research.md), [архитектура](docs/architecture.md),
+[резервирование](docs/preservation.md), [Neo4j](docs/neo4j.md).
+Проверки формата и кода запускаются GitHub Actions при push/PR.

@@ -58,6 +58,14 @@
       "verification": "not_checked",
       "source": "https://arxiv.org/html/2610.39497v1",
       "locator": "Section 7"
+    },
+    {
+      "id": "c3",
+      "text": "Достаточная частота независимых проверок при меняющемся распределении остаётся открытым вопросом.",
+      "epistemic_status": "open_question",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Section 7.2"
     }
   ],
   "relations": [

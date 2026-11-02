@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.34751",
+  "kind": "paper",
+  "title": "Adaptive Probe Design for Auditing AI Agents",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 2,
+  "topics": [
+    "active-learning",
+    "uncertainty-calibration"
+  ],
+  "authors": [
+    "Zhenghan Li",
+    "Xuan Bi",
+    "Jie Ding"
+  ],
+  "methods": [],
+  "datasets": [],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2610.34751",
+  "source_version": "",
+  "accessed": "2026-11-02",
+  "reading_scope": "abstract",
+  "paper_type": "unknown",
+  "summary": "CAD планирует дополнительные проверки агента с учётом недостаточного покрытия исторических логов.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "reading_notes": "Проверена аннотация в первичном результате поиска; полный текст и численные результаты не проверены."
+  }
+}

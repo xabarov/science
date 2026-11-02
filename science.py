@@ -7,12 +7,13 @@ import json
 import re
 import sqlite3
 import sys
+import research
 from datetime import date
 from pathlib import Path
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent
-KINDS = ('paper', 'topic', 'idea', 'synthesis')
+KINDS = ('paper', 'topic', 'idea', 'synthesis', 'question', 'experiment')
 STATUSES = ('inbox', 'triaged', 'reviewed', 'revisit', 'archived')
 SCOPES = ('unread', 'abstract', 'partial', 'full', 'not_applicable')
 EPISTEMIC = ('reported_result', 'theoretical_result', 'hypothesis', 'interpretation', 'open_question')
@@ -36,7 +37,7 @@ def canonical_id(value):
     doi = re.fullmatch(r'(?:(?:https?://)?(?:dx\.)?doi\.org/|doi:)?(10\.\d{4,9}/\S+)', value, re.I)
     if doi:
         return 'doi:' + doi.group(1).lower()
-    if re.fullmatch(r'(?:paper|topic|idea|synthesis):[a-z0-9][a-z0-9._-]*', value):
+    if re.fullmatch(r'(?:paper|topic|idea|synthesis|question|experiment):[a-z0-9][a-z0-9._-]*', value):
         return value
     raise ValueError('Ожидается arXiv ID/URL, DOI или ID вида paper:slug / topic:slug / idea:slug / synthesis:slug')
 
@@ -136,6 +137,7 @@ def collect(root):
                     raise ValueError(f'Дубликат {identity}: {owners[identity]} и {path}')
                 owners[identity] = path
             docs.append((record, review.relative_to(root).as_posix(), review.read_text(encoding='utf-8')))
+    research.validate(docs, canonical_id)
     return docs, vocab
 
 
@@ -201,7 +203,8 @@ def rebuild(root):
                 relation_text = '\n'.join(e['target'] + ' ' + e['note'] for e in record['relations'])
                 con.execute('INSERT INTO search_index VALUES (?,?,?,?,?)', (
                     record['id'], record['title'], record['summary'], ' '.join(terms),
-                    body + '\n' + claims_text + '\n' + relation_text + '\n' + ' '.join(record['aliases'])))
+                    body + '\n' + claims_text + '\n' + relation_text + '\n' + ' '.join(record['aliases']) +
+                    '\n' + json.dumps(research.extension(record), ensure_ascii=False)))
                 for edge in record['relations']:
                     target = identities.get(edge['target'], edge['target'])
                     edge_id = digest(json.dumps([record['id'], target, edge], sort_keys=True, ensure_ascii=False))
@@ -318,6 +321,13 @@ def export_neo4j(root, output):
                 edges.append({'id': digest(record['id'] + '\0' + target), 'from_id': record['id'], 'to_id': target,
                               'type': 'tagged', 'status': 'curated', 'source': record['id'],
                               'locator': 'record.json:' + category, 'note': 'Классификация картотеки; не научное утверждение'})
+    claim_nodes, claim_edges = research.evidence_nodes(docs)
+    nodes.update({n['id']: n for n in claim_nodes})
+    for edge in claim_edges:
+        for key in ('from_id', 'to_id'):
+            owner, claim = research.split_ref(edge[key])
+            edge[key] = identities.get(owner, owner) + ('#' + claim if claim else '')
+    edges.extend(claim_edges)
     for name, fields, rows in [
         ('nodes.csv', ['id', 'kind', 'title', 'year', 'status', 'scope', 'source', 'path', 'stub', 'aliases_json'], sorted(nodes.values(), key=lambda n: n['id'])),
         ('edges.csv', ['id', 'from_id', 'to_id', 'type', 'status', 'source', 'locator', 'note'], sorted(edges, key=lambda e: e['id'])),
@@ -368,10 +378,15 @@ def create_record(root, identity, title, kind='paper', year=None, source=''):
     key = re.sub(r'[^a-zA-Z0-9._-]', '-', identity)
     if len(key) > 96:
         key = key[:70] + '-' + digest(identity)[:16]
-    section = {'topic': 'topics', 'idea': 'ideas', 'synthesis': 'syntheses'}
+    section = {'topic': 'topics', 'idea': 'ideas', 'synthesis': 'syntheses', 'question': 'questions', 'experiment': 'experiments'}
     folder = root / ('papers' if kind == 'paper' else 'notes') / (str(year) if kind == 'paper' else section[kind]) / key
     folder.mkdir(parents=True, exist_ok=False)
-    template = (root / 'templates' / ('paper.md' if kind == 'paper' else 'note.md')).read_text(encoding='utf-8')
+    template_path = root / 'templates' / (kind + '.md')
+    if not template_path.exists():
+        template_path = root / 'templates' / 'note.md'
+    template = template_path.read_text(encoding='utf-8')
+    if kind in research.STAGES:
+        record['extra']['research'] = {'stage': next(iter(research.STAGES[kind]))}
     (folder / 'record.json').write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     (folder / 'review.md').write_text(template.replace('{{title}}', title).replace('{{id}}', identity), encoding='utf-8')
     return folder
@@ -416,7 +431,7 @@ def parser():
     q.add_argument('--year', type=int)
     q.add_argument('--source', default='')
     q = sub.add_parser('note')
-    q.add_argument('kind', choices=('topic', 'idea', 'synthesis'))
+    q.add_argument('kind', choices=KINDS[1:])
     q.add_argument('slug')
     q.add_argument('--title', required=True)
     q = sub.add_parser('show')
@@ -426,6 +441,11 @@ def parser():
     q.add_argument('--depth', type=int, choices=range(1, 5), default=1)
     q = sub.add_parser('export-neo4j')
     q.add_argument('--output', type=Path)
+    research.setup_parser(sub)
+    import preservation
+    preservation.setup_parser(sub)
+    import semantic
+    semantic.setup_parser(sub)
     return p
 
 
@@ -433,7 +453,9 @@ def main(argv=None):
     args = parser().parse_args(argv)
     root = args.root.resolve()
     try:
-        if args.command == 'validate':
+        if args.command in research.COMMANDS:
+            print(json.dumps(research.run(root, args), ensure_ascii=False, indent=2))
+        elif args.command == 'validate':
             docs, _ = collect(root)
             print(f'OK: {len(docs)} записей; ID, словарь, утверждения и связи проверены.')
         elif args.command == 'index':
@@ -472,6 +494,11 @@ def main(argv=None):
                 for row in con.execute('SELECT kind,status,scope,count(*) AS n FROM documents GROUP BY kind,status,scope ORDER BY kind,status,scope'):
                     print(f"{row['kind']:10} {row['status']:10} {row['scope']:15} {row['n']}")
                 print('Связей:', con.execute('SELECT count(*) FROM relations').fetchone()[0])
+        else:
+            import preservation
+            import semantic
+            handler = preservation if args.command in preservation.COMMANDS else semantic
+            print(json.dumps(handler.run(root, args), ensure_ascii=False, indent=2))
         return 0
     except (ValueError, OSError, sqlite3.Error) as exc:
         print('Ошибка: ' + str(exc), file=sys.stderr)

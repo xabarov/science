@@ -1,0 +1,10 @@
+[
+  {"query":"MoPPS", "relevant":["arxiv:2507.04632"]},
+  {"query":"сколько стоит проверять решения при изменении распределения задач", "relevant":["question:auditing-under-shift","idea:domain-shift-audit"]},
+  {"query":"предсказание полезности до дорогого выполнения", "relevant":["arxiv:2610.39497"]},
+  {"query":"математические задачи число генераций точность AIME", "relevant":["arxiv:2507.04632"]},
+  {"query":"planned comparison of random and uncertainty based auditing", "relevant":["experiment:auditing-replay"]},
+  {"query":"audit agent performance with targeted probes and historical logs", "relevant":["arxiv:2610.34751"]},
+  {"query":"проверка ошибок в метках данных с учетом итоговой оценки", "relevant":["arxiv:2610.33262"]},
+  {"query":"generalizable prompt predictor for reasoning model training", "relevant":["arxiv:2602.01970"]}
+]

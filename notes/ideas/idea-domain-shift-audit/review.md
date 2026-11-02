@@ -35,3 +35,7 @@
 Проверить литературу: selective prediction, contextual bandits, off-policy evaluation,
 OOD detection и adaptive auditing. Затем выбрать одну задачу и измерить стоимость
 полной оценки. Это ещё не проект с подтверждённой новизной.
+
+## Первичный поиск новизны — 2026-11-02
+
+Найдены [CAD](../../../papers/2026/arxiv-2610.34751/review.md) и [ATLAS](../../../papers/2026/arxiv-2610.33262/review.md). Проверены только аннотации. Точные запросы и область поиска сохранены в extra.research.novelty_checks. Новизна идеи не установлена.

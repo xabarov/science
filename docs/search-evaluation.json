@@ -1,0 +1,406 @@
+{
+  "k": 3,
+  "queries": 8,
+  "corpus_documents": 10,
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "dataset_sha256": "ba5c6e1947e331ac8f37c43ff5b5768b251ce136250fbb7fddaa27e74e0a4869",
+  "average": {
+    "lexical": {
+      "recall": 0.125,
+      "mrr": 0.125,
+      "ndcg": 0.125
+    },
+    "lexical_or": {
+      "recall": 0.8125,
+      "mrr": 0.6458333333333334,
+      "ndcg": 0.6796879187442734
+    },
+    "semantic": {
+      "recall": 1.0,
+      "mrr": 0.75,
+      "ndcg": 0.8024650986435234
+    },
+    "hybrid": {
+      "recall": 0.8125,
+      "mrr": 0.6666666666666666,
+      "ndcg": 0.6718758374885467
+    }
+  },
+  "details": [
+    {
+      "query": "MoPPS",
+      "relevant": [
+        "arxiv:2507.04632"
+      ],
+      "rankings": {
+        "lexical": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "topic:conditional-computation"
+        ],
+        "lexical_or": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "topic:conditional-computation"
+        ],
+        "semantic": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "arxiv:2602.01970"
+        ],
+        "hybrid": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "topic:conditional-computation"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        }
+      }
+    },
+    {
+      "query": "сколько стоит проверять решения при изменении распределения задач",
+      "relevant": [
+        "idea:domain-shift-audit",
+        "question:auditing-under-shift"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "experiment:auditing-replay",
+          "arxiv:2610.39497",
+          "idea:domain-shift-audit"
+        ],
+        "semantic": [
+          "idea:domain-shift-audit",
+          "topic:conditional-computation",
+          "question:auditing-under-shift"
+        ],
+        "hybrid": [
+          "idea:domain-shift-audit",
+          "experiment:auditing-replay",
+          "arxiv:2610.39497"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 0.5,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.3065735963827292
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9197207891481876
+        },
+        "hybrid": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.6131471927654584
+        }
+      }
+    },
+    {
+      "query": "предсказание полезности до дорогого выполнения",
+      "relevant": [
+        "arxiv:2610.39497"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "arxiv:2507.04632",
+          "topic:conditional-computation",
+          "arxiv:2610.39497"
+        ],
+        "semantic": [
+          "idea:domain-shift-audit",
+          "topic:conditional-computation",
+          "arxiv:2610.39497"
+        ],
+        "hybrid": [
+          "topic:conditional-computation",
+          "arxiv:2507.04632",
+          "arxiv:2610.39497"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5
+        }
+      }
+    },
+    {
+      "query": "математические задачи число генераций точность AIME",
+      "relevant": [
+        "arxiv:2507.04632"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "arxiv:2507.04632",
+          "idea:domain-shift-audit",
+          "arxiv:2602.01970"
+        ],
+        "semantic": [
+          "arxiv:2507.04632",
+          "idea:domain-shift-audit",
+          "topic:conditional-computation"
+        ],
+        "hybrid": [
+          "arxiv:2507.04632",
+          "idea:domain-shift-audit",
+          "arxiv:2602.01970"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        }
+      }
+    },
+    {
+      "query": "planned comparison of random and uncertainty based auditing",
+      "relevant": [
+        "experiment:auditing-replay"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "experiment:auditing-replay",
+          "arxiv:2507.04632",
+          "arxiv:2602.01970"
+        ],
+        "semantic": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "experiment:auditing-replay"
+        ],
+        "hybrid": [
+          "arxiv:2507.04632",
+          "experiment:auditing-replay",
+          "arxiv:2610.33262"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
+        }
+      }
+    },
+    {
+      "query": "audit agent performance with targeted probes and historical logs",
+      "relevant": [
+        "arxiv:2610.34751"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "arxiv:2610.33262",
+          "experiment:auditing-replay",
+          "arxiv:2610.39497"
+        ],
+        "semantic": [
+          "arxiv:2610.34751",
+          "arxiv:2610.39497",
+          "arxiv:2507.04632"
+        ],
+        "hybrid": [
+          "arxiv:2610.39497",
+          "experiment:auditing-replay",
+          "arxiv:2610.33262"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "hybrid": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "query": "проверка ошибок в метках данных с учетом итоговой оценки",
+      "relevant": [
+        "arxiv:2610.33262"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "experiment:auditing-replay",
+          "arxiv:2610.33262",
+          "topic:conditional-computation"
+        ],
+        "semantic": [
+          "arxiv:2610.33262",
+          "idea:domain-shift-audit",
+          "arxiv:2602.01970"
+        ],
+        "hybrid": [
+          "arxiv:2610.33262",
+          "idea:domain-shift-audit",
+          "experiment:auditing-replay"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        }
+      }
+    },
+    {
+      "query": "generalizable prompt predictor for reasoning model training",
+      "relevant": [
+        "arxiv:2602.01970"
+      ],
+      "rankings": {
+        "lexical": [],
+        "lexical_or": [
+          "arxiv:2602.01970",
+          "arxiv:2507.04632",
+          "doi:10.1038/s41467-026-74004-0"
+        ],
+        "semantic": [
+          "arxiv:2507.04632",
+          "arxiv:2610.39497",
+          "arxiv:2602.01970"
+        ],
+        "hybrid": [
+          "arxiv:2507.04632",
+          "arxiv:2602.01970",
+          "arxiv:2610.39497"
+        ]
+      },
+      "metrics": {
+        "lexical": {
+          "recall": 0.0,
+          "mrr": 0,
+          "ndcg": 0.0
+        },
+        "lexical_or": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0
+        },
+        "semantic": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5
+        },
+        "hybrid": {
+          "recall": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
+        }
+      }
+    }
+  ],
+  "limitation": "Small curated development set; not an independent generalization benchmark."
+}

@@ -44,6 +44,82 @@
   ],
   "relations": [],
   "extra": {
-    "reading_notes": "Проверены Abstract, Sections 3.2 и 4.2, Table 1; полный протокол и код не проверены."
+    "reading_notes": "Проверены Abstract, Sections 3.2 и 4.2, Table 1; полный протокол и код не проверены.",
+    "research": {
+      "measurements": [
+        {
+          "id": "uniform",
+          "claim": "arxiv:2507.04632#c1",
+          "group": "mopps-v2-table1-r1distill1.5b-aime24",
+          "model": "DeepSeek-R1-Distill-Qwen-1.5B",
+          "train_data": "MATH",
+          "test_data": "AIME24",
+          "method": "Uniform",
+          "metric": "pass@1",
+          "unit": "percent",
+          "value": 26.46,
+          "baseline": "Uniform",
+          "budget": {
+            "rollouts": 737000,
+            "wall_time": "not_checked"
+          },
+          "uncertainty": "CI и seeds не проверены",
+          "source": "https://arxiv.org/html/2507.04632v2",
+          "locator": "Table 1",
+          "conditions": {
+            "evaluation": "mean pass@1 over 16 generations per problem",
+            "comparison": "same table; rollout budgets differ"
+          }
+        },
+        {
+          "id": "dynamic-sampling",
+          "claim": "arxiv:2507.04632#c1",
+          "group": "mopps-v2-table1-r1distill1.5b-aime24",
+          "model": "DeepSeek-R1-Distill-Qwen-1.5B",
+          "train_data": "MATH",
+          "test_data": "AIME24",
+          "method": "Dynamic Sampling",
+          "metric": "pass@1",
+          "unit": "percent",
+          "value": 30.42,
+          "baseline": "Uniform",
+          "budget": {
+            "rollouts": 2933000,
+            "wall_time": "not_checked"
+          },
+          "uncertainty": "CI и seeds не проверены",
+          "source": "https://arxiv.org/html/2507.04632v2",
+          "locator": "Table 1",
+          "conditions": {
+            "evaluation": "mean pass@1 over 16 generations per problem",
+            "comparison": "same table; rollout budgets differ"
+          }
+        },
+        {
+          "id": "mopps",
+          "claim": "arxiv:2507.04632#c1",
+          "group": "mopps-v2-table1-r1distill1.5b-aime24",
+          "model": "DeepSeek-R1-Distill-Qwen-1.5B",
+          "train_data": "MATH",
+          "test_data": "AIME24",
+          "method": "MoPPS",
+          "metric": "pass@1",
+          "unit": "percent",
+          "value": 33.33,
+          "baseline": "Uniform",
+          "budget": {
+            "rollouts": 737000,
+            "wall_time": "not_checked"
+          },
+          "uncertainty": "CI и seeds не проверены",
+          "source": "https://arxiv.org/html/2507.04632v2",
+          "locator": "Table 1",
+          "conditions": {
+            "evaluation": "mean pass@1 over 16 generations per problem",
+            "comparison": "same table; rollout budgets differ"
+          }
+        }
+      ]
+    }
   }
 }

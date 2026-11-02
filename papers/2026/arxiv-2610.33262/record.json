@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.33262",
+  "kind": "paper",
+  "title": "Not All Mislabels Are Equal: Efficient Task-Aware Auditing with Confidence Sequences",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 2,
+  "topics": [
+    "active-learning",
+    "uncertainty-calibration"
+  ],
+  "authors": [
+    "Fangyuan Lin",
+    "Noah Krever",
+    "Jakub Černý",
+    "Lily Xu"
+  ],
+  "methods": [],
+  "datasets": [],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2610.33262",
+  "source_version": "",
+  "accessed": "2026-11-02",
+  "reading_scope": "abstract",
+  "paper_type": "unknown",
+  "summary": "ATLAS исследует адаптивный аудит меток с учётом влияния ошибок на итоговую оценку.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "reading_notes": "Проверена аннотация в первичном результате поиска; полный текст и численные результаты не проверены."
+  }
+}

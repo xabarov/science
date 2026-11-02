@@ -22,12 +22,12 @@ CSV сохраняет кириллицу, кавычки, переносы ст
 Импорт не является одной транзакцией всего снимка; при ошибке исправить причину
 и повторить полный импорт. Не обслуживать пользователей из этой проекции во время обновления.
 
-Узлы: ScienceNode с kind=paper/topic/idea/synthesis, topics/methods/datasets
+Узлы: ScienceNode с kind=paper/topic/idea/synthesis/question/experiment, topics/methods/datasets
 для словарных понятий и reference для неразобранных ссылок.
 Рёбра: SCIENCE_LINK с `type` (cites, uses, …), `status`, `source`, `locator`, `note`.
 Типизированное свойство выбрано для переноса без APOC и динамических типов связей.
 Классификация по теме имеет type=tagged и status=curated, она не выдаётся за
-проверенное научное свидетельство. Authors и claims пока не отдельные узлы.
+проверенное научное свидетельство. Утверждения экспортируются как kind=claim с ID document#claim. Связи has_claim, depends_on, supports и другие сохраняют основания. Авторы пока не отдельные узлы.
 
 Примеры запросов после импорта:
 
