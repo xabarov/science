@@ -70,6 +70,40 @@ flowchart TD
 Общие веса encoder не означают совместное кодирование всех текстов. Несколько
 независимых текстов можно обработать батчем без их взаимного attention.
 
+### Конкретные строки на входе encoder
+
+В Python API `state` задаёт данные случая, `Choice.instructions` — вопрос, а класс
+`Choice` определяет тип `choice`. Имена вопросов и ключи criteria используются
+как идентификаторы интерфейса. Encoder получает токенизированный обычный текст:
+
+```text
+Decision type: choice
+Question: Which team should handle this?
+State:
+I was charged twice.
+```
+
+Каждый вариант является отдельной последовательностью:
+
+```text
+Option for choice: Billing
+```
+
+```text
+Option for choice: Technical support
+```
+
+```text
+Option for choice: Delivery
+```
+
+Список кандидатов не включается в строку запроса. Для этого примера encoder
+обрабатывает четыре независимые последовательности; варианты можно объединить
+в батч с padding/attention_mask. После pooling получаются один request vector
+и три option vectors. Реальный низкоуровневый вход нейросети — input_ids и
+attention_mask, а не JSON-строка. Шаблоны сверены с `state_question_text` и
+`option_text` в [collate.py](https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/collate.py).
+
 ### 2. Память вариантов и attention
 
 Из каждого u_i строятся ключ и значение для каждой головы. Из z строится query.
