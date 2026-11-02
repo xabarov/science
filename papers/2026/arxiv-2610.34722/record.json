@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.34722",
+  "kind": "paper",
+  "title": "CEPO: A General Framework for Improving Prompt Optimization in Multi-Agent Systems",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-orchestration",
+    "prompt-optimization"
+  ],
+  "authors": [
+    "Jongha Kim",
+    "Seohyun Lee",
+    "Jonathan Minho Chung",
+    "Jinsung Yoon",
+    "Hyunwoo J. Kim"
+  ],
+  "methods": [
+    "cepo",
+    "pe2",
+    "maspo"
+  ],
+  "datasets": [
+    "mmlongbench-doc",
+    "longdocurl",
+    "papertab",
+    "papertext",
+    "fetatab",
+    "aqua",
+    "math-500",
+    "agieval-math",
+    "humaneval-et",
+    "mbpp",
+    "longtvqa-plus"
+  ],
+  "aliases": [
+    "doi:10.48550/arxiv.2610.34722"
+  ],
+  "source": "https://arxiv.org/abs/2610.34722",
+  "source_version": "v1",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "empirical",
+  "summary": "CEPO разделяет общий coordinator prompt и инструкции отдельных исполнителей, затем оптимизирует их с разными метаинструкциями при общей системной метрике. Веса моделей не обновляются; отбор использует размеченные train/validation данные.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "CEPO задаёт общий coordinator prompt, добавляемый каждому агенту, и локальные executor prompts. Обновления направляются разными метаинструкциями, но отбираются по общей системной метрике; отдельный coordinator-agent не требуется.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1",
+      "locator": "Section 3.2, Eq. 2; Section 3.3"
+    },
+    {
+      "id": "c2",
+      "text": "На MDocAgent/Qwen-3.5-4B, MMLongBench-Doc custom split, PE2 даёт 57.9% accuracy, PE2+CEPO — 61.0%; исходная система — 54.1%. GPT-5.4 оптимизирует prompts, GPT-5-mini оценивает ответы.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1",
+      "locator": "Sections 4.1–4.3; Tables 4–5, 8; Appendix A.1"
+    },
+    {
+      "id": "c3",
+      "text": "На том же документном эксперименте CEPO при TC=TE=1 даёт 60.1% за 2 optimizer API calls и 3120 MAS calls; PE2 при TE=3 — 57.9% за 10 и 5714 calls. CEPO при TC=TE=3 — 61.0% за 20 и 11458; PE2 при TE=6 — 57.4% за 22 и 11945.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1",
+      "locator": "Table 5; Appendix B.1, Table S4"
+    },
+    {
+      "id": "c4",
+      "text": "Выбор оптимизируемых исполнителей существенен: в Table S7 оптимизация GENERAL даёт 61.0%, всех пяти исполнителей — 56.9%; итерации TC=TE=4 дают 58.6% против 61.0% при трёх. Увеличение числа целей и бюджета не гарантирует улучшения.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1",
+      "locator": "Appendix B.1–B.2; Tables S4, S7"
+    },
+    {
+      "id": "c5",
+      "text": "Перенос coordinator prompt между документными бенчмарками остаётся ограниченным: PaperTab 49.7% с перенесённым prompt против 53.7% с целевым; среднее четырёх целевых наборов 69.3 против 71.6.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1",
+      "locator": "Appendix B.2, Table S9"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Комплементарные объекты оптимизации: структура prompts и широкая runtime-обвязка."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Общая тема оркестрации; CEPO меняет текстовые параметры, R²Orch обучает веса Director/Proposer."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Сопоставление объектов изменения, обратной связи, затрат и переноса."
+    }
+  ],
+  "extra": {
+    "checked_sections": [
+      "Sections 1–5",
+      "Tables 2–8",
+      "Appendices A–B incl. Tables S2, S4–S9",
+      "Appendix C selected meta-instructions"
+    ],
+    "not_checked": [
+      "Independent reproduction",
+      "Code audit",
+      "Full prompt-by-prompt audit of Appendix C"
+    ],
+    "research": {
+      "measurements": [
+        {
+          "id": "cepo-doc-pe2-3",
+          "claim": "arxiv:2610.34722#c3",
+          "group": "cepo-v1-mmlongbench-budget",
+          "model": "MDocAgent / Qwen-3.5-4B; optimizer GPT-5.4; judge GPT-5-mini",
+          "train_data": "MMLongBench-Doc: 13 train docs/123 questions, 13 validation docs/103 questions",
+          "test_data": "MMLongBench-Doc: 108 test docs/847 questions",
+          "method": "PE2-3",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 57.9,
+          "baseline": "PE2-3",
+          "budget": {
+            "coordinator_iterations": 0,
+            "executor_iterations": 3,
+            "optimizer_api_calls": 10,
+            "mas_api_calls": 5714
+          },
+          "conditions": {
+            "split": "document-level 10/10/80; fixed seed",
+            "executor_target": "GENERAL",
+            "weights_updated": false,
+            "reproduced": false
+          },
+          "uncertainty": "Source reports averages over 3 seeds for component analysis; per-row CI/std not provided here.",
+          "source": "https://arxiv.org/html/2610.34722v1",
+          "locator": "Table 5; Appendix A.1 Table S2"
+        },
+        {
+          "id": "cepo-doc-pe2-6",
+          "claim": "arxiv:2610.34722#c3",
+          "group": "cepo-v1-mmlongbench-budget",
+          "model": "MDocAgent / Qwen-3.5-4B; optimizer GPT-5.4; judge GPT-5-mini",
+          "train_data": "MMLongBench-Doc: 13 train docs/123 questions, 13 validation docs/103 questions",
+          "test_data": "MMLongBench-Doc: 108 test docs/847 questions",
+          "method": "PE2-6",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 57.4,
+          "baseline": "PE2-3",
+          "budget": {
+            "coordinator_iterations": 0,
+            "executor_iterations": 6,
+            "optimizer_api_calls": 22,
+            "mas_api_calls": 11945
+          },
+          "conditions": {
+            "split": "document-level 10/10/80; fixed seed",
+            "executor_target": "GENERAL",
+            "weights_updated": false,
+            "reproduced": false
+          },
+          "uncertainty": "Source reports averages over 3 seeds for component analysis; per-row CI/std not provided here.",
+          "source": "https://arxiv.org/html/2610.34722v1",
+          "locator": "Table 5; Appendix A.1 Table S2"
+        },
+        {
+          "id": "cepo-doc-cepo-1-1",
+          "claim": "arxiv:2610.34722#c3",
+          "group": "cepo-v1-mmlongbench-budget",
+          "model": "MDocAgent / Qwen-3.5-4B; optimizer GPT-5.4; judge GPT-5-mini",
+          "train_data": "MMLongBench-Doc: 13 train docs/123 questions, 13 validation docs/103 questions",
+          "test_data": "MMLongBench-Doc: 108 test docs/847 questions",
+          "method": "CEPO-1-1",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 60.1,
+          "baseline": "PE2-3",
+          "budget": {
+            "coordinator_iterations": 1,
+            "executor_iterations": 1,
+            "optimizer_api_calls": 2,
+            "mas_api_calls": 3120
+          },
+          "conditions": {
+            "split": "document-level 10/10/80; fixed seed",
+            "executor_target": "GENERAL",
+            "weights_updated": false,
+            "reproduced": false
+          },
+          "uncertainty": "Source reports averages over 3 seeds for component analysis; per-row CI/std not provided here.",
+          "source": "https://arxiv.org/html/2610.34722v1",
+          "locator": "Table 5; Appendix A.1 Table S2"
+        },
+        {
+          "id": "cepo-doc-cepo-3-3",
+          "claim": "arxiv:2610.34722#c3",
+          "group": "cepo-v1-mmlongbench-budget",
+          "model": "MDocAgent / Qwen-3.5-4B; optimizer GPT-5.4; judge GPT-5-mini",
+          "train_data": "MMLongBench-Doc: 13 train docs/123 questions, 13 validation docs/103 questions",
+          "test_data": "MMLongBench-Doc: 108 test docs/847 questions",
+          "method": "CEPO-3-3",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 61.0,
+          "baseline": "PE2-3",
+          "budget": {
+            "coordinator_iterations": 3,
+            "executor_iterations": 3,
+            "optimizer_api_calls": 20,
+            "mas_api_calls": 11458
+          },
+          "conditions": {
+            "split": "document-level 10/10/80; fixed seed",
+            "executor_target": "GENERAL",
+            "weights_updated": false,
+            "reproduced": false
+          },
+          "uncertainty": "Source reports averages over 3 seeds for component analysis; per-row CI/std not provided here.",
+          "source": "https://arxiv.org/html/2610.34722v1",
+          "locator": "Table 5; Appendix A.1 Table S2"
+        }
+      ]
+    }
+  }
+}

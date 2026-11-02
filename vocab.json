@@ -51,6 +51,16 @@
       "Skill internalization",
       "перенос инструкций в параметры",
       "усвоение навыков"
+    ],
+    "prompt-optimization": [
+      "Prompt optimization",
+      "оптимизация промптов",
+      "shared coordinator prompt"
+    ],
+    "agent-harnessing": [
+      "Agent harnessing",
+      "агентная обвязка",
+      "оптимизация среды агента"
     ]
   },
   "methods": {
@@ -98,6 +108,25 @@
       "Skill Withdrawal",
       "снятие инструкций",
       "randomized skill ablation"
+    ],
+    "cepo": [
+      "CEPO",
+      "Coordinator-Executor Prompt Optimization"
+    ],
+    "harness2": [
+      "Harness²",
+      "Harness2",
+      "Recursive Agent Harnessing"
+    ],
+    "propose-probe-compose": [
+      "Propose–Probe–Compose",
+      "контрастивная проверка изменений"
+    ],
+    "pe2": [
+      "PE2"
+    ],
+    "maspo": [
+      "MASPO"
     ]
   },
   "datasets": {
@@ -154,6 +183,50 @@
     ],
     "webshop": [
       "WebShop"
+    ],
+    "mmlongbench-doc": [
+      "MMLongBench-Doc"
+    ],
+    "longdocurl": [
+      "LongDocURL"
+    ],
+    "papertab": [
+      "PaperTab"
+    ],
+    "papertext": [
+      "PaperText"
+    ],
+    "fetatab": [
+      "FetaTab"
+    ],
+    "aqua": [
+      "AQuA"
+    ],
+    "math-500": [
+      "MATH-500"
+    ],
+    "agieval-math": [
+      "AGIEval-MATH"
+    ],
+    "humaneval-et": [
+      "HumanEval-ET"
+    ],
+    "mbpp": [
+      "MBPP"
+    ],
+    "longtvqa-plus": [
+      "LongTVQA+"
+    ],
+    "workbuddy-bench": [
+      "WorkBuddy-Bench"
+    ],
+    "jobbench": [
+      "JobBench"
+    ],
+    "lab": [
+      "LAB",
+      "Legal Agent Benchmark",
+      "Harvey LAB"
     ]
   }
 }

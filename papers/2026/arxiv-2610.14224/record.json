@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.14224",
+  "kind": "paper",
+  "title": "Harness²: Recursive Agent Harnessing for an Open World",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-harnessing",
+    "agent-orchestration",
+    "test-time-compute",
+    "distribution-shift"
+  ],
+  "authors": [
+    "Ruiyao Xu",
+    "Yanfei Chen",
+    "Zhongying CuiZhu",
+    "Bhavana Dalvi Mishra",
+    "Yifei Ming",
+    "Han Yu",
+    "Rujun Han",
+    "Chen-Yu Lee",
+    "Tomas Pfister"
+  ],
+  "methods": [
+    "harness2",
+    "propose-probe-compose"
+  ],
+  "datasets": [
+    "workbuddy-bench",
+    "jobbench",
+    "lab"
+  ],
+  "aliases": [
+    "doi:10.48550/arxiv.2610.14224"
+  ],
+  "source": "https://arxiv.org/abs/2610.14224",
+  "source_version": "v1",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "empirical",
+  "summary": "Harness² с замороженными весами правит агентную обвязку через Propose–Probe–Compose на текущей задаче и сохраняет опыт правок для следующих. Ground truth не используется при правках; качество эксперимента измеряется внешними benchmark judges.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Harness² оптимизирует восемь файловых компонентов обвязки через Propose–Probe–Compose; следующая задача начинается с общей исходной обвязки, а библиотека прежних изменений и опыта направляет улучшение. Веса моделей и инструкции стадий остаются фиксированными.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.14224v1",
+      "locator": "Sections 2.1–2.3; Appendix D"
+    },
+    {
+      "id": "c2",
+      "text": "На WorkBuddy-Bench GLM-5/OpenCode средний score растёт с 64.2±1.4 до 75.7±2.2 при k=1. На JobBench Gemini 3.5 Flash/OpenCode — с 31.5±1.1 до 36.0±2.3. LAB GLM-5/OpenCode Partial — с 59.6±2.7 до 71.4±2.9. Среднее±std трёх потоков; основной редактор Claude Opus 4.8.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.14224v1",
+      "locator": "Tables 1–2; Section 3.1; Appendix B"
+    },
+    {
+      "id": "c3",
+      "text": "Harness²/Gemini 3.5 Flash/OpenCode при k=1: WorkBuddy score 77.5 против 74.4 без библиотеки, JobBench 36.0 против 34.2. Удаление разделения ролей редакторов или composition также снижает результат.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.14224v1",
+      "locator": "Table 3, Section 4"
+    },
+    {
+      "id": "c4",
+      "text": "Контрасты выполнений и выбор кандидата не гарантируют правильность и перенос; Appendix E.6 описывает ошибочный выбор результата с score 55 при доступном кандидате 95. Дополнительные probes и редактор увеличивают полную стоимость.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.14224v1",
+      "locator": "Section 2.2; Appendix E.6; Appendix F"
+    },
+    {
+      "id": "c5",
+      "text": "В документации публичного релиза описано, что в валидационном запуске Codex скачал рубрику JobBench; исходящий доступ к сети по умолчанию не ограничен. Это наблюдение о релизе, не доказательство утечки в числах статьи.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://github.com/google-research/harness2/blob/6868817518876de8fd170c6a8354daca273b6191/docs/EXPERIMENTS.md",
+      "locator": "Web access; commit 6868817518876de8fd170c6a8354daca273b6191"
+    },
+    {
+      "id": "c6",
+      "text": "Меньшее число Steps в основных таблицах относится к сессии исполнителя. Figure 6 отдельно учитывает total tokens выполнения и улучшения; эти величины нельзя заменять друг другом.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.14224v1",
+      "locator": "Section 3.1; Section 4 Compute–Performance Trade-off; Appendix B"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.34722",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "CEPO может служить ограничением пространства prompt-правок; интеграция не проверена."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Сравнение внешнего runtime-самоулучшения с RL-обучением оркестратора."
+    },
+    {
+      "type": "related",
+      "target": "question:auditing-under-shift",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Открытая проблема: переносимость proxy-свидетельств о полезности правки при новых задачах."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Общее сопоставление и непроверенный план комбинирования методов."
+    }
+  ],
+  "extra": {
+    "code_url": "https://github.com/google-research/harness2",
+    "code_commit": "6868817518876de8fd170c6a8354daca273b6191",
+    "code_commit_date": "2026-11-02T02:17:27Z",
+    "code_read": [
+      "README.md",
+      "docs/EXPERIMENTS.md",
+      "selected functions in harness2/core/{recursion,selection,library}.py"
+    ],
+    "checked_sections": [
+      "Sections 1–4",
+      "Tables 1–3, 6",
+      "Appendices B–D, E.1–E.2, E.6, F–G"
+    ],
+    "not_checked": [
+      "Model-backed or demo execution",
+      "Full repository audit",
+      "Numerical extraction of all figures and budget curves",
+      "Network isolation of original paper runs"
+    ],
+    "research": {
+      "measurements": [
+        {
+          "id": "harness2-v1-workbuddy-bench-base",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-workbuddy-bench",
+          "model": "GLM-5 / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: WorkBuddy-Bench",
+          "method": "Base harness",
+          "metric": "macro_domain_score",
+          "unit": "points_0_100",
+          "value": 64.2,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 0,
+            "editor": "none",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 100,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=1.4",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        },
+        {
+          "id": "harness2-v1-workbuddy-bench-k1",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-workbuddy-bench",
+          "model": "GLM-5 / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: WorkBuddy-Bench",
+          "method": "Harness2-k1",
+          "metric": "macro_domain_score",
+          "unit": "points_0_100",
+          "value": 75.7,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 1,
+            "editor": "Claude Opus 4.8",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 100,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=2.2",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        },
+        {
+          "id": "harness2-v1-jobbench-base",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-jobbench",
+          "model": "Gemini 3.5 Flash / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: JobBench",
+          "method": "Base harness",
+          "metric": "weighted_rubric_score",
+          "unit": "points_0_100",
+          "value": 31.5,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 0,
+            "editor": "none",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 34,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=1.1",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        },
+        {
+          "id": "harness2-v1-jobbench-k1",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-jobbench",
+          "model": "Gemini 3.5 Flash / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: JobBench",
+          "method": "Harness2-k1",
+          "metric": "weighted_rubric_score",
+          "unit": "points_0_100",
+          "value": 36.0,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 1,
+            "editor": "Claude Opus 4.8",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 34,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=2.3",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        },
+        {
+          "id": "harness2-v1-lab-base",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-lab",
+          "model": "GLM-5 / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: LAB",
+          "method": "Base harness",
+          "metric": "criterion_partial_pass_rate",
+          "unit": "percent",
+          "value": 59.6,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 0,
+            "editor": "none",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 100,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=2.7",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        },
+        {
+          "id": "harness2-v1-lab-k1",
+          "claim": "arxiv:2610.14224#c2",
+          "group": "harness2-v1-lab",
+          "model": "GLM-5 / OpenCode",
+          "train_data": "No labeled training/validation used for online edits; library starts empty",
+          "test_data": "Paper test split: LAB",
+          "method": "Harness2-k1",
+          "metric": "criterion_partial_pass_rate",
+          "unit": "percent",
+          "value": 71.4,
+          "baseline": "Base harness",
+          "budget": {
+            "k": 1,
+            "editor": "Claude Opus 4.8",
+            "full_end_to_end_token_count": "not extracted; see Figure 6",
+            "budget_matched_to_base": false
+          },
+          "conditions": {
+            "test_tasks": 100,
+            "stream_shuffled": true,
+            "ground_truth_visible_to_editor": false,
+            "reproduced": false
+          },
+          "uncertainty": "mean ± std over 3 streams; std=2.9",
+          "source": "https://arxiv.org/html/2610.14224v1",
+          "locator": "Tables 1–2; Appendix B"
+        }
+      ]
+    }
+  }
+}

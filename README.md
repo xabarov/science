@@ -114,6 +114,7 @@ reading_scope: abstract/partial/full; source_checked не означает во�
 - [Вопрос об аудите при смене домена](notes/questions/question-auditing-under-shift/review.md).
 - [Гипотеза и первичный поиск новизны](notes/ideas/idea-domain-shift-audit/review.md).
 - [План эксперимента — пока не выполнен](notes/experiments/experiment-auditing-replay/review.md).
+- [CEPO, Harness² и R²Orch: сравнение способов улучшать агента](notes/syntheses/synthesis-prompt-harness-orchestration/review.md).
 
 ## Сохранность и проверки
 

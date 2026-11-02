@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "synthesis:prompt-harness-orchestration",
+  "kind": "synthesis",
+  "title": "CEPO, Harness² и R²Orch: что именно меняет самоулучшение агента?",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-orchestration",
+    "prompt-optimization",
+    "agent-harnessing",
+    "test-time-compute"
+  ],
+  "authors": [],
+  "methods": [
+    "cepo",
+    "harness2",
+    "r2orch"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Сопоставление CEPO, Harness² и R²Orch по объекту изменения, доступной обратной связи и стоимости. Комбинация факторизации prompts и онлайн-правок обвязки — пока непроверенная гипотеза.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "CEPO задаёт структуру текстовых параметров и офлайн-оптимизацию по размеченным данным; Harness² меняет runtime-обвязку онлайн по поведенческим контрастам; R²Orch обучает параметры оркестратора и снимает skills. Числа их разных бенчмарков не задают общий рейтинг.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.34722v1 ; https://arxiv.org/html/2610.14224v1 ; https://arxiv.org/html/2610.22740v2",
+      "locator": "CEPO Section 3; Harness2 Section 2; R2Orch Sections 3–4"
+    },
+    {
+      "id": "h1",
+      "text": "Разделение общих правил координации и локальных инструкций может сделать онлайн-поиск harness-правок эффективнее при одинаковом полном бюджете. Комбинация CEPO+Harness² не проверена на новизну и экспериментально не подтверждена.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "",
+      "locator": ""
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.34722",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Источник структуры координатор/исполнители."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Источник онлайн-проверок и библиотеки опыта."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Сравнительный подход с обновлением весов."
+    },
+    {
+      "type": "related",
+      "target": "question:auditing-under-shift",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Вопрос достоверности и переноса накопленных свидетельств."
+    }
+  ],
+  "extra": {
+    "research": {
+      "depends_on": [
+        "arxiv:2610.34722#c1",
+        "arxiv:2610.14224#c1",
+        "arxiv:2610.22740#c1"
+      ],
+      "dependency_state": {
+        "arxiv:2610.14224#c1": "b22c9d42540391555d7edccc8342d511ee5c899cbf95c49e2f98032dd51dec37",
+        "arxiv:2610.22740#c1": "5a022bd16a09334b9c418948c034b71c909ebfb0ce3dc32b6475dbdce6400259",
+        "arxiv:2610.34722#c1": "1bab2e8846545fd9fc0bfa83f9a64b4be2ee86f49d07b25021128d3034bf4847"
+      },
+      "history": [
+        {
+          "at": "2026-11-02T20:45:28.302432+00:00",
+          "action": "review_ack",
+          "note": "Сверены объекты изменения и режимы обратной связи CEPO Section 3, Harness² Section 2 и сохранённого R²Orch; синтез ограничен этими данными, комбинирование отмечено как гипотеза без проверки новизны."
+        }
+      ]
+    }
+  }
+}

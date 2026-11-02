@@ -42,6 +42,62 @@
       "local_path": "attachments/e679933a2db49df27b7561fa5c0f3b9cb5d86b4b20f6d548339b6f097557e373/source.html",
       "text_path": "attachments/e679933a2db49df27b7561fa5c0f3b9cb5d86b4b20f6d548339b6f097557e373/text.txt",
       "text_sha256": "39db9e3bf9abe682a8cc1642cb1b8543a85f24fa3cdbbaa37486cd8ad4c8fd74"
+    },
+    {
+      "id": "a6c13ae5722d5865c8b3f8b15ae69f631d53be2b4fc232a7bc09b57b48a37f76",
+      "document": "arxiv:2610.34722",
+      "requested_url": "https://arxiv.org/html/2610.34722v1",
+      "resolved_url": "https://arxiv.org/html/2610.34722v1",
+      "version": "v1",
+      "retrieved_at": "2026-11-02T20:41:12.355758+00:00",
+      "sha256": "a6c13ae5722d5865c8b3f8b15ae69f631d53be2b4fc232a7bc09b57b48a37f76",
+      "bytes": 369305,
+      "content_type": "text/html",
+      "local_path": "attachments/a6c13ae5722d5865c8b3f8b15ae69f631d53be2b4fc232a7bc09b57b48a37f76/source.html",
+      "text_path": "attachments/a6c13ae5722d5865c8b3f8b15ae69f631d53be2b4fc232a7bc09b57b48a37f76/text.txt",
+      "text_sha256": "d229265d6f8fa717179e96f95de6b73ade300d516893fc63e8e3f2b6846338c8"
+    },
+    {
+      "id": "4d450b6f8e4c9f6d1b1f946642a6b846d88a7c688da9d383ca9c3453e4469054",
+      "document": "arxiv:2610.14224",
+      "requested_url": "https://arxiv.org/html/2610.14224v1",
+      "resolved_url": "https://arxiv.org/html/2610.14224v1",
+      "version": "v1",
+      "retrieved_at": "2026-11-02T20:41:12.836475+00:00",
+      "sha256": "4d450b6f8e4c9f6d1b1f946642a6b846d88a7c688da9d383ca9c3453e4469054",
+      "bytes": 1212816,
+      "content_type": "text/html",
+      "local_path": "attachments/4d450b6f8e4c9f6d1b1f946642a6b846d88a7c688da9d383ca9c3453e4469054/source.html",
+      "text_path": "attachments/4d450b6f8e4c9f6d1b1f946642a6b846d88a7c688da9d383ca9c3453e4469054/text.txt",
+      "text_sha256": "194157ee485bfc2f8120d8a90f1301ab8e7aaa44a82aa3eadcf04d2d7b476e78"
+    },
+    {
+      "id": "17639ac4194bb5c042cbf645430a772ae9be81baee95ab41eaea73cafa138f23",
+      "document": "arxiv:2610.14224",
+      "requested_url": "https://raw.githubusercontent.com/google-research/harness2/6868817518876de8fd170c6a8354daca273b6191/README.md",
+      "resolved_url": "https://raw.githubusercontent.com/google-research/harness2/6868817518876de8fd170c6a8354daca273b6191/README.md",
+      "version": "6868817518876de8fd170c6a8354daca273b6191",
+      "retrieved_at": "2026-11-02T20:42:05.710043+00:00",
+      "sha256": "17639ac4194bb5c042cbf645430a772ae9be81baee95ab41eaea73cafa138f23",
+      "bytes": 9374,
+      "content_type": "text/plain",
+      "local_path": "attachments/17639ac4194bb5c042cbf645430a772ae9be81baee95ab41eaea73cafa138f23/source.txt",
+      "text_path": "attachments/17639ac4194bb5c042cbf645430a772ae9be81baee95ab41eaea73cafa138f23/text.txt",
+      "text_sha256": "17639ac4194bb5c042cbf645430a772ae9be81baee95ab41eaea73cafa138f23"
+    },
+    {
+      "id": "ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558",
+      "document": "arxiv:2610.14224",
+      "requested_url": "https://raw.githubusercontent.com/google-research/harness2/6868817518876de8fd170c6a8354daca273b6191/docs/EXPERIMENTS.md",
+      "resolved_url": "https://raw.githubusercontent.com/google-research/harness2/6868817518876de8fd170c6a8354daca273b6191/docs/EXPERIMENTS.md",
+      "version": "6868817518876de8fd170c6a8354daca273b6191",
+      "retrieved_at": "2026-11-02T20:42:06.009352+00:00",
+      "sha256": "ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558",
+      "bytes": 5414,
+      "content_type": "text/plain",
+      "local_path": "attachments/ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558/source.txt",
+      "text_path": "attachments/ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558/text.txt",
+      "text_sha256": "ce168deb03d4607c70e00e092701d2f6d5987db04e09779b0e3cad48b7fca558"
     }
   ]
 }
