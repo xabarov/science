@@ -104,6 +104,30 @@ Option for choice: Delivery
 attention_mask, а не JSON-строка. Шаблоны сверены с `state_question_text` и
 `option_text` в [collate.py](https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/collate.py).
 
+### Что является encoder: TextBackbone и авторегрессионная LLM
+
+`TextBackbone` — обёртка, а фактическая нейросеть внутри Jeva-4B — текстовая часть
+Qwen3.5-4B с LoRA. `AutoModel.from_pretrained` загружает тело модели; для Qwen3.5
+код выбирает `language_model` напрямую либо сохраняет wrapper, если этого требует
+иерархия сохранённого адаптера. Это техническая совместимость загрузки, а не другая
+семантика кодирования.
+
+Qwen остаётся decoder-style каузальной языковой моделью; Jeva не заменяет её на BERT
+и не делает attention двунаправленным. Слово encoder описывает роль: отображение
+готового текста в вектор. Последнее непустое положение видит весь предшествующий
+ввод через каузальные слои, поэтому его hidden state используют для pooling.
+
+Вызов `self.model(**inputs)` возвращает `last_hidden_state` формы `[B,T,2560]`.
+`encode()` выбирает последнее непустое положение и получает `[B,2560]`.
+Далее проекция Jeva даёт `[B,768]`. LM vocabulary head и цикл `.generate()` в
+вычислении решений не используются. `TaskType.FEATURE_EXTRACTION` у LoRA задаёт
+способ использования/обёртку, но не превращает каузальную модель в BERT-encoder.
+
+Код: [backbone.py](https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/backbone.py),
+[конфигурация Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B/blob/main/config.json).
+Текстовая конфигурация содержит 32 слоя и hidden size 2560, сочетая linear attention
+с full attention; обе формы используются в каузальной языковой модели.
+
 ### 2. Память вариантов и attention
 
 Из каждого u_i строятся ключ и значение для каждой головы. Из z строится query.
