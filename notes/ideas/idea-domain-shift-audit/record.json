@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "idea:domain-shift-audit",
+  "kind": "idea",
+  "title": "Бюджет независимого аудита предиктора при смене домена",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "uncertainty-calibration",
+    "distribution-shift"
+  ],
+  "authors": [],
+  "methods": [
+    "independent-audit"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Наша непроверенная идея: измерить цену аудита, необходимого для сохранения качества отбора при смене домена.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "h1",
+      "text": "Изменяемый по сигналам сдвига бюджет аудита может дать лучший компромисс качества и стоимости, чем постоянная доля проверок.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "",
+      "locator": ""
+    }
+  ],
+  "relations": [
+    {
+      "type": "uses",
+      "target": "arxiv:2610.39497",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Отправная точка для постановки вопроса"
+    },
+    {
+      "type": "related",
+      "target": "topic:conditional-computation",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Исследовательская тема"
+    }
+  ],
+  "extra": {
+    "origin": "Гипотеза ассистента, предложенная при организации картотеки; не приписывается пользователю или авторам",
+    "novelty": "Не проверена",
+    "experiment_status": "Не проводился"
+  }
+}

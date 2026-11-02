@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "topic:conditional-computation",
+  "kind": "topic",
+  "title": "Когда дешёвый предиктор улучшает распределение вычислений?",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "uncertainty-calibration",
+    "distribution-shift"
+  ],
+  "authors": [],
+  "methods": [],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Карта вопросов, источников и очереди чтения об эффективности предиктивного отбора.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.39497",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Точка входа в обсуждение"
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2507.04632",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Частично проверенная эмпирическая работа"
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2602.01970",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Очередь: обобщение предиктора"
+    },
+    {
+      "type": "related",
+      "target": "idea:domain-shift-audit",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Кандидат исследовательского вопроса"
+    }
+  ],
+  "extra": {}
+}

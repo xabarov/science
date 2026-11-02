@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2610.39497",
+  "kind": "paper",
+  "title": "Does Scaling Toward AGI Depend on What System-1 Lets System-2 Execute?",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "llm-training",
+    "test-time-compute",
+    "uncertainty-calibration",
+    "distribution-shift"
+  ],
+  "authors": [
+    "Qi Wang",
+    "Yun Qu",
+    "Lizhou Cai",
+    "Heming Zou",
+    "Haoang Chi",
+    "Yiqin Lv",
+    "Xiang Li",
+    "Haiyan Feng",
+    "Mengyu Ge",
+    "Yize Geng",
+    "Yuhang Jiang",
+    "Yixiu Mao",
+    "Xiangyang Ji"
+  ],
+  "methods": [
+    "conditional-interaction",
+    "independent-audit"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2610.39497",
+  "source_version": "v1",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "perspective",
+  "summary": "Концептуальная схема распределения дорогих действий через дешёвый предиктор с обратной связью.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "При идеальном бесплатном отборе и равных ценах выигрыш достигает 1/ρu.",
+      "epistemic_status": "theoretical_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Proposition 7; Section 4.1"
+    },
+    {
+      "id": "c2",
+      "text": "Изменение scaling exponent остаётся гипотезой.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Section 7"
+    }
+  ],
+  "relations": [
+    {
+      "type": "cites",
+      "target": "arxiv:2507.04632",
+      "status": "verified",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Section 5.1; Qu et al. (2026a)",
+      "note": "MoPPS"
+    },
+    {
+      "type": "cites",
+      "target": "arxiv:2602.01970",
+      "status": "verified",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Section 5.1; Qu et al. (2026c)",
+      "note": "GPS"
+    },
+    {
+      "type": "cites",
+      "target": "doi:10.1038/s41467-026-74004-0",
+      "status": "verified",
+      "source": "https://arxiv.org/html/2610.39497v1",
+      "locator": "Section 5.1; Wang et al. (2026)",
+      "note": "MPTS"
+    }
+  ],
+  "extra": {
+    "origin": "Разбор в текущем диалоге; первоисточники проверены по HTML",
+    "reading_notes": "Просмотрены Abstract, Sections 2, 3, 4.1, 5, 7, Conclusion; приложение с доказательствами целиком не прочитано."
+  }
+}

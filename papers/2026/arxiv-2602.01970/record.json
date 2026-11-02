@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2602.01970",
+  "kind": "paper",
+  "title": "Small Generalizable Prompt Predictive Models Can Steer Efficient RL Post-Training of Large Reasoning Models",
+  "year": 2026,
+  "status": "inbox",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "llm-training",
+    "test-time-compute"
+  ],
+  "authors": [],
+  "methods": [
+    "gps"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2602.01970",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "unread",
+  "paper_type": "unknown",
+  "summary": "",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "queue_reason": "Следующая работа для проверки обобщения предиктора на новые задачи; полный разбор не выполнен."
+  }
+}

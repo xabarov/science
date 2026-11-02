@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2507.04632",
+  "kind": "paper",
+  "title": "Can Prompt Difficulty be Online Predicted for Accelerating RL Finetuning of Reasoning Models?",
+  "year": 2025,
+  "status": "triaged",
+  "priority": 1,
+  "topics": [
+    "llm-training",
+    "active-learning",
+    "conditional-computation"
+  ],
+  "authors": [],
+  "methods": [
+    "mopps",
+    "dynamic-sampling",
+    "grpo"
+  ],
+  "datasets": [
+    "math",
+    "aime24",
+    "countdown",
+    "geometry3k"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2507.04632",
+  "source_version": "v2",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "empirical",
+  "summary": "MoPPS выбирает обучающие задачи по истории успехов; численные результаты частично сверены.",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "AIME24: MoPPS 33,33%, Uniform 26,46%, DS 30,42% для R1-Distill-Qwen-1.5B после MATH.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2507.04632v2",
+      "locator": "Table 1"
+    }
+  ],
+  "relations": [],
+  "extra": {
+    "reading_notes": "Проверены Abstract, Sections 3.2 и 4.2, Table 1; полный протокол и код не проверены."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "topics": {
+    "conditional-computation": ["Conditional computation", "условные вычисления", "System-1", "System-2", "System One", "predictive gating"],
+    "llm-training": ["LLM training", "обучение языковых моделей", "RLVR", "reinforcement learning"],
+    "test-time-compute": ["Test-time compute", "вычисления при инференсе", "inference-time scaling"],
+    "uncertainty-calibration": ["Uncertainty and calibration", "неопределённость", "калибровка", "confidence"],
+    "distribution-shift": ["Distribution shift", "смена домена", "сдвиг распределения", "OOD"],
+    "active-learning": ["Active learning", "активное обучение", "exploration", "исследование неопределённых случаев"]
+  },
+  "methods": {
+    "conditional-interaction": ["Conditional interaction", "predict–gate–execute–update", "предиктивный отбор"],
+    "mopps": ["MoPPS", "Model Predictive Prompt Selection"],
+    "gps": ["GPS", "Generalizable Predictive Prompt Selection"],
+    "mpts": ["MPTS", "Model Predictive Task Sampling"],
+    "dynamic-sampling": ["Dynamic Sampling", "DS", "выбор после выполнения"],
+    "grpo": ["GRPO", "Group Relative Policy Optimization"],
+    "independent-audit": ["Independent audit", "независимый аудит", "проверка отклонённых задач"]
+  },
+  "datasets": {
+    "math": ["MATH", "mathematical reasoning"],
+    "aime24": ["AIME24", "AIME 2024"],
+    "countdown": ["Countdown", "арифметическое планирование"],
+    "geometry3k": ["Geometry3k", "геометрия"]
+  }
+}

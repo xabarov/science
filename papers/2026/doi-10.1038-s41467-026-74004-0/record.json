@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "doi:10.1038/s41467-026-74004-0",
+  "kind": "paper",
+  "title": "Model predictive task sampling for efficient and robust adaptation",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 2,
+  "topics": [
+    "active-learning",
+    "distribution-shift"
+  ],
+  "authors": [],
+  "methods": [
+    "mpts"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "https://doi.org/10.1038/s41467-026-74004-0",
+  "source_version": "",
+  "accessed": "2026-11-02",
+  "reading_scope": "partial",
+  "paper_type": "unknown",
+  "summary": "",
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "claims": [],
+  "relations": [],
+  "extra": {
+    "queue_reason": "Проверить границы переноса выводов от адаптации и MuJoCo к языковым агентам."
+  }
+}
