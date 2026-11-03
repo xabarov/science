@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2609.24972",
+  "kind": "paper",
+  "title": "RRSI: Regularized Recursive Self-Improvement of Agent Harnesses",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-harnessing",
+    "distribution-shift",
+    "test-time-compute"
+  ],
+  "authors": [
+    "Xia, Peng",
+    "Han, Rujun",
+    "Wang, Zifeng",
+    "Chen, Yanfei",
+    "Zhuang, Yufan",
+    "Lee, Yoonho",
+    "Huang, Chengsong",
+    "Yu, Han",
+    "CuiZhu, Zhongying",
+    "Ming, Yifei",
+    "Yao, Huaxiu",
+    "Gokturk, Burak",
+    "Pfister, Tomas",
+    "Lee, Chen-Yu"
+  ],
+  "methods": [
+    "rrsi"
+  ],
+  "datasets": [
+    "terminal-bench-2.1",
+    "swe-bench",
+    "lab",
+    "jobbench",
+    "gdpval",
+    "apex-agents",
+    "engdesign",
+    "frontier-eng"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2609.24972",
+  "source_version": "v3",
+  "accessed": "2026-11-03",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "RRSI регулирует поиск правок обвязки вокруг замороженной LLM: разреженные предложения, история гипотез, exploration, leakage critic, noise/cost-aware acceptance и pruning. На workspace Table 2 v3: OOD average 43.6 против 40.3 у unregularized evolution, policy tokens 2.42M против 3.80M; при этом исходный H0 дешевле (1.56M). Аннотация и таблицы v3 не полностью согласованы; сохраняются конкретные протоколы.",
+  "created": "2026-11-03",
+  "updated": "2026-11-03",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "RRSI меняет prompts, control flow, tools, context management, memory, skills и subagents вокруг фиксированного backbone; регуляризация действует на предложения и отбор правок, пространство компонентов остаётся открытым.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Sections 2–3"
+    },
+    {
+      "id": "c2",
+      "text": "Proposal-side ограничения: cosine-annealed бюджет независимых правок, история component/hypothesis/diff/score/cost/verdict и exploration малоиспользованных компонентов при stall; selector использует leakage screen, noise-adjusted floor, cost rule и pruning. Аналогии с L0/L1/L2 качественные, не штрафы на веса нейросети.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Sections 3.1–3.3; Appendix D"
+    },
+    {
+      "id": "c3",
+      "text": "Claude Opus 4.8, workspace Table 2: H0 / unregularized / RRSI имеют Harvey LAB evolve 89.4/92.8/90.5, OOD average 39.7/40.3/43.6 и policy tokens per trial 1.56M/3.80M/2.42M. OOD average усредняет JobBench, GDPval, APEX-Agents.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Table 2; Section 4.3"
+    },
+    {
+      "id": "c4",
+      "text": "В Table 1 v3 RRSI с Claude Opus 4.8 улучшает H0 на JobBench 36.0→40.7, GDPval 48.8→52.3, APEX-Agents 34.2→37.9; это перенос harness, эволюционировавшего на Harvey LAB, без поиска на этих OOD suites.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Table 1; Section 4.2; Appendix B"
+    },
+    {
+      "id": "c5",
+      "text": "В Table 3 v3 coding evolution с Claude Opus 4.8 даёт Terminal-Bench 74.2→80.2 и SWE-bench Verified 82.0→83.8; отдельный Gemini 3.5 Flash run даёт 64.6→78.7 и 76.8→79.0 соответственно. Нельзя объединять максимумы разных policy в один протокол.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Table 3; Section 4.3"
+    },
+    {
+      "id": "c6",
+      "text": "Показанные 2.42M против 3.80M policy tokens означают около 36.3% снижения per-trial executor tokens у RRSI относительно unregularized evolution по Table 2. Это не полная стоимость поиска, не экономия относительно H0 и не равное сокращение wall time.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Table 2; Eq. 1; Section 4.3; arithmetic from reported values"
+    },
+    {
+      "id": "c7",
+      "text": "Аннотация v3 говорит up to 4.3 OOD points, но Table 1 и Table 6 содержат JobBench +4.7; 14.1 evolve points сохраняются в Table 3 для Gemini при +6.0 в основном Claude run. Страница HF и maxima без policy/version не задают один согласованный эксперимент.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Abstract; Tables 1, 3, 6"
+    },
+    {
+      "id": "c8",
+      "text": "Appendix E.2 сообщает task-paired bootstrap (10000 resamples) и второе независимое повторение поиска; это поддержка устойчивости в проверенных настройках, а не гарантия обобщения на произвольные domains и горизонты.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.24972v3",
+      "locator": "Tables 6–7; Limitations"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Наше сравнение: RRSI использует scored evolve set и переносит фиксированную обвязку; Harness² улучшает текущую задачу по контрастам без доступного benchmark score."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.34722",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Оба меняют компоненты системы с фиксированными LLM; CEPO факторизует prompts, RRSI регулирует более широкий поиск harness."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Дополнение карты способов самоулучшения регуляризацией поиска и контролем переноса."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "rrsi-v3-h0-evolve_rubric_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-evolve_rubric_score",
+          "model": "Claude Opus 4.8 / H0",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "H0",
+          "metric": "evolve_rubric_score",
+          "unit": "points",
+          "value": 89.4,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-h0-ood_average_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-ood_average_score",
+          "model": "Claude Opus 4.8 / H0",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "JobBench + GDPval + APEX-Agents (equal benchmark mean)",
+          "method": "H0",
+          "metric": "ood_average_score",
+          "unit": "points",
+          "value": 39.7,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-h0-policy_tokens_per_trial",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-policy_tokens_per_trial",
+          "model": "Claude Opus 4.8 / H0",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "H0",
+          "metric": "policy_tokens_per_trial",
+          "unit": "million_tokens",
+          "value": 1.56,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-unregularized-evolution-evolve_rubric_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-evolve_rubric_score",
+          "model": "Claude Opus 4.8 / Unregularized evolution",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "Unregularized evolution",
+          "metric": "evolve_rubric_score",
+          "unit": "points",
+          "value": 92.8,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-unregularized-evolution-ood_average_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-ood_average_score",
+          "model": "Claude Opus 4.8 / Unregularized evolution",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "JobBench + GDPval + APEX-Agents (equal benchmark mean)",
+          "method": "Unregularized evolution",
+          "metric": "ood_average_score",
+          "unit": "points",
+          "value": 40.3,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-unregularized-evolution-policy_tokens_per_trial",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-policy_tokens_per_trial",
+          "model": "Claude Opus 4.8 / Unregularized evolution",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "Unregularized evolution",
+          "metric": "policy_tokens_per_trial",
+          "unit": "million_tokens",
+          "value": 3.8,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-rrsi-evolve_rubric_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-evolve_rubric_score",
+          "model": "Claude Opus 4.8 / RRSI",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "RRSI",
+          "metric": "evolve_rubric_score",
+          "unit": "points",
+          "value": 90.5,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-rrsi-ood_average_score",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-ood_average_score",
+          "model": "Claude Opus 4.8 / RRSI",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "JobBench + GDPval + APEX-Agents (equal benchmark mean)",
+          "method": "RRSI",
+          "metric": "ood_average_score",
+          "unit": "points",
+          "value": 43.6,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-rrsi-policy_tokens_per_trial",
+          "claim": "arxiv:2609.24972#c3",
+          "group": "rrsi-v3-workspace-ablation-policy_tokens_per_trial",
+          "model": "Claude Opus 4.8 / RRSI",
+          "train_data": "Harvey LAB fixed 120-task evolve set; backbone frozen",
+          "test_data": "Harvey LAB evolve",
+          "method": "RRSI",
+          "metric": "policy_tokens_per_trial",
+          "unit": "million_tokens",
+          "value": 2.42,
+          "baseline": "Unregularized evolution / H0",
+          "budget": {
+            "rounds": 20,
+            "candidate_budget_per_round": 2,
+            "trials_per_task": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "token_scope": "executor policy tokens per trial on evolve, excludes full search/editor cost",
+            "ood_metric": "average of suite scores, not a pooled per-task accuracy"
+          },
+          "uncertainty": "Table 2 does not show intervals for all arms; RRSI-vs-H0 bootstrap and repeated searches in Tables 6–7",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 2; Appendix E.1"
+        },
+        {
+          "id": "rrsi-v3-jobbench-h0",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-jobbench",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "JobBench OOD",
+          "method": "H0",
+          "metric": "weighted_rubric_score",
+          "unit": "points",
+          "value": 36.0,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [2.9, 7.4] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        },
+        {
+          "id": "rrsi-v3-jobbench-rrsi",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-jobbench",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "JobBench OOD",
+          "method": "RRSI",
+          "metric": "weighted_rubric_score",
+          "unit": "points",
+          "value": 40.7,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [2.9, 7.4] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        },
+        {
+          "id": "rrsi-v3-gdpval-h0",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-gdpval",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "GDPval OOD",
+          "method": "H0",
+          "metric": "win_rate_vs_human",
+          "unit": "percent",
+          "value": 48.8,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [1.8, 6.9] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        },
+        {
+          "id": "rrsi-v3-gdpval-rrsi",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-gdpval",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "GDPval OOD",
+          "method": "RRSI",
+          "metric": "win_rate_vs_human",
+          "unit": "percent",
+          "value": 52.3,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [1.8, 6.9] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        },
+        {
+          "id": "rrsi-v3-apex-agents-h0",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-apex-agents",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "APEX-Agents OOD",
+          "method": "H0",
+          "metric": "benchmark_score",
+          "unit": "points",
+          "value": 34.2,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [1.4, 7.5] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        },
+        {
+          "id": "rrsi-v3-apex-agents-rrsi",
+          "claim": "arxiv:2609.24972#c4",
+          "group": "rrsi-v3-workspace-apex-agents",
+          "model": "Claude Opus 4.8",
+          "train_data": "Harvey LAB 120 evolve tasks, fixed backbone",
+          "test_data": "APEX-Agents OOD",
+          "method": "RRSI",
+          "metric": "benchmark_score",
+          "unit": "points",
+          "value": 37.9,
+          "baseline": "H0",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "ood_not_used_for_selection": true
+          },
+          "uncertainty": "Reported 95% paired task-bootstrap CI for RRSI gain: [1.4, 7.5] points; 10000 resamples",
+          "source": "https://arxiv.org/html/2609.24972v3",
+          "locator": "Table 1; Table 6; Appendix B"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Sections 2–4",
+        "Tables 1–7",
+        "Appendices B, D.3, E.1–E.2, F",
+        "README, selection.py, schedule.py at pinned code commit"
+      ],
+      "not_checked": [
+        "full code/prompt audit",
+        "benchmark re-execution",
+        "search and API total cost reproduction"
+      ],
+      "code_commit": "be50316e1db05914068a973f322770ef08ed7ba1",
+      "discrepancies": [
+        "v3 abstract OOD up to 4.3 vs JobBench +4.7 in Tables 1/6",
+        "v3 abstract 30% policy-token saving vs Table 2 arithmetic 36.3%; project page says 36%",
+        "GDPval Appendix B.5 names 185 tasks but also 204 comparisons per judge: denominator requires clarification"
+      ]
+    }
+  }
+}

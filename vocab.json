@@ -186,6 +186,11 @@
       "Structural causal models",
       "SCM",
       "структурные причинные модели"
+    ],
+    "rrsi": [
+      "RRSI",
+      "Regularized Recursive Self-Improvement",
+      "регуляризация рекурсивного самоулучшения"
     ]
   },
   "datasets": {
@@ -238,7 +243,8 @@
       "MATH-Hard"
     ],
     "swe-bench": [
-      "SWE-Bench"
+      "SWE-Bench",
+      "SWE-bench Verified"
     ],
     "webshop": [
       "WebShop"
@@ -342,6 +348,22 @@
     "pigs": [
       "PIGS",
       "genetic pedigree network"
+    ],
+    "terminal-bench-2.1": [
+      "Terminal-Bench 2.1",
+      "Terminal Bench"
+    ],
+    "gdpval": [
+      "GDPval"
+    ],
+    "apex-agents": [
+      "APEX-Agents"
+    ],
+    "engdesign": [
+      "EngDesign"
+    ],
+    "frontier-eng": [
+      "Frontier-Eng"
     ]
   }
 }
