@@ -32,6 +32,21 @@ python3 science.py show arxiv:2610.39497
 python3 science.py search 'предиктор* OR predictor*' --fts
 ```
 
+## Последние разборы
+
+- [RRSI, v3](papers/2026/arxiv-2609.24972/review.md) — регуляризация поиска
+  агентной обвязки, перенос правок, стоимость и несогласованности результатов в источнике.
+- [LimiX-2, v1](papers/2026/arxiv-2609.17488/review.md) — табличная foundation model,
+  контекстное предсказание, восстановление пропусков и causal skeleton recovery.
+- [Jeva, v2](papers/2026/arxiv-2610.18773/review.md) — архитектура System One,
+  типизированные выходы, coverage, кэширование и обучение;
+  [интерактивный учебник](learning/jev-jeva.html).
+- [CEPO, Harness², RRSI и R²Orch](notes/syntheses/synthesis-prompt-harness-orchestration/review.md)
+  — сравнение объектов изменений, обратной связи и требований к проверке.
+
+Глубина чтения и границы проверки указаны в каждой карточке. Численные результаты
+последних статей сверены с источниками; benchmark reproduction не выполнялся.
+
 ## Исследовательская работа
 
 ```sh
@@ -119,7 +134,7 @@ reading_scope: abstract/partial/full; source_checked не означает во�
 - [Вопрос об аудите при смене домена](notes/questions/question-auditing-under-shift/review.md).
 - [Гипотеза и первичный поиск новизны](notes/ideas/idea-domain-shift-audit/review.md).
 - [План эксперимента — пока не выполнен](notes/experiments/experiment-auditing-replay/review.md).
-- [CEPO, Harness² и R²Orch: сравнение способов улучшать агента](notes/syntheses/synthesis-prompt-harness-orchestration/review.md).
+- [CEPO, Harness², RRSI и R²Orch: сравнение способов улучшать агента](notes/syntheses/synthesis-prompt-harness-orchestration/review.md).
 
 ## Сохранность и проверки
 

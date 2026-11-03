@@ -20,9 +20,9 @@
   "accessed": "",
   "reading_scope": "not_applicable",
   "paper_type": "",
-  "summary": "Карта вопросов, источников и очереди чтения об эффективности предиктивного отбора.",
+  "summary": "Карта вопросов об эффективности предиктивного отбора и переносе обратной связи: MoPPS/GPS, типизированные решения Jeva, контекстный табличный предиктор LimiX-2 и контроль сохраняемых harness-правок RRSI. Связи аналитические; собственные эксперименты ещё не выполнены.",
   "created": "2026-11-02",
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "claims": [],
   "relations": [
     {
@@ -56,7 +56,88 @@
       "source": "",
       "locator": "",
       "note": "Кандидат исследовательского вопроса"
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Связь с оркестрацией и проверкой полезности skills."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.18773",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Конкретная архитектура типизированного решателя; перенос coverage требует проверки."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2609.17488",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Возможный табличный predictor для будущего сравнения; gate не реализован."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2609.24972",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Аналогия контроля качества и стоимости обратной связи; другая экспериментальная постановка."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Сравнение способов улучшения системы и режима проверки правок."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:system-one-jev-jeva",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Учебный материал по архитектуре Jeva и формулам readout/loss."
     }
   ],
-  "extra": {}
+  "extra": {
+    "research": {
+      "depends_on": [
+        "arxiv:2610.39497#c3",
+        "arxiv:2610.18773#c1",
+        "arxiv:2610.18773#c3",
+        "arxiv:2609.17488#c1",
+        "arxiv:2609.17488#c6",
+        "arxiv:2609.24972#c1",
+        "arxiv:2609.24972#c3"
+      ],
+      "dependency_state": {
+        "arxiv:2609.17488#c1": "2a3f29d9e4f9d4da4da92528a53280295f520d5bdff2a0b96bb0b6cfd199c340",
+        "arxiv:2609.17488#c6": "caa4454ba7f80b4ae85d0014250ef879510febd6c75b367ea5c6c11bde39ac51",
+        "arxiv:2609.24972#c1": "2f1522d1b273910a1967e2e3021ec9d4a7d632ea203b13b53a5e8ab487b32ed7",
+        "arxiv:2609.24972#c3": "ebf2f69e63ee464f377b1d66bf2a88118c0ac3ffc906bcdf992914182d907655",
+        "arxiv:2610.18773#c1": "8b3b232a7ebf3d9cc691c2b119257497e125dbe27153855c10d2830481b35895",
+        "arxiv:2610.18773#c3": "aeb49f0df2a1cd331378009636a418210732da9772ff66beefe29c363125b3c8",
+        "arxiv:2610.39497#c3": "a4511ea1206f3cf79a31bc382e36eecbe7b1db2f4132d1fc6630f83598dae268"
+      },
+      "history": [
+        {
+          "at": "2026-11-03T20:50:52.903073+00:00",
+          "action": "review_ack",
+          "note": "Карта пересмотрена по сохранённым claims концептуальной работы, Jeva, LimiX-2 и RRSI: разделены predictor, typed decision и harness search; перенос, калибровка и gate-роль оставлены открытыми, собственные эксперименты не объявляются выполненными."
+        },
+        {
+          "at": "2026-11-03T20:51:27.518243+00:00",
+          "action": "review_ack",
+          "note": "Уточнено основание концептуальной работы: c3 — открытый вопрос независимого аудита при сдвиге, а не c1 с идеализированной границей выигрыша. Карта не переносит эту границу на Jeva/LimiX-2/RRSI."
+        }
+      ]
+    }
+  }
 }

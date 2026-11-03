@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "synthesis:prompt-harness-orchestration",
   "kind": "synthesis",
-  "title": "CEPO, Harness² и R²Orch: что именно меняет самоулучшение агента?",
+  "title": "CEPO, Harness², RRSI и R²Orch: что именно меняет самоулучшение агента?",
   "year": 2026,
   "status": "reviewed",
   "priority": 1,
@@ -26,7 +26,7 @@
   "accessed": "",
   "reading_scope": "not_applicable",
   "paper_type": "",
-  "summary": "Сопоставление CEPO, Harness² и R²Orch по объекту изменений и обратной связи, дополненное RRSI: регуляризация scored harness search и перенос правок на OOD. Интеграции и их новизна пока не проверены.",
+  "summary": "Сравнение четырёх способов улучшать агента: CEPO — prompts, Harness² — runtime-обвязка на текущей задаче, RRSI — регуляризованный scored поиск обвязки с OOD-проверкой, R²Orch — обучаемая оркестрация. Сигналы, стоимость и ограничения различаются; интеграции не проверены.",
   "created": "2026-11-02",
   "updated": "2026-11-03",
   "claims": [
@@ -115,6 +115,11 @@
           "at": "2026-11-03T20:46:02.593577+00:00",
           "action": "review_ack",
           "note": "Добавлена RRSI v3: сверены объект изменений, scored evolve feedback и transfer режим, отдельно от Harness² без benchmark score. Старые сравнения и гипотеза h1 сохранены; новая интеграция отмечена как непроверенный план."
+        },
+        {
+          "at": "2026-11-03T20:50:52.972740+00:00",
+          "action": "review_ack",
+          "note": "RRSI включён в основную таблицу четырёх подходов; режим scored evolve/transfer сопоставлен с онлайн-контрастами Harness², prompts CEPO и RL R²Orch. Сохранены ограничения прямого сравнения и непроверенность интеграций."
         }
       ]
     }
