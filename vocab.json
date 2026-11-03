@@ -78,6 +78,16 @@
       "Open-set recognition",
       "отсутствующий ответ",
       "null detection"
+    ],
+    "tabular-foundation-models": [
+      "Tabular foundation models",
+      "табличные фундаментальные модели",
+      "structured-data intelligence"
+    ],
+    "causal-discovery": [
+      "Causal discovery",
+      "выявление причинной структуры",
+      "causal skeleton recovery"
     ]
   },
   "methods": {
@@ -160,6 +170,22 @@
     "coverage-gate": [
       "Coverage gate",
       "оценка наличия допустимого ответа"
+    ],
+    "contextual-mechanism-networks": [
+      "Contextual Mechanism Networks",
+      "CMN",
+      "CMNs",
+      "контекстные сети механизмов"
+    ],
+    "context-conditional-masked-modeling": [
+      "Context-Conditional Masked Modeling",
+      "CCMM",
+      "условное восстановление маскированных ячеек"
+    ],
+    "structural-causal-models": [
+      "Structural causal models",
+      "SCM",
+      "структурные причинные модели"
     ]
   },
   "datasets": {
@@ -280,6 +306,42 @@
     "mldr": [
       "MLDR",
       "Multilingual Long-Document Retrieval"
+    ],
+    "tabarena": [
+      "TabArena"
+    ],
+    "talent": [
+      "TALENT",
+      "tabular benchmark TALENT"
+    ],
+    "bcco": [
+      "BCCO",
+      "BCCO-CLS",
+      "BCCO-REG"
+    ],
+    "sachs": [
+      "Sachs",
+      "protein signaling network"
+    ],
+    "uf": [
+      "UF",
+      "food production causal network"
+    ],
+    "causalchamber": [
+      "CausalChamber",
+      "light tunnel system"
+    ],
+    "pathfinder": [
+      "PATHFINDER",
+      "lymph node pathology network"
+    ],
+    "diabetes-network": [
+      "DIABETES network",
+      "causal glucose regulation network"
+    ],
+    "pigs": [
+      "PIGS",
+      "genetic pedigree network"
     ]
   }
 }

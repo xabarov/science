@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2609.17488",
+  "kind": "paper",
+  "title": "LimiX-2: A Contextual Mechanism Network Towards General Structured-Data Intelligence",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "tabular-foundation-models",
+    "causal-discovery"
+  ],
+  "authors": [
+    "Zhang, Xingxuan",
+    "Ren, Gang",
+    "Yuan, Hao",
+    "Zou, Hao",
+    "Tan, Hongze",
+    "Wang, Hui",
+    "Song, Jianhao",
+    "Li, Jiansheng",
+    "Zhang, Jiayao",
+    "Zhang, Jinghan",
+    "Li, Kaifang",
+    "Mo, Lang",
+    "Mao, Li",
+    "Hao, Mingchao",
+    "Xu, Nuo",
+    "Ding, Rui",
+    "Zhang, Ruiji",
+    "Li, Shuyang",
+    "Mei, Siyu",
+    "Zhang, Tianyang",
+    "Mu, Weiyang",
+    "Dong, Yancheng",
+    "Wei, Yongxian",
+    "Xue, Yuan",
+    "Wang, Yuanrui",
+    "He, Yue",
+    "Yang, Zijia",
+    "Li, Ziyun",
+    "Li, Dongzhe",
+    "Wang, Fuqiang",
+    "Liu, Jiandong",
+    "Chen, Jiawei",
+    "Du, Jiaxin",
+    "Cheng, Kaijie",
+    "Li, Kehan",
+    "Sun, Lei",
+    "Zhou, Linjun",
+    "Dai, Ningbo",
+    "Wang, Qi",
+    "Xu, Renzhe",
+    "Du, Shaoxing",
+    "Yang, Shumeng",
+    "Lu, Wang",
+    "Chu, Wenjing",
+    "Huang, Xiannan",
+    "Lin, Xiaoyu",
+    "Ai, Xing",
+    "Han, Xinyan",
+    "Li, Xuanyue",
+    "Su, Xuanyue",
+    "Zhang, Xukun",
+    "Lu, Yan",
+    "Zhang, Yaxin",
+    "Qin, Yi",
+    "Huang, Yifei",
+    "Xu, Yihan",
+    "Lv, Yongle",
+    "Jiang, Yuanyuan",
+    "Han, Yushan",
+    "Cui, Peng"
+  ],
+  "methods": [
+    "contextual-mechanism-networks",
+    "context-conditional-masked-modeling",
+    "structural-causal-models"
+  ],
+  "datasets": [
+    "tabarena",
+    "talent",
+    "bcco",
+    "sachs",
+    "uf",
+    "causalchamber",
+    "pathfinder",
+    "diabetes-network",
+    "pigs"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2609.17488",
+  "source_version": "v1",
+  "accessed": "2026-11-03",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "LimiX-2 — табличная foundation model около 400M параметров: cell-level dual-axis Transformer и CCMM на синтетических SCM учатся предсказывать target и восстанавливать признаки по контекстной таблице без downstream fine-tuning. Авторы сообщают первое агрегированное Elo на TabArena/TALENT/BCCO и сильное causal skeleton recovery; это не доказательство идентификации эффектов вмешательств.",
+  "created": "2026-11-03",
+  "updated": "2026-11-03",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "LimiX-2 сохраняет cell-level представления, разделяет feature/task pathways и использует CCMM: совместное обучение target prediction и masked-feature reconstruction по контекстной таблице без task-specific parameter updates на новых задачах.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Sections 2–3"
+    },
+    {
+      "id": "c2",
+      "text": "Pretraining проводится исключительно на синтетических датасетах из SCM с разнообразием DAG, функций, частичной наблюдаемости и преобразований данных; CCMM наследуется от предыдущего LimiX.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Sections 1, 3–4"
+    },
+    {
+      "id": "c3",
+      "text": "В авторском протоколе LimiX-2 лидирует по общему Elo: TabArena 51 datasets — 1935 против TabFM+ 1818; TALENT 288 datasets — 1506 против TabFM 1471; BCCO 156 datasets — 1432 против AutoGluon 1.6 EX 4h 1376. Elo — рейтинг внутри comparison pool, не процент точности.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Tables 1, 2, 5, 6; Section 5.1"
+    },
+    {
+      "id": "c4",
+      "text": "В causal skeleton recovery на шести datasets средний F1 LimiX-2 равен 0.7972 против EXAONE Tabular 0.6591; LimiX-2 имеет лучший F1 на всех шести и минимальный SHD на пяти. Attention thresholding измеряет adjacency в неориентированном скелете.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Section 5.5; Table 7"
+    },
+    {
+      "id": "c5",
+      "text": "Scaling study охватывает шесть размеров 12.5M–406.2M: на TabArena Elo 1766→1935. Экстраполяция до 2B является прогнозом, не измеренным результатом.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Section 6; Table 8; Figure 12"
+    },
+    {
+      "id": "c6",
+      "text": "Успех thresholded attention в восстановлении skeleton не устанавливает направления причинных рёбер, эффекты do-вмешательств или контрфактуальную идентифицируемость; causal awareness в работе имеет операционное benchmark-определение.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.17488v1",
+      "locator": "Section 5.5 protocol; scope of the reported measurement"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.18773",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Сопоставление прямого вывода: Jeva работает с текстовым запросом и кандидатами; LimiX-2 — с ячейками таблицы и контекстными примерами. Одинаковая архитектура или сравнение качества не подразумеваются."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "limix2-tabarena-model",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-tabarena-overall",
+          "model": "LimiX-2",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "TabArena: 51 datasets",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1935,
+          "baseline": "TabFM+",
+          "budget": {
+            "task_specific_parameter_updates": false
+          },
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1858–2046; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 2; Section 5.1"
+        },
+        {
+          "id": "limix2-tabarena-baseline",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-tabarena-overall",
+          "model": "TabFM+",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "TabArena: 51 datasets",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1818,
+          "baseline": "TabFM+",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1858–2046; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 2; Section 5.1"
+        },
+        {
+          "id": "limix2-talent-model",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-talent-overall",
+          "model": "LimiX-2",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "TALENT: 288/300 datasets, >10-class tasks excluded",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1506,
+          "baseline": "TabFM",
+          "budget": {
+            "task_specific_parameter_updates": false
+          },
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1474–1543; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 5; Section 5.1"
+        },
+        {
+          "id": "limix2-talent-baseline",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-talent-overall",
+          "model": "TabFM",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "TALENT: 288/300 datasets, >10-class tasks excluded",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1471,
+          "baseline": "TabFM",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1474–1543; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 5; Section 5.1"
+        },
+        {
+          "id": "limix2-bcco-model",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-bcco-overall",
+          "model": "LimiX-2",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "BCCO: 156 datasets (106 CLS, 50 REG)",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1432,
+          "baseline": "AutoGluon 1.6 (EX, 4h)",
+          "budget": {
+            "task_specific_parameter_updates": false
+          },
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1394–1477; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 6; Section 5.1"
+        },
+        {
+          "id": "limix2-bcco-baseline",
+          "claim": "arxiv:2609.17488#c3",
+          "group": "limix2-v1-bcco-overall",
+          "model": "AutoGluon 1.6 (EX, 4h)",
+          "train_data": "LimiX-2: synthetic SCM pretraining; baseline training differs",
+          "test_data": "BCCO: 156 datasets (106 CLS, 50 REG)",
+          "method": "official benchmark aggregation / model-specific default or named baseline setting",
+          "metric": "overall_elo",
+          "unit": "Elo",
+          "value": 1376,
+          "baseline": "AutoGluon 1.6 (EX, 4h)",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "protocol": "Section 5.1; TabArena official pipeline; TALENT/BCCO 15 seeds, 2000-round bootstrap Elo CI"
+          },
+          "uncertainty": "LimiX-2 95% Elo bootstrap CI: 1394–1477; baseline CI in source table",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Table 6; Section 5.1"
+        },
+        {
+          "id": "limix2-skeleton-model",
+          "claim": "arxiv:2609.17488#c4",
+          "group": "limix2-v1-six-skeletons",
+          "model": "LimiX-2",
+          "train_data": "Different foundation-model pretraining; not matched",
+          "test_data": "Sachs, UF, CausalChamber, PATHFINDER, DIABETES, PIGS",
+          "method": "each variable as target; feature-attention thresholding; undirected skeleton",
+          "metric": "mean_skeleton_f1",
+          "unit": "fraction",
+          "value": 0.7972,
+          "baseline": "EXAONE Tabular",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "threshold_selection_needs_audit": true,
+            "directions_scored": false
+          },
+          "uncertainty": "CI/repeated runs not established in checked Table 7",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Section 5.5; Table 7"
+        },
+        {
+          "id": "limix2-skeleton-baseline",
+          "claim": "arxiv:2609.17488#c4",
+          "group": "limix2-v1-six-skeletons",
+          "model": "EXAONE Tabular",
+          "train_data": "Different foundation-model pretraining; not matched",
+          "test_data": "Sachs, UF, CausalChamber, PATHFINDER, DIABETES, PIGS",
+          "method": "each variable as target; feature-attention thresholding; undirected skeleton",
+          "metric": "mean_skeleton_f1",
+          "unit": "fraction",
+          "value": 0.6591,
+          "baseline": "EXAONE Tabular",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "threshold_selection_needs_audit": true,
+            "directions_scored": false
+          },
+          "uncertainty": "CI/repeated runs not established in checked Table 7",
+          "source": "https://arxiv.org/html/2609.17488v1",
+          "locator": "Section 5.5; Table 7"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Sections 1–6",
+        "Tables 1, 2, 5, 6, 7, 8",
+        "official model card and README"
+      ],
+      "not_checked": [
+        "full source-code audit",
+        "independent benchmark reproduction",
+        "threshold/hyperparameter selection logs",
+        "compute-matched architecture and CCMM ablations"
+      ],
+      "snapshot_version": "v1"
+    }
+  }
+}
