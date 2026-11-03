@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "synthesis:system-one-jev-jeva",
+  "kind": "synthesis",
+  "title": "JEV и Jeva: интерактивный учебник по архитектуре System One",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "typed-decisions",
+    "set-modeling",
+    "open-set-recognition",
+    "uncertainty-calibration"
+  ],
+  "authors": [],
+  "methods": [
+    "jeva",
+    "candidate-conditioned-state",
+    "option-memory",
+    "coverage-gate"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Автономный учебник JEV → Jeva: архитектура Qwen3.5-4B и decision block, шаблоны входов, causal pooling, cross-attention, coverage/competition, Choice/Noul/Score, кэш и supervised loss. Семь интерактивных лабораторий выполняют арифметические модели без inference Jeva. Результаты статьи отделены от демонстраций.",
+  "created": "2026-11-03",
+  "updated": "2026-11-03",
+  "claims": [],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.18773",
+      "status": "verified",
+      "source": "https://arxiv.org/html/2610.18773v2",
+      "locator": "Sections 3–4; Appendices B–C",
+      "note": "Основной научный источник учебника; версия v2 и pinned code."
+    }
+  ],
+  "extra": {
+    "artifact": {
+      "path": "learning/jev-jeva.html",
+      "format": "self-contained HTML",
+      "language": "ru",
+      "network_required": false,
+      "model_inference": false,
+      "code_commit": "e2104e0720100f979f2cdd456a1cbbee96da0abd",
+      "checkpoint_revision": "25ca454b3522615a243c06703ba410ecf152a128"
+    },
+    "research": {
+      "depends_on": [
+        "arxiv:2610.18773"
+      ],
+      "dependency_state": {
+        "arxiv:2610.18773": "9a49df637410d3c173d72a3eb14d8395ba53ae729acded8b221ca33681e6821c"
+      },
+      "history": [
+        {
+          "at": "2026-11-03T13:39:22.255025+00:00",
+          "action": "review_ack",
+          "note": "Учебник сверён с разбором v2 и pinned кодом: архитектура, шаблоны, readout, loss и контекст метрик. Арифметические лаборатории проверены в браузере, model inference не выполнялся."
+        }
+      ]
+    }
+  }
+}

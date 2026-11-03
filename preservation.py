@@ -118,7 +118,7 @@ def check_sources(root, require_files=False):
 
 
 def source_files(root):
-    directories = {'papers', 'notes', 'templates', 'docs', 'tests', 'sources', 'evals', 'attachments', '.github'}
+    directories = {'papers', 'notes', 'learning', 'templates', 'docs', 'tests', 'sources', 'evals', 'attachments', '.github'}
     for folder, dirs, files in os.walk(root, followlinks=False):
         relative = Path(folder).relative_to(root)
         dirs[:] = sorted(d for d in dirs if d not in ('.git', '.venv', 'data', 'exports', '__pycache__')

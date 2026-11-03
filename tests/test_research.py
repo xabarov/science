@@ -108,6 +108,7 @@ class ResearchTest(unittest.TestCase):
         (self.root/'.env.example').write_text('OPENROUTER_API_KEY=')
         (self.root/'compose.yaml').write_text('services: {}')
         (self.root/'attachments').mkdir(); (self.root/'attachments/example.html').write_text('source')
+        (self.root/'learning').mkdir(); (self.root/'learning/example.html').write_text('<html>lesson</html>')
         (self.root/'data').mkdir(); (self.root/'data/cache').write_text('cache')
         result=preservation.backup(self.root,self.root.parent/'backups')
         archive=Path(result['archive'])
@@ -119,6 +120,7 @@ class ResearchTest(unittest.TestCase):
         self.assertEqual((target/'.env.example').read_text(), 'OPENROUTER_API_KEY=')
         self.assertEqual((target/'compose.yaml').read_text(), 'services: {}')
         self.assertEqual((target/'attachments/example.html').read_text(),'source')
+        self.assertEqual((target/'learning/example.html').read_text(),'<html>lesson</html>')
         self.assertEqual(science.rebuild(target),2)
         with self.assertRaisesRegex(ValueError,'новый каталог'):
             preservation.restore(archive,target)

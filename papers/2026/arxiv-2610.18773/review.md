@@ -5,6 +5,9 @@ ID: `arxiv:2610.18773`. Разбор от 2026-11-03.
 [код](https://github.com/LiQiiiii/Jeva),
 [Jeva-4B](https://huggingface.co/LIQIIIII/Jeva-4B).
 
+Для учебного прохода: [интерактивный HTML JEV → Jeva](../../../learning/jev-jeva.html)
+и [путеводитель по лабораториям](../../../notes/syntheses/synthesis-system-one-jev-jeva/review.md).
+
 ## Глубина проверки
 
 Прочитаны основной текст, таблицы 1–2, выбранные доказательства симметрии,

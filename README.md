@@ -9,6 +9,10 @@
 
 ## Быстрый старт
 
+Для изучения System One: [интерактивный учебник JEV → Jeva](learning/jev-jeva.html).
+Скачайте HTML и откройте в браузере: схемы, анимация и семь лабораторий работают
+без сервера и интернета. Включены формулы и фрагменты Python. [Путеводитель и границы демонстраций](notes/syntheses/synthesis-system-one-jev-jeva/review.md).
+
 ```sh
 git clone https://github.com/xabarov/science.git
 cd science
@@ -92,6 +96,7 @@ notes/questions/       Исследовательские вопросы
 notes/ideas/           Гипотезы и проверка новизны
 notes/experiments/     Протоколы, измерения, исходы
 notes/syntheses/       Сопоставления работ
+learning/             Автономные интерактивные учебники HTML
 sources/manifest.json Версии, URL и хеши снимков
 attachments/          Локальные первоисточники; вне Git
 vocab.json            Темы, методы, датасеты и синонимы
