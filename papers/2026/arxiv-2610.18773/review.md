@@ -285,6 +285,52 @@ reading/reasoning и большие наборы кандидатов, hard/soft
 Описанные объёмы стадий включают повторные данные: их сумма не является числом
 уникальных обучающих примеров (Section 3.5; Appendix B.8/C.1).
 
+### Основной loss и разметка каждого типа
+
+Для open-set targets `[y_null,y_1,...,y_K]` с суммой 1 положим
+`c_y=sum_i y_i=1-y_null`, `g=logit(rho)`:
+
+`L_main = BCEWithLogits(g,c_y) - sum_i y_i*log(q_i)`.
+
+Эквивалентная запись: `-y_null*log(1-rho) - sum_i y_i*log(rho*q_i)`.
+Для hard answer k: `-log(rho)-log(q_k)`; для hard null:
+`-log(1-rho)`, без прямого candidate-ranking слагаемого.
+Closed-set Choice, Noul и Score используют candidate cross-entropy без coverage BCE.
+
+Публичный fine-tuner (`src/jeva/finetune.py`, commit
+`e2104e0720100f979f2cdd456a1cbbee96da0abd`) нормализует разные виды разметки:
+
+- Choice hard label k становится one-hot среди вариантов; при allow_null метка
+  null даёт всю массу в null-позиции.
+- Noul с p_true=0.8 даёт target false/true `[0.2,0.8]`; main loss равен
+  `-0.2*log(q_false)-0.8*log(q_true)`.
+- Score=1.5 на values `[0,1,2]` даёт target Low/Medium/High `[0,0.5,0.5]`:
+  scalar линейно распределяется между соседними уровнями. Main loss равен
+  `-0.5*log(q_Medium)-0.5*log(q_High)`. В target_probs добавляется ведущий
+  null-slot 0. Можно подать richer target distribution напрямую.
+
+`supervised_loss` маскирует padding и усредняет по примерам. Candidate loss уже
+взвешен non-null массой через y_i; повторно умножать его на c_y не нужно.
+
+### Слагаемые статьи и публичный fine-tuner
+
+Appendix B.8 описывает stage-dependent auxiliaries:
+
+- Noul: Brier `(q_true-y_true)^2` и margin hinge для hard labels
+  `max(0,m-(2*y_true-1)*logit(q_true))`; для soft labels margin не применяется.
+- Score: квадрат нормированной ошибки ожидаемого значения и среднеквадратичная
+  ошибка cumulative distributions по упорядоченным численным уровням.
+
+Их веса зависят от рецепта/стадии; фиксированные коэффициенты здесь не проверены.
+В публичной `supervised_loss` на указанном commit этих auxiliaries нет:
+она возвращает только mean(candidate CE + optional coverage BCE).
+Эта функция относится к выпущенному fine-tuner; её нельзя выдавать за полный код
+всего описанного многостадийного обучения. Свойства основного CE и дополнительные
+цели статьи следует различать при воспроизведении.
+
+Источник кода: [finetune.py](https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/finetune.py),
+`normalize_record`, `supervised_loss`; статья: Section 3.5 и Appendix B.8.
+
 ## Кэш и реальная скорость
 
 Atomic memory содержит `u_i` и все слои K_i/V_i. Exact-set cache хранит готовую

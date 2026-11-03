@@ -174,7 +174,8 @@
       "src/jeva/_runtime/matrix_decision.py",
       "config.py, selected backbone/layers functions",
       "HF config.yaml, metadata.json, adapter_config.json",
-      "src/jeva/inference.py: _criteria, _question, _predict"
+      "src/jeva/inference.py: _criteria, _question, _predict",
+      "src/jeva/finetune.py: normalize_record and supervised_loss"
     ],
     "not_checked": [
       "Independent inference/training reproduction",
