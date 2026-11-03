@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2609.39982",
+  "kind": "paper",
+  "title": "Mid-Harness: Scaling Actions Between Model and Harness for Terminal Agents",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-harnessing",
+    "test-time-compute",
+    "conditional-computation"
+  ],
+  "authors": [
+    "Minki Kang",
+    "Ryo Hachiuma",
+    "Shaokun Zhang",
+    "Subhashree Radhakrishnan",
+    "Yonggan Fu",
+    "Jindong Jiang",
+    "Mingjie Liu",
+    "Ehsan Hosseini-Asl",
+    "Yi Dong",
+    "Yu-Chiang Frank Wang",
+    "Byung-Kwan Lee"
+  ],
+  "methods": [
+    "mid-harness",
+    "pairwise-verification",
+    "verifier-distillation"
+  ],
+  "datasets": [
+    "terminalbench-lite",
+    "terminal-bench-2.1",
+    "swe-bench",
+    "featurebench-mini"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2609.39982",
+  "source_version": "v1",
+  "accessed": "2026-11-04",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "Mid-Harness добавляет на каждый шаг терминального агента sampling нескольких действий и их проверку до исполнения одного. Generator и harness фиксированы; качество verifier определяет пользу candidate width. TMAX-9B/TerminalBench-Lite: Pass@1 50.00→54.76 с zero-shot pairwise, 57.14 с distilled и 68.03 с GPT-5.6 Sol listwise. Decision-only A/B полезен в части 9B-настроек, но не универсально.",
+  "created": "2026-11-03",
+  "updated": "2026-11-04",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "На каждом шаге Mid-Harness генерирует N действий по одной и той же истории, verifier без исполнения кандидатов выбирает одно, harness выполняет его и обновляет историю. Исходный generator и harness не меняются.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Section 2.1, Eq. 1"
+    },
+    {
+      "id": "c2",
+      "text": "TMAX-9B, Vanillux2, 98 TerminalBench-Lite tasks ×3 runs: Pass@1 base 50.00%, zero-shot listwise N8 51.02%, pointwise N8 52.38%, pairwise N8 54.76%, distilled pairwise N8 57.14%, frontier GPT-5.6 Sol listwise N8 68.03%.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Appendix C.1 Table 5; Sections 3–4"
+    },
+    {
+      "id": "c3",
+      "text": "При N8 distilled decision-only pairwise на 9B даёт 59.18% Pass@1 против reasoning 57.14%, reference-priced pipeline cost 0.157 против 0.207 USD/output. На 4B/27B decision-only дешевле, но снижает Pass@1; на N4 преимущество 9B не сохраняется.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Tables 5, 7, 8; Appendices B.2–B.4, C.1–C.2"
+    },
+    {
+      "id": "c4",
+      "text": "Для verifier distillation 117631 teacher pairwise responses из 244 TMAX-15k tasks используются в LoRA SFT; адаптер включается только для verifier. Offline teacher agreement не является gold action correctness.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Sections 4.3–5; Appendix B.3"
+    },
+    {
+      "id": "c5",
+      "text": "Композиция distilled Mid-Harness N8 с Best-of-3 даёт 66.33% Pass@1 против 55.10% у Best-of-3 без action scaling. С SR R1: 60.20% против 55.10%; action и trajectory scaling расходуют разные дополнительные вычисления.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Section 6.1; Appendix C.1 Table 6"
+    },
+    {
+      "id": "c6",
+      "text": "По paired-task bootstrap на 98 tasks (100000 resamples) zero-shot 9B gain +4.76 pp имеет 95% CI [-0.68,10.20]; distilled +7.14 pp — [1.36,12.93]. Отдельные положительные point estimates не равны общей гарантии улучшения.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Appendix C.4 Table 10"
+    },
+    {
+      "id": "c7",
+      "text": "Систематическое ограничение — отсутствие gold action labels: coverage и качество verifier оцениваются косвенно через final task success и agreement с teacher. POT и reference-priced tokens — proxy, не измеренная задержка или реальный счёт deployment.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.39982v1",
+      "locator": "Sections 3, 5, 8; Appendices A, B.4"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.18773",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Наше сопоставление: decision-only verification как возможная роль System One; Jeva в работе не проверялась."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2609.24972",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "RRSI выбирает harness edits между раундами, Mid-Harness выбирает следующее действие внутри run; прямого сравнения нет."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Harness² меняет runtime-компоненты; Mid-Harness действует через model-call wrapper при фиксированной обвязке."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.39497",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Связь с отбором действия до дорогого или меняющего состояние исполнения; candidate generation и verification сами имеют стоимость."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "midharness-tblite9b-base",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Base",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Base",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 50.0,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 1,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": false,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-zero-shot-listwise",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Zero-shot listwise",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Zero-shot listwise",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 51.02,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": false,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-zero-shot-pointwise",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Zero-shot pointwise",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Zero-shot pointwise",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 52.38,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": false,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-zero-shot-pairwise",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Zero-shot pairwise",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Zero-shot pairwise",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 54.76,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": false,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-distilled-pairwise",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Distilled pairwise",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Distilled pairwise",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 57.14,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": true,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-frontier-listwise-gpt-56-sol",
+          "claim": "arxiv:2609.39982#c2",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Frontier listwise GPT-5.6 Sol",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Frontier listwise GPT-5.6 Sol",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 68.03,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": false,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-tblite9b-distilled-decision-only-pairwise",
+          "claim": "arxiv:2609.39982#c3",
+          "group": "midharness-v1-tblite9b-action",
+          "model": "TMAX-9B generator / Distilled decision-only pairwise",
+          "train_data": "Generator: Qwen3.5-9B with terminal RL; distilled verifier: separate LoRA SFT",
+          "test_data": "TerminalBench-Lite 98/100 tasks; 2 excluded for sandbox service errors",
+          "method": "Distilled decision-only pairwise",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 59.18,
+          "baseline": "Base TMAX-9B / Vanillux2, 50.00%",
+          "budget": {
+            "candidates_per_step": 8,
+            "runs_per_task": 3,
+            "maximum_agent_steps": 64,
+            "environment_executions_per_returned_run": 1
+          },
+          "conditions": {
+            "reproduced": false,
+            "generator_unchanged": true,
+            "verifier_only_distillation": true,
+            "reasoning_candidate_not_shown_to_verifier": true
+          },
+          "uncertainty": "Table 10 paired-task 95% gain CI: zero-shot pairwise [-0.68,10.20] pp; distilled reasoning [1.36,12.93] pp. Other configurations not established by that table.",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 5; Appendix B.1–B.3"
+        },
+        {
+          "id": "midharness-composition-best-of-3",
+          "claim": "arxiv:2609.39982#c5",
+          "group": "midharness-v1-tblite9b-composition",
+          "model": "TMAX-9B / Vanillux2",
+          "train_data": "Same generator; distilled verifier where Mid-Harness enabled",
+          "test_data": "TerminalBench-Lite 98 tasks",
+          "method": "Best-of-3",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 55.1,
+          "baseline": "Corresponding trajectory-scaling configuration without Mid-Harness",
+          "budget": {
+            "action_candidates_per_step": 1,
+            "environment_executions": 3
+          },
+          "conditions": {
+            "reproduced": false,
+            "reference_priced_cost_not_actual_billing": true
+          },
+          "uncertainty": "Intervals for this composition contrast not established in checked Table 10",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 6; Section 6.1"
+        },
+        {
+          "id": "midharness-composition-mid-harness-plus-best-of-3",
+          "claim": "arxiv:2609.39982#c5",
+          "group": "midharness-v1-tblite9b-composition",
+          "model": "TMAX-9B / Vanillux2",
+          "train_data": "Same generator; distilled verifier where Mid-Harness enabled",
+          "test_data": "TerminalBench-Lite 98 tasks",
+          "method": "Mid-Harness + Best-of-3",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 66.33,
+          "baseline": "Corresponding trajectory-scaling configuration without Mid-Harness",
+          "budget": {
+            "action_candidates_per_step": 8,
+            "environment_executions": 3
+          },
+          "conditions": {
+            "reproduced": false,
+            "reference_priced_cost_not_actual_billing": true
+          },
+          "uncertainty": "Intervals for this composition contrast not established in checked Table 10",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 6; Section 6.1"
+        },
+        {
+          "id": "midharness-composition-sr-r1",
+          "claim": "arxiv:2609.39982#c5",
+          "group": "midharness-v1-tblite9b-composition",
+          "model": "TMAX-9B / Vanillux2",
+          "train_data": "Same generator; distilled verifier where Mid-Harness enabled",
+          "test_data": "TerminalBench-Lite 98 tasks",
+          "method": "SR R1",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 55.1,
+          "baseline": "Corresponding trajectory-scaling configuration without Mid-Harness",
+          "budget": {
+            "action_candidates_per_step": 1,
+            "environment_executions": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "reference_priced_cost_not_actual_billing": true
+          },
+          "uncertainty": "Intervals for this composition contrast not established in checked Table 10",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 6; Section 6.1"
+        },
+        {
+          "id": "midharness-composition-mid-harness-plus-sr-r1",
+          "claim": "arxiv:2609.39982#c5",
+          "group": "midharness-v1-tblite9b-composition",
+          "model": "TMAX-9B / Vanillux2",
+          "train_data": "Same generator; distilled verifier where Mid-Harness enabled",
+          "test_data": "TerminalBench-Lite 98 tasks",
+          "method": "Mid-Harness + SR R1",
+          "metric": "pass_at_1",
+          "unit": "percent",
+          "value": 60.2,
+          "baseline": "Corresponding trajectory-scaling configuration without Mid-Harness",
+          "budget": {
+            "action_candidates_per_step": 8,
+            "environment_executions": 2
+          },
+          "conditions": {
+            "reproduced": false,
+            "reference_priced_cost_not_actual_billing": true
+          },
+          "uncertainty": "Intervals for this composition contrast not established in checked Table 10",
+          "source": "https://arxiv.org/html/2609.39982v1",
+          "locator": "Appendix C.1 Table 6; Section 6.1"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Main Sections 2–6",
+        "Appendices B.1–B.4, C.1–C.4",
+        "Tables 1–8, 10 (selected results)",
+        "HF paper metadata and full markdown via hf CLI 2.4.0"
+      ],
+      "not_checked": [
+        "complete code audit",
+        "training/inference reproduction",
+        "independent action labels",
+        "independent cost or latency measurements"
+      ],
+      "source_retrieval": {
+        "tool": "hf papers read 2609.39982",
+        "version": "2.4.0",
+        "markdown_conversion_caveat": "Some table-only values (52.38,49.66) absent from returned markdown; numerical results checked against pinned arXiv HTML v1."
+      }
+    }
+  }
+}

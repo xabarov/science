@@ -59,6 +59,36 @@ source_checked — прочитано в источнике; reproduced — ре
 
 ## Как продолжить в следующей сессии
 
+### Быстрое чтение через Hugging Face CLI
+
+Дополнительный инструмент — `hf` (на исходном Mac установлен 2.4.0 в изолированном
+окружении Python 3.12). Основной science.py по-прежнему работает без этой зависимости.
+
+```sh
+mkdir -p data/reading
+hf papers read 2609.39982 > data/reading/2609.39982.md
+hf papers info 2609.39982 --json > data/reading/2609.39982.metadata.json
+```
+
+`hf papers read` получает Markdown полного текста, а `info --json` — метаданные.
+Для публичных страниц вход в аккаунт не требуется. Доступны официальный навык
+[huggingface-papers](https://github.com/huggingface/skills/tree/main/skills/huggingface-papers)
+и устанавливаемый CLI навык `hf-cli` (локально `~/.agents/skills/hf-cli`).
+
+Markdown — удобный промежуточный формат. Если arXiv HTML отсутствует, возможен
+fallback на краткую HF paper page; проверять фактическое содержимое. В Mid-Harness
+при конвертации пропали некоторые табличные ячейки, поэтому числа надо сверять
+с исходным HTML/PDF. Заголовок Published Time конвертера не заменяет дату подачи
+на arXiv. Версию и долговременный снимок фиксировать существующей командой:
+
+```sh
+python3 science.py snapshot arxiv:2609.39982 --url https://arxiv.org/html/2609.39982v1 --version v1
+```
+
+Установщик `hf` требует Python 3.10+. На исходном Mac Python 3.12 доступен в
+`/opt/homebrew/opt/python@3.12/libexec/bin`; выбор системного `/usr/bin/python3`
+версии 3.9 вызывает ошибку установщика. CLI использует своё окружение `~/.hf-cli`.
+
 Можно сказать: «Разбери эту статью и сохрани в `/Users/roman/dev/repos/science`,
 сравни с уже имеющимися работами и обнови карту направления».
 AGENTS.md задаёт единый процесс для будущего ассистента в этом каталоге.

@@ -191,6 +191,22 @@
       "RRSI",
       "Regularized Recursive Self-Improvement",
       "регуляризация рекурсивного самоулучшения"
+    ],
+    "mid-harness": [
+      "Mid-Harness",
+      "MidHarness",
+      "action scaling",
+      "выбор действия перед исполнением"
+    ],
+    "pairwise-verification": [
+      "Pairwise verification",
+      "попарная верификация",
+      "ring-pivot tournament"
+    ],
+    "verifier-distillation": [
+      "Verifier distillation",
+      "дистилляция верификатора",
+      "decision-only verification"
     ]
   },
   "datasets": {
@@ -364,6 +380,14 @@
     ],
     "frontier-eng": [
       "Frontier-Eng"
+    ],
+    "terminalbench-lite": [
+      "TerminalBench-Lite",
+      "TerminalBench Lite"
+    ],
+    "featurebench-mini": [
+      "FeatureBench-Mini",
+      "FeatureBench Mini"
     ]
   }
 }
