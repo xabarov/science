@@ -36,6 +36,8 @@ python3 science.py search 'предиктор* OR predictor*' --fts
 
 - [RecursiveMAS, v2](papers/2026/arxiv-2604.25917/review.md) — обмен скрытыми
   состояниями между LLM, обучаемые RecursiveLink, повторные раунды и границы результатов.
+  [План ранней остановки и смета RunPod](notes/experiments/experiment-recursivemas-early-exit/review.md)
+  — эксперимент пока не запущен.
 - [DINOv3, v1](papers/2025/arxiv-2508.10104/review.md) — визуальные признаки,
   Gram anchoring, прикладные головы и отличия от DINOv2 и SAM 1/2/3.
 - [Hyperagents / DGM-H, v2](papers/2026/arxiv-2603.19461/review.md) — редактируемый

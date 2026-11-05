@@ -411,6 +411,34 @@
       "local_path": "attachments/b1e214fd2a418f9ab3f16584fff6b73106111c9b784c1242c2103bec6e6b282f/source.txt",
       "text_path": "attachments/b1e214fd2a418f9ab3f16584fff6b73106111c9b784c1242c2103bec6e6b282f/text.txt",
       "text_sha256": "b1e214fd2a418f9ab3f16584fff6b73106111c9b784c1242c2103bec6e6b282f"
+    },
+    {
+      "id": "8da7e92431a8299b3ddf9d35ba5fb2b7483927ee6858b637c93fb857f94fe189",
+      "document": "experiment:recursivemas-early-exit",
+      "requested_url": "https://www.runpod.io/pricing",
+      "resolved_url": "https://www.runpod.io/pricing",
+      "version": "2026-11-05",
+      "retrieved_at": "2026-11-05T13:27:37.721128+00:00",
+      "sha256": "8da7e92431a8299b3ddf9d35ba5fb2b7483927ee6858b637c93fb857f94fe189",
+      "bytes": 328342,
+      "content_type": "text/html",
+      "local_path": "attachments/8da7e92431a8299b3ddf9d35ba5fb2b7483927ee6858b637c93fb857f94fe189/source.html",
+      "text_path": "attachments/8da7e92431a8299b3ddf9d35ba5fb2b7483927ee6858b637c93fb857f94fe189/text.txt",
+      "text_sha256": "8016f6c1f65b3af37fa7fa41df257c50acd5755fd735f46dbaa9f1e41c799c1a"
+    },
+    {
+      "id": "634f1ececa4ed5c8aa6ae789254e46f0e1343be0eb97e66c578185de9a778505",
+      "document": "experiment:recursivemas-early-exit",
+      "requested_url": "https://docs.runpod.io/pods/pricing",
+      "resolved_url": "https://docs.runpod.io/pods/pricing",
+      "version": "2026-11-05",
+      "retrieved_at": "2026-11-05T13:27:38.320893+00:00",
+      "sha256": "634f1ececa4ed5c8aa6ae789254e46f0e1343be0eb97e66c578185de9a778505",
+      "bytes": 222759,
+      "content_type": "text/html",
+      "local_path": "attachments/634f1ececa4ed5c8aa6ae789254e46f0e1343be0eb97e66c578185de9a778505/source.html",
+      "text_path": "attachments/634f1ececa4ed5c8aa6ae789254e46f0e1343be0eb97e66c578185de9a778505/text.txt",
+      "text_sha256": "1cf430d78484e02c62a2454d05bd7053407ba371d751acd739c0b56260f9ae75"
     }
   ]
 }

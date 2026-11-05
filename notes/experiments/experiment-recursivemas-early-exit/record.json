@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "id": "experiment:recursivemas-early-exit",
+  "kind": "experiment",
+  "title": "RecursiveMAS: ранняя остановка и бюджет пилота RunPod",
+  "year": 2026,
+  "status": "triaged",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "test-time-compute",
+    "latent-collaboration",
+    "uncertainty-calibration"
+  ],
+  "authors": [],
+  "methods": [
+    "recursivemas",
+    "recursive-link"
+  ],
+  "datasets": [
+    "math-500",
+    "gpqa",
+    "medqa"
+  ],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "2026-11-05",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Невыполненный план learned early exit поверх frozen RecursiveMAS. Оценка RunPod: 58–118 A100-80GB GPU-hours по $1.79/h, $104–211 compute, около $166–327 с 50% резервом и $10 storage; рабочий бюджет $200–400. Часы — предположения до пилота, расход не утверждён. Критерий: реальная экономия времени при заданной границе потери качества.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "h1",
+      "text": "Небольшой gate, обученный на состояниях frozen RecursiveMAS, может уменьшить среднее время относительно фиксированных трёх раундов, сохраняя качество в заранее заданной non-inferiority margin. Полезность должна превосходить статический и question-only выбор глубины.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "",
+      "locator": ""
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2604.25917",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Предлагаемое расширение фиксированной рекуррентной глубины; не результат исходной статьи и не выполненный эксперимент."
+    }
+  ],
+  "extra": {
+    "research": {
+      "stage": "planned",
+      "depends_on": [
+        "arxiv:2604.25917#c1",
+        "arxiv:2604.25917#c2"
+      ],
+      "protocol": {
+        "hypothesis": "experiment:recursivemas-early-exit#h1",
+        "baselines": [
+          "Fixed R=1",
+          "Fixed R=2",
+          "Fixed R=3",
+          "Random stopping at matched average cost",
+          "Question-only depth gate",
+          "Simple confidence threshold",
+          "Oracle stopping upper bound, evaluation only"
+        ],
+        "primary_metric": "Measured wall-clock savings at predeclared accuracy non-inferiority margin; one answer attempt per question",
+        "budget": {
+          "amount": 400,
+          "unit": "USD planning envelope, not spending authorization"
+        },
+        "falsification": "No measured advantage over fixed-depth/question-only Pareto frontier, or quality loss exceeds margin after accounting for uncertainty and gate overhead.",
+        "seeds": [
+          11,
+          23,
+          47
+        ],
+        "data": "Candidate plan: 2000–5000 train/validation examples with automatic correctness checks; 1000–2000 held-out test questions across math and QA, with a separate domain-shift slice. Final manifests and decontamination not yet selected.",
+        "quality_gate": "Before running: confirm exact model/adapter revisions and access, select immutable dataset manifests, calibrate 50–100-question pilot throughput, predeclare bootstrap/non-inferiority analysis and thresholds. Initial target: >=20% time saving and <=2 percentage point loss, not promised outcome.",
+        "ready": false,
+        "frozen_components": "All base LLMs and existing RecursiveLinks; train only a separate small stopping classifier.",
+        "gate_inputs": "Observable hidden states before final answer decoding at a round boundary; no test labels or future-round states.",
+        "label_generation": "Decode candidate answers for R=1/2/3 on training/validation examples; use correctness and measured cost as targets. Split by question before trace generation.",
+        "runtime_measurement": "Actual dynamic execution, not replayed average-round count alone. Include gate/branching overhead and measure batch=1 plus a small batched setting. Warmup/loading reported separately.",
+        "success_criterion_note": "Require confidence bounds to satisfy the chosen margin; small datasets may be inconclusive even if point estimates look favorable.",
+        "novelty": "Not searched. No claim that adaptive stopping itself is new."
+      },
+      "cost_estimate": {
+        "as_of": "2026-11-05",
+        "currency": "USD",
+        "measured": false,
+        "spending_authorized": false,
+        "price_source": "https://www.runpod.io/pricing",
+        "billing_source": "https://docs.runpod.io/pods/pricing",
+        "listed_on_demand_rates": {
+          "A40_48GB": 0.59,
+          "RTX_4090_24GB": 0.89,
+          "A100_PCIe_80GB": 1.79,
+          "H100_PCIe_80GB": 2.89,
+          "H100_SXM_80GB": 3.99
+        },
+        "pricing_scope": "Public Secure Cloud/listed rates; deployed instance quote and availability can differ. No assumption that the cheapest Community instance is available.",
+        "recommended_reference_gpu": "A100 PCIe 80GB, one GPU",
+        "phases": [
+          {
+            "phase": "environment_baseline_debug",
+            "gpu_hours": [
+              8,
+              16
+            ],
+            "usd": [
+              14.32,
+              28.64
+            ]
+          },
+          {
+            "phase": "training_validation_trace_collection",
+            "gpu_hours": [
+              24,
+              48
+            ],
+            "usd": [
+              42.96,
+              85.92
+            ]
+          },
+          {
+            "phase": "gate_fit_and_validation",
+            "gpu_hours": [
+              2,
+              6
+            ],
+            "usd": [
+              3.58,
+              10.74
+            ]
+          },
+          {
+            "phase": "held_out_baselines_dynamic_exit_and_latency",
+            "gpu_hours": [
+              24,
+              48
+            ],
+            "usd": [
+              42.96,
+              85.92
+            ]
+          }
+        ],
+        "total_gpu_hours": [
+          58,
+          118
+        ],
+        "compute_usd": [
+          103.82,
+          211.22
+        ],
+        "reserve_fraction": 0.5,
+        "storage_allowance_usd": 10,
+        "total_with_reserve_and_storage_usd": [
+          165.73,
+          326.83
+        ],
+        "working_envelope_usd": [
+          200,
+          400
+        ],
+        "pilot_envelope_usd": [
+          20,
+          40
+        ],
+        "storage_note": "Network volume below 1TB is $0.07/GB/month: 100GB for a full month is $7. Other container/volume disks may add charges. $10 is a planning allowance, not a fixed fee.",
+        "memory_estimate": "BF16 weights alone: ~8.4GB for Sequential-Light ~4.2B total parameters, ~22GB for Scaled ~11B. KV cache, activations, framework and batch overhead additional; peak memory not measured. 24GB Light feasibility is provisional; 80GB chosen for headroom.",
+        "excluded": [
+          "human engineering time",
+          "tax or currency conversion",
+          "full paper reproduction",
+          "base-model or all-link retraining",
+          "paid teacher/judge/search API generation"
+        ],
+        "main_uncertainties": [
+          "released checkpoint suitability across depths",
+          "Python inference implementation throughput and repeated loading",
+          "mean output length and long-tail questions",
+          "batching efficiency under divergent stopping",
+          "need for new data or additional test power"
+        ]
+      },
+      "artifacts": [],
+      "measurements": [],
+      "outcome": "not_run",
+      "dependency_state": {
+        "arxiv:2604.25917#c1": "1559f551616dccde7348234939889997ff093b8da73554b4923a32bed74a74e7",
+        "arxiv:2604.25917#c2": "e76a6a6b2146aaa5702677816ec5d4790854b75424e471be193062331865c80e"
+      },
+      "history": [
+        {
+          "at": "2026-11-05T13:30:40.119146+00:00",
+          "action": "review_ack",
+          "note": "План согласован с фиксированной рекуррентной архитектурой и двухэтапным обучением RecursiveLinks: для пилота все компоненты основы заморожены, обучается только новый gate. Глубины и checkpoints проверяются пилотом; результаты отсутствуют, ready=false."
+        }
+      ]
+    }
+  }
+}
