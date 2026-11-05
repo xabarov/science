@@ -1,0 +1,514 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2604.25917",
+  "kind": "paper",
+  "title": "Recursive Multi-Agent Systems",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-orchestration",
+    "test-time-compute",
+    "latent-collaboration"
+  ],
+  "authors": [
+    "Jiaru Zou",
+    "Rui Pan",
+    "Ruizhong Qiu",
+    "Pan Lu",
+    "Shizhe Diao",
+    "Jindong Jiang",
+    "Hanghang Tong",
+    "Tong Zhang",
+    "Markus J. Buehler",
+    "Jingrui He",
+    "James Zou"
+  ],
+  "methods": [
+    "recursivemas",
+    "recursive-link"
+  ],
+  "datasets": [
+    "math-500",
+    "aime25",
+    "aime26",
+    "gpqa",
+    "medqa",
+    "livecodebench",
+    "mbpp-plus",
+    "hotpotqa",
+    "bamboogle"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2604.25917",
+  "source_version": "v2",
+  "accessed": "2026-11-05",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "RecursiveMAS связывает разные frozen LLM через обучаемые inner/outer RecursiveLink, передаёт последовательности скрытых состояний и повторяет цикл агентов. Текст генерируется в конце; outer links обучаются по final-answer CE. Проверены архитектура, результаты и выбранный код; AIME — pass@10, +8.3% — относительный прирост, таблицы 2/3 содержат несовпадающие значения. Нужен доступ к hidden states, не только chat API.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Inner RecursiveLink возвращает последнее hidden state в input embedding space того же агента; outer link переводит последовательность состояний в пространство следующей LLM. Последний агент возвращает состояния первому; текст декодируется в финальном раунде.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Sections 2–3, Eq. 3–4, Figures 2–3, pp. 4–5"
+    },
+    {
+      "id": "c2",
+      "text": "Обучение двухэтапное: cosine alignment inner links с embedding targets, затем final-answer CE для outer links через развёрнутый цикл. Base LLM frozen; released sequential training также фиксирует inner links и сохраняет градиент по их входу. Это supervised training, не автономное самоизменение во время inference.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Section 4 Eq. 5–6; Section 5, Appendix B.3; train/README.md"
+    },
+    {
+      "id": "c3",
+      "text": "Table 3, scaled sequential r=3: RecursiveMAS получает AIME2025/2026 pass@10 86.7/86.7, GPQA-D 66.2 и LiveCodeBench 42.9; full-SFT single agent — 73.3/76.7, 62.8, 38.6. AIME pass@10 не равен single-attempt accuracy.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Table 3 p. 10; Section 5 metric definition"
+    },
+    {
+      "id": "c4",
+      "text": "Заголовочные +8.3% воспроизводятся как среднее относительных приростов над лучшим baseline в каждой из 6 колонок Table 3. Средняя абсолютная разница по напечатанным значениям равна 5.7 п.п.; это разные агрегаты, не отдельное воспроизведение benchmark.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Section 5.2, Table 3; arithmetic on published rounded cells"
+    },
+    {
+      "id": "c5",
+      "text": "Авторы сообщают среднее ускорение 1.2x/1.9x/2.4x при r=1/2/3 и сокращение output token usage 34.6/65.5/75.6% против Recursive-TextMAS в Light/Scaled benchmark configurations.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Table 2 p. 9; Section 5.4 Figures 5–6"
+    },
+    {
+      "id": "c6",
+      "text": "Числа Table 2/3 не всегда совпадают: GPQA-D text baseline r=3 scaled 58.6 против 61.6; AIME2026 RecursiveMAS 86.0 против 86.7; LiveCodeBench text baseline 36.5 против 38.7. В проверенном тексте нет достаточного пояснения для сведения этих строк в один результат.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Table 2 p. 9 and Table 3 p. 10, checked visually"
+    },
+    {
+      "id": "c7",
+      "text": "Theorem 4.1 оценивает норму якобиана связи при assumptions о весах/инициализации и low-entropy token distribution. Это условный локальный анализ, не доказательство отсутствия vanishing/exploding gradients во всём произведении LLM Jacobians после обучения.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2604.25917v2",
+      "locator": "Theorem 4.1; Appendix A.2–A.3"
+    },
+    {
+      "id": "c8",
+      "text": "Released sequential training использует teacher-forced targets планировщика/критика/solver, а inner adapter по умолчанию имеет LayerNorm. Реализация поддерживает cosine и MSE, но CLI train_inner.py по умолчанию задаёт вес MSE=0. Released reference checkpoints не объявлены заменой task-specific setup.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/train/model.py",
+      "locator": "train/model.py: Adapter, LatentReasoningModel.forward; train/train_inner.py args; train/outer/sequential.py; root README"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Наше сравнение: R²Orch обучает Director/Proposer и выбирает orchestration graphs/skills; RecursiveMAS обучает latent interfaces в заданной топологии."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2603.19461",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Разные значения recursion: DGM-H меняет код task/meta agent между evaluations, RecursiveMAS повторяет вычислительный цикл hidden states при фиксированных inference weights."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.18773",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Jeva — обучаемая typed-decision модель с candidate set; RecursiveMAS — рекуррентная генеративная MAS. Совместный gate для остановки раундов — только предложение, не результат."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Добавляет отдельную ось улучшения: обучаемый канал latent communication; не является оптимизацией prompts или runtime files."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "recursivemas-table3-aime25-full-sft",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime25",
+          "model": "Qwen3.5-4B single agent, full supervised fine-tuning",
+          "method": "Full-SFT",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime25 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 73.3,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": null,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-aime25-recursive-textmas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime25",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver",
+          "method": "Recursive-TextMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime25 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 73.3,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-aime25-recursivemas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime25",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver + RecursiveLinks",
+          "method": "RecursiveMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime25 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 86.7,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-aime26-full-sft",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime26",
+          "model": "Qwen3.5-4B single agent, full supervised fine-tuning",
+          "method": "Full-SFT",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime26 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 76.7,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": null,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-aime26-recursive-textmas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime26",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver",
+          "method": "Recursive-TextMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime26 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 73.3,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-aime26-recursivemas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-aime26",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver + RecursiveLinks",
+          "method": "RecursiveMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "aime26 30 problems",
+          "metric": "pass@10",
+          "unit": "percent",
+          "value": 86.7,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": 10,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-gpqa-full-sft",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-gpqa",
+          "model": "Qwen3.5-4B single agent, full supervised fine-tuning",
+          "method": "Full-SFT",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "gpqa benchmark evaluation",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 62.8,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": null,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-gpqa-recursive-textmas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-gpqa",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver",
+          "method": "Recursive-TextMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "gpqa benchmark evaluation",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 61.6,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-gpqa-recursivemas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-gpqa",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver + RecursiveLinks",
+          "method": "RecursiveMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "gpqa benchmark evaluation",
+          "metric": "accuracy",
+          "unit": "percent",
+          "value": 66.2,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-livecodebench-full-sft",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-livecodebench",
+          "model": "Qwen3.5-4B single agent, full supervised fine-tuning",
+          "method": "Full-SFT",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "livecodebench benchmark evaluation",
+          "metric": "code_test_accuracy",
+          "unit": "percent",
+          "value": 38.6,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": null,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-livecodebench-recursive-textmas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-livecodebench",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver",
+          "method": "Recursive-TextMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "livecodebench benchmark evaluation",
+          "metric": "code_test_accuracy",
+          "unit": "percent",
+          "value": 38.7,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        },
+        {
+          "id": "recursivemas-table3-livecodebench-recursivemas",
+          "claim": "arxiv:2604.25917#c3",
+          "group": "recursivemas-v2-table3-scaled-livecodebench",
+          "model": "Gemma3-4B-it Planner / Llama3.2-3B-Instruct Critic / Qwen3.5-4B Solver + RecursiveLinks",
+          "method": "RecursiveMAS",
+          "train_data": "Role-specific s1K/m1K/OpenCodeReasoning/ARPO-SFT settings; sequential plans rewritten by Qwen3.5-397B-A17B; see Appendix B.3",
+          "test_data": "livecodebench benchmark evaluation",
+          "metric": "code_test_accuracy",
+          "unit": "percent",
+          "value": 42.9,
+          "baseline": "Single Agent Full-SFT and Recursive-TextMAS, Table 3",
+          "budget": {
+            "recursion_rounds": 3,
+            "aime_solver_rollouts": null,
+            "hardware_family": "H100/A100, exact per-cell allocation not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "table": 3,
+            "all_system_compute_matching_verified": false,
+            "base_models_frozen_in_RecursiveMAS": true,
+            "not_interchangeable_with_table2": true
+          },
+          "uncertainty": "Authors report mean of 5 runs; Table 3 per-cell intervals not provided in checked passage",
+          "source": "https://arxiv.org/html/2604.25917v2",
+          "locator": "Table 3, PDF p. 10; Section 5 and Appendix B"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Sections 1–6 and 8; selected Section 7",
+        "Appendices A.2–A.3, B.1–B.3, C, D.1–D.2",
+        "PDF Figures 2–3 p.4 and Tables 2–3 pp.9–10 visually",
+        "Official root/train/inference READMEs; selected adapter losses, teacher-forced outer training, inference pass@k code"
+      ],
+      "not_checked": [
+        "all 36 pages in detail",
+        "full theorem/proof audit",
+        "all training data or decontamination audit",
+        "full repository and tool execution audit",
+        "independent training, inference or benchmark reproduction"
+      ],
+      "code_commit": "cbfcaab56c9a8f660a9be598750b4ff3cd762056",
+      "project_page": "https://recursivemas.github.io/",
+      "source_version_note": "arXiv v1 2026-04-28, v2 2026-07-13. HF converter includes some v1 image URLs; numerical values checked directly against v2 PDF.",
+      "comparison_note": "LatentMAS is cited as related work, but is absent from the checked main comparison table. No proof of unique latent communication invention or autonomous research capability.",
+      "code_scope_note": "Teacher forcing and adapter defaults inspected statically only. Differences from equations are implementation details requiring reproduction, not demonstrated failure.",
+      "hypothesis_origin": "Assistant proposal: learned stopping/routing of latent rounds with an independent held-out error audit. No implementation or novelty search."
+    }
+  }
+}

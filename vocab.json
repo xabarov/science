@@ -108,6 +108,12 @@
       "video segmentation",
       "сегментация видео",
       "promptable segmentation"
+    ],
+    "latent-collaboration": [
+      "Latent collaboration",
+      "обмен скрытыми состояниями",
+      "latent communication",
+      "латентная коммуникация"
     ]
   },
   "methods": {
@@ -256,6 +262,17 @@
       "Gram anchoring",
       "Gram regularization",
       "регуляризация матрицы Грама"
+    ],
+    "recursivemas": [
+      "RecursiveMAS",
+      "Recursive Multi-Agent Systems",
+      "рекуррентная мультиагентная система"
+    ],
+    "recursive-link": [
+      "RecursiveLink",
+      "Recursive Link",
+      "inner outer links",
+      "обучаемые связи агентов"
     ]
   },
   "datasets": {
@@ -302,7 +319,9 @@
       "MuSiQue"
     ],
     "gpqa": [
-      "GPQA"
+      "GPQA",
+      "GPQA-Diamond",
+      "GPQA-D"
     ],
     "math-hard": [
       "MATH-Hard"
@@ -457,6 +476,19 @@
       "NYUv2",
       "NYU Depth v2",
       "NYUv2-Depth"
+    ],
+    "aime25": [
+      "AIME2025",
+      "AIME 2025",
+      "AIME25"
+    ],
+    "livecodebench": [
+      "LiveCodeBench",
+      "LiveCodeBench-v6",
+      "LCB"
+    ],
+    "bamboogle": [
+      "Bamboogle"
     ]
   }
 }
