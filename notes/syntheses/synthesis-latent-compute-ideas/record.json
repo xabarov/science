@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "id": "synthesis:latent-compute-ideas",
+  "kind": "synthesis",
+  "title": "Выбор исследования после RecursiveMAS и проверка новизны early exit",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "test-time-compute",
+    "uncertainty-calibration",
+    "distribution-shift",
+    "latent-collaboration"
+  ],
+  "authors": [],
+  "methods": [
+    "adaptive-halting"
+  ],
+  "datasets": [],
+  "aliases": [],
+  "source": "",
+  "source_version": "",
+  "accessed": "2026-11-05",
+  "reading_scope": "not_applicable",
+  "paper_type": "",
+  "summary": "Проверка prior art по early exit и альтернативам после RecursiveMAS. Простой learned gate понижен в приоритете как научный вклад. Более узкие кандидаты: восстановление контроля ошибок под drift при ограниченном аудите; сохранение чисел/условий/источников в научной коммуникации. Новизна и положительный эффект кандидатов не установлены.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Добавление небольшого halting gate к frozen recurrent/latent model имеет близкие предшественники; одного переноса на RecursiveMAS недостаточно для сильного заявления о новом методе.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.03379v3",
+      "locator": "RecurTrace Section 3; When Does Adaptive Halting Win Sections 3,6"
+    },
+    {
+      "id": "h1",
+      "text": "При фиксированном бюджете редких проверок ошибок контроллер, который обнаруживает ухудшение ранних остановок и перекалибруется, может лучше сохранять quality/cost frontier при контролируемом domain shift, чем однократная ID calibration.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "",
+      "locator": ""
+    },
+    {
+      "id": "h2",
+      "text": "Сжатое сообщение с защищёнными числовыми фактами, условиями и адресами источников может уменьшить потерю проверяемых научных свидетельств относительно свободного summary при одинаковом полном бюджете.",
+      "epistemic_status": "hypothesis",
+      "verification": "not_checked",
+      "source": "",
+      "locator": ""
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "experiment:recursivemas-early-exit",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Исходный план оставлен как возможный диагностический пилот; расходы не разрешались."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2611.02333",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Отрицательный результат относительно сильного простого KL baseline и OOD ограничения."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2609.03379",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Близкий механизм oracle-distilled halting."
+    },
+    {
+      "type": "related",
+      "target": "idea:domain-shift-audit",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Кандидат ограниченного аудита связан с существующей гипотезой; у неё уже найдены близкие CAD/ATLAS, новизна не установлена."
+    }
+  ],
+  "extra": {
+    "research": {
+      "depends_on": [
+        "arxiv:2611.02333#c2",
+        "arxiv:2609.03379#c1"
+      ],
+      "novelty_checks": [
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent\" \"multi-agent\" \"early stopping\"",
+          "url": "https://arxiv.org/abs/2611.02333",
+          "scope": "Поиск nearby latent/MAS stopping; primary abstract + selected full text",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "Объект RecursiveMAS отличается, но post-hoc learned gate на frozen recurrent model уже существует.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"recursive\" \"latent reasoning\" \"adaptive\" halting",
+          "url": "https://arxiv.org/abs/2609.03379",
+          "scope": "Поиск adaptive latent recursion; RecurTrace v3 method read",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "Oracle-distilled hidden-state continue/stop уже предложен; общего нового принципа нет.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"RecursiveMAS\" \"halting\" OR \"early exit\" OR \"adaptive\"",
+          "url": "https://arxiv.org/abs/2604.25917",
+          "scope": "Поиск точного сочетания и проверка исходной статьи",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "В проверенных источниках отдельная реализация именно этого расширения не установлена; отсутствие находки не доказывает новизну.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"early exit\" \"batching\" \"looped\" language model",
+          "url": "https://arxiv.org/abs/2608.09444",
+          "scope": "Первичный abstract CDB и abstract 2610.32246",
+          "closest": [],
+          "difference": "Реальная экономия и batching уже самостоятельные темы; одного добавления замера latency недостаточно для новизны.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent\" \"multi-agent\" \"causal\" \"ablation\"",
+          "url": "https://arxiv.org/abs/2607.26773",
+          "scope": "Первичный abstract causal audit",
+          "closest": [],
+          "difference": "Общая идея causal audit сообщений уже существует; новый эксперимент должен отделять более узкий механизм.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent communication\" \"model replacement\"",
+          "url": "https://arxiv.org/abs/2610.27813",
+          "scope": "Первичный abstract LatBridge",
+          "closest": [],
+          "difference": "Общее переиспользование latent interfaces при замене модели занято близкой работой.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"LLM\" \"continue\" \"restart\" \"controller\" reasoning",
+          "url": "https://aclanthology.org/2026.findings-acl.649/",
+          "scope": "ACL abstract Meta-Reasoner; primary abstract ValueFormation 2611.02852",
+          "closest": [],
+          "difference": "Выбор stop/continue/restart/specialist также имеет prior art. Потенциал узкого контрфактического исследования не равен новизне общего контроллера.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"scientific\" \"evidence\" \"compression\" \"numbers\" LLM",
+          "url": "https://arxiv.org/abs/2610.26827",
+          "scope": "Первичный abstract KEEP-Bench и abstract 2608.01631",
+          "closest": [],
+          "difference": "Evidence preservation и answer-evidence gap уже изучаются; научные условия/числа/версии — кандидат на более узкую постановку, не доказанная новизна.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"early exit\" \"conformal\" \"language models\"",
+          "url": "https://arxiv.org/abs/2610.20773",
+          "scope": "Первичный abstract selection-safe conformal exit",
+          "closest": [],
+          "difference": "Само добавление conformal calibration не новая идея; coverage sets не равны контролю factual answer error под произвольным drift.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        }
+      ],
+      "recommendation": "Не выбирать общий early exit как новый метод. Сначала доказать headroom и уточнить узкое отличие от ближайшей работы. Кандидат h1 предпочитается для продолжения литературного анализа, h2 — для пользы нашей картотеке. Ничего не запускалось.",
+      "dependency_state": {
+        "arxiv:2609.03379#c1": "05bdc2b8e082f768251578d17d1942b0cc4f3ae7f57dcf1a479e30968f970fa0",
+        "arxiv:2611.02333#c2": "6d5b9592d8c0bee53d2d6d2d00f98271910e3f588ccdd5adca5821fa972b216d"
+      },
+      "history": [
+        {
+          "at": "2026-11-05T14:15:01.843150+00:00",
+          "action": "review_ack",
+          "note": "Основания сверены в пределах partial reading: RecurTrace oracle halting, When Does Adaptive Halting Win non-superiority относительно KL и ограничение trace-based savings. Альтернативы оставлены гипотезами с неполной проверкой новизны."
+        }
+      ]
+    },
+    "reading_notes": {
+      "scope": "Две частично прочитанные работы; остальные ссылки в обзоре проверены только по первичным abstracts/overview. Их числа не используются как воспроизведённые результаты.",
+      "not_exhaustive": true
+    }
+  }
+}

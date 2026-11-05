@@ -34,6 +34,8 @@ python3 science.py search 'предиктор* OR predictor*' --fts
 
 ## Последние разборы
 
+- [Early exit после RecursiveMAS: prior art и выбор идей](notes/syntheses/synthesis-latent-compute-ideas/review.md)
+  — RecurTrace, frozen-Ouro halting probe и пересмотр приоритета исходного пилота.
 - [RecursiveMAS, v2](papers/2026/arxiv-2604.25917/review.md) — обмен скрытыми
   состояниями между LLM, обучаемые RecursiveLink, повторные раунды и границы результатов.
   [План ранней остановки и смета RunPod](notes/experiments/experiment-recursivemas-early-exit/review.md)

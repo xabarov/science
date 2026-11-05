@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2611.02333",
+  "kind": "paper",
+  "title": "When Does Adaptive Halting Win? Selection Rules Matter in Looped Language Models",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "test-time-compute",
+    "uncertainty-calibration",
+    "distribution-shift"
+  ],
+  "authors": [
+    "Mahesh Reddy Pagadala"
+  ],
+  "methods": [
+    "adaptive-halting"
+  ],
+  "datasets": [
+    "openbookqa",
+    "commonsenseqa",
+    "hellaswag",
+    "social-iqa"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2611.02333",
+  "source_version": "v1",
+  "accessed": "2026-11-05",
+  "reading_scope": "partial",
+  "paper_type": "analysis",
+  "summary": "На frozen Ouro сравниваются learned stability probe, native gate и простые trajectory readouts. Предпочтение методов меняется от правила выбора threshold/depth. Преимущество probe над KL не установлено; OOD нарушает quality budget. Экономия оценивается по трассам, не измеренной latency. Близкий prior art для идеи early exit поверх RecursiveMAS.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Работа обучает post-hoc stability probe поверх frozen looped Ouro и сравнивает его с native gate и untrained trajectory readouts при разных правилах выбора threshold/depth. Это близкий prior art к добавлению gate поверх frozen RecursiveMAS, но другая архитектура и decision unit.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.02333v1",
+      "locator": "Sections 3.1–3.4"
+    },
+    {
+      "id": "c2",
+      "text": "Преимущество learned probe над простым KL readout не продемонстрировано; это non-superiority, не доказательство эквивалентности. OOD quality budget нарушается; loop savings получены из full-depth traces, а не измеренного inference time.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.02333v1",
+      "locator": "Sections 6.1–6.2, 3.6, 7.5"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "experiment:recursivemas-early-exit",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Понижает приоритет простого learned early exit как самостоятельного научного вклада; не доказывает бесполезность gate в RecursiveMAS."
+    }
+  ],
+  "extra": {
+    "reading_notes": {
+      "checked": [
+        "Abstract",
+        "Sections 3.3, 5.1, 6.1 selected, 7.5 selected",
+        "Metric boundary and non-superiority wording"
+      ],
+      "not_checked": [
+        "full paper and code audit",
+        "independent reproduction",
+        "all pre-registration artifacts"
+      ],
+      "hf_note": "Not found on HF Hub; fallback to primary arXiv HTML."
+    }
+  }
+}

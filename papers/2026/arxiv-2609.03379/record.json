@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2609.03379",
+  "kind": "paper",
+  "title": "RecurTrace: Adaptive Latent Reasoning with Loop-Time Memory",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "conditional-computation",
+    "test-time-compute"
+  ],
+  "authors": [
+    "Yuxiang Wang",
+    "Kunyu Feng",
+    "Yingda Shen",
+    "Haoning Xu",
+    "Junyu Wang",
+    "Zhizheng Wu"
+  ],
+  "methods": [
+    "recurtrace",
+    "adaptive-halting"
+  ],
+  "datasets": [
+    "mathqa"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2609.03379",
+  "source_version": "v3",
+  "accessed": "2026-11-05",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "RecurTrace добавляет loop-time memory и обучаемую остановку к frozen Qwen3. Halting head учится по oracle дополнительного улучшения loss при большей глубине. Это прямой близкий prior art для обучения continue/stop по latent state; не multi-agent RecursiveMAS.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Halting head читает pooled loop state и учится по BCE oracle-метке: продолжать, если какой-либо более глубокий loop уменьшает loss сверх margin. На inference используются floor/cap и threshold с held-out data.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.03379v3",
+      "locator": "Section 3, Difficulty-adaptive halting, Eq. 6"
+    },
+    {
+      "id": "c2",
+      "text": "RecurTrace исследует sequence-level halting на frozen Qwen3 с обучаемыми loop/memory/injection/halting components и direct-answer targets. Это не только post-hoc gate и не multi-agent схема; авторы ограничивают перенос вывода на другие архитектуры и long-form generation.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2609.03379v3",
+      "locator": "Table 1, Appendix A, Section 5.3"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "experiment:recursivemas-early-exit",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Близкая oracle-distilled continue/stop идея; отличие среды не делает общий принцип новым."
+    }
+  ],
+  "extra": {
+    "reading_notes": {
+      "checked": [
+        "Abstract",
+        "Section 3 halting objective",
+        "Selected Section 4.2",
+        "Section 5.3 limitations"
+      ],
+      "not_checked": [
+        "all tables and appendices",
+        "code",
+        "training data audit",
+        "independent reproduction"
+      ],
+      "source_note": "HF Markdown used for reading; primary snapshot pinned to v3."
+    }
+  }
+}

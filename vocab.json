@@ -273,6 +273,17 @@
       "Recursive Link",
       "inner outer links",
       "обучаемые связи агентов"
+    ],
+    "adaptive-halting": [
+      "Adaptive halting",
+      "обучаемая остановка",
+      "early exit",
+      "early stopping",
+      "adaptive depth"
+    ],
+    "recurtrace": [
+      "RecurTrace",
+      "Loop-Time Memory"
     ]
   },
   "datasets": {
@@ -489,6 +500,22 @@
     ],
     "bamboogle": [
       "Bamboogle"
+    ],
+    "openbookqa": [
+      "OpenBookQA"
+    ],
+    "commonsenseqa": [
+      "CommonsenseQA"
+    ],
+    "hellaswag": [
+      "HellaSwag"
+    ],
+    "social-iqa": [
+      "Social IQa",
+      "SocialIQA"
+    ],
+    "mathqa": [
+      "MathQA"
     ]
   }
 }

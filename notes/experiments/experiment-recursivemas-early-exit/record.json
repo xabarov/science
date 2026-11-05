@@ -5,7 +5,7 @@
   "title": "RecursiveMAS: ранняя остановка и бюджет пилота RunPod",
   "year": 2026,
   "status": "triaged",
-  "priority": 1,
+  "priority": 3,
   "topics": [
     "conditional-computation",
     "test-time-compute",
@@ -28,7 +28,7 @@
   "accessed": "2026-11-05",
   "reading_scope": "not_applicable",
   "paper_type": "",
-  "summary": "Невыполненный план learned early exit поверх frozen RecursiveMAS. Оценка RunPod: 58–118 A100-80GB GPU-hours по $1.79/h, $104–211 compute, около $166–327 с 50% резервом и $10 storage; рабочий бюджет $200–400. Часы — предположения до пилота, расход не утверждён. Критерий: реальная экономия времени при заданной границе потери качества.",
+  "summary": "Невыполненный план early exit поверх frozen RecursiveMAS. После prior-art search 2026-11-05 понижен в приоритете как новый научный метод: близки RecurTrace и frozen-Ouro halting probe. Может служить диагностическим/инженерным пилотом. Прежние $200–400 — оценка исполнения, не гарантия новизны или результата.",
   "created": "2026-11-05",
   "updated": "2026-11-05",
   "claims": [
@@ -49,6 +49,14 @@
       "source": "",
       "locator": "",
       "note": "Предлагаемое расширение фиксированной рекуррентной глубины; не результат исходной статьи и не выполненный эксперимент."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:latent-compute-ideas",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Проверка prior art и альтернативы."
     }
   ],
   "extra": {
@@ -56,7 +64,9 @@
       "stage": "planned",
       "depends_on": [
         "arxiv:2604.25917#c1",
-        "arxiv:2604.25917#c2"
+        "arxiv:2604.25917#c2",
+        "arxiv:2611.02333#c2",
+        "arxiv:2609.03379#c1"
       ],
       "protocol": {
         "hypothesis": "experiment:recursivemas-early-exit#h1",
@@ -88,7 +98,7 @@
         "label_generation": "Decode candidate answers for R=1/2/3 on training/validation examples; use correctness and measured cost as targets. Split by question before trace generation.",
         "runtime_measurement": "Actual dynamic execution, not replayed average-round count alone. Include gate/branching overhead and measure batch=1 plus a small batched setting. Warmup/loading reported separately.",
         "success_criterion_note": "Require confidence bounds to satisfy the chosen margin; small datasets may be inconclusive even if point estimates look favorable.",
-        "novelty": "Not searched. No claim that adaptive stopping itself is new."
+        "novelty": "Limited prior-art search completed 2026-11-05. General adaptive stopping is established; novelty of the specific RecursiveMAS extension not demonstrated."
       },
       "cost_estimate": {
         "as_of": "2026-11-05",
@@ -196,15 +206,129 @@
       "outcome": "not_run",
       "dependency_state": {
         "arxiv:2604.25917#c1": "1559f551616dccde7348234939889997ff093b8da73554b4923a32bed74a74e7",
-        "arxiv:2604.25917#c2": "e76a6a6b2146aaa5702677816ec5d4790854b75424e471be193062331865c80e"
+        "arxiv:2604.25917#c2": "e76a6a6b2146aaa5702677816ec5d4790854b75424e471be193062331865c80e",
+        "arxiv:2609.03379#c1": "05bdc2b8e082f768251578d17d1942b0cc4f3ae7f57dcf1a479e30968f970fa0",
+        "arxiv:2611.02333#c2": "6d5b9592d8c0bee53d2d6d2d00f98271910e3f588ccdd5adca5821fa972b216d"
       },
       "history": [
         {
           "at": "2026-11-05T13:30:40.119146+00:00",
           "action": "review_ack",
           "note": "План согласован с фиксированной рекуррентной архитектурой и двухэтапным обучением RecursiveLinks: для пилота все компоненты основы заморожены, обучается только новый gate. Глубины и checkpoints проверяются пилотом; результаты отсутствуют, ready=false."
+        },
+        {
+          "at": "2026-11-05T14:15:01.782314+00:00",
+          "action": "review_ack",
+          "note": "Сопоставлены RecurTrace Eq.6 и frozen-Ouro probe: общий механизм уже известен. Приоритет понижен; план не запущен, гипотеза выигрыша не объявлена опровергнутой. Бюджет исполнения отделён от новизны."
         }
-      ]
+      ],
+      "novelty_checks": [
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent\" \"multi-agent\" \"early stopping\"",
+          "url": "https://arxiv.org/abs/2611.02333",
+          "scope": "Поиск nearby latent/MAS stopping; primary abstract + selected full text",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "Объект RecursiveMAS отличается, но post-hoc learned gate на frozen recurrent model уже существует.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"recursive\" \"latent reasoning\" \"adaptive\" halting",
+          "url": "https://arxiv.org/abs/2609.03379",
+          "scope": "Поиск adaptive latent recursion; RecurTrace v3 method read",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "Oracle-distilled hidden-state continue/stop уже предложен; общего нового принципа нет.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"RecursiveMAS\" \"halting\" OR \"early exit\" OR \"adaptive\"",
+          "url": "https://arxiv.org/abs/2604.25917",
+          "scope": "Поиск точного сочетания и проверка исходной статьи",
+          "closest": [
+            "arxiv:2611.02333",
+            "arxiv:2609.03379"
+          ],
+          "difference": "В проверенных источниках отдельная реализация именно этого расширения не установлена; отсутствие находки не доказывает новизну.",
+          "conclusion": "Базовый learned early exit не новый; для конкретных расширений новизна не установлена. Поиск ограниченный, не исчерпывающий."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"early exit\" \"batching\" \"looped\" language model",
+          "url": "https://arxiv.org/abs/2608.09444",
+          "scope": "Первичный abstract CDB и abstract 2610.32246",
+          "closest": [],
+          "difference": "Реальная экономия и batching уже самостоятельные темы; одного добавления замера latency недостаточно для новизны.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent\" \"multi-agent\" \"causal\" \"ablation\"",
+          "url": "https://arxiv.org/abs/2607.26773",
+          "scope": "Первичный abstract causal audit",
+          "closest": [],
+          "difference": "Общая идея causal audit сообщений уже существует; новый эксперимент должен отделять более узкий механизм.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"latent communication\" \"model replacement\"",
+          "url": "https://arxiv.org/abs/2610.27813",
+          "scope": "Первичный abstract LatBridge",
+          "closest": [],
+          "difference": "Общее переиспользование latent interfaces при замене модели занято близкой работой.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"LLM\" \"continue\" \"restart\" \"controller\" reasoning",
+          "url": "https://aclanthology.org/2026.findings-acl.649/",
+          "scope": "ACL abstract Meta-Reasoner; primary abstract ValueFormation 2611.02852",
+          "closest": [],
+          "difference": "Выбор stop/continue/restart/specialist также имеет prior art. Потенциал узкого контрфактического исследования не равен новизне общего контроллера.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"scientific\" \"evidence\" \"compression\" \"numbers\" LLM",
+          "url": "https://arxiv.org/abs/2610.26827",
+          "scope": "Первичный abstract KEEP-Bench и abstract 2608.01631",
+          "closest": [],
+          "difference": "Evidence preservation и answer-evidence gap уже изучаются; научные условия/числа/версии — кандидат на более узкую постановку, не доказанная новизна.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        },
+        {
+          "date": "2026-11-05",
+          "provider": "web search + primary arXiv/ACL",
+          "query": "\"early exit\" \"conformal\" \"language models\"",
+          "url": "https://arxiv.org/abs/2610.20773",
+          "scope": "Первичный abstract selection-safe conformal exit",
+          "closest": [],
+          "difference": "Само добавление conformal calibration не новая идея; coverage sets не равны контролю factual answer error под произвольным drift.",
+          "conclusion": "Общая альтернатива имеет близкую первичную работу по указанному URL; возможное узкое отличие не проверено подробно. Новизна не установлена."
+        }
+      ],
+      "decision_review": {
+        "date": "2026-11-05",
+        "recommendation": "deprioritize_as_standalone_novel_method",
+        "execution_status": "not_run",
+        "reason": "Близкий prior art; сначала установить headroom и узкое отличие. Исходная проверяемая гипотеза не опровергнута одним наличием prior art."
+      }
     }
   }
 }
