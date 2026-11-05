@@ -88,6 +88,26 @@
       "Causal discovery",
       "выявление причинной структуры",
       "causal skeleton recovery"
+    ],
+    "visual-representations": [
+      "Visual representations",
+      "визуальные представления",
+      "visual features",
+      "dense features",
+      "image embeddings"
+    ],
+    "self-supervised-learning": [
+      "Self-supervised learning",
+      "самообучение на неразмеченных данных",
+      "самосупервизия",
+      "SSL"
+    ],
+    "image-segmentation": [
+      "Image segmentation",
+      "сегментация изображений",
+      "video segmentation",
+      "сегментация видео",
+      "promptable segmentation"
     ]
   },
   "methods": {
@@ -226,6 +246,16 @@
       "Archive-based search",
       "архив промежуточных агентов",
       "stepping stones"
+    ],
+    "dinov3": [
+      "DINOv3",
+      "DINO v3",
+      "динов3"
+    ],
+    "gram-anchoring": [
+      "Gram anchoring",
+      "Gram regularization",
+      "регуляризация матрицы Грама"
     ]
   },
   "datasets": {
@@ -415,6 +445,18 @@
     "imo-gradingbench": [
       "IMO-GradingBench",
       "Olympiad-level math grading"
+    ],
+    "ade20k": [
+      "ADE20k",
+      "ADE20K"
+    ],
+    "cityscapes": [
+      "Cityscapes"
+    ],
+    "nyuv2": [
+      "NYUv2",
+      "NYU Depth v2",
+      "NYUv2-Depth"
     ]
   }
 }

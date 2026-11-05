@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2508.10104",
+  "kind": "paper",
+  "title": "DINOv3",
+  "year": 2025,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "visual-representations",
+    "self-supervised-learning",
+    "image-segmentation"
+  ],
+  "authors": [
+    "Oriane Siméoni",
+    "Huy V. Vo",
+    "Maximilian Seitzer",
+    "Federico Baldassarre",
+    "Maxime Oquab",
+    "Cijo Jose",
+    "Vasil Khalidov",
+    "Marc Szafraniec",
+    "Seungeun Yi",
+    "Michaël Ramamonjisoa",
+    "Francisco Massa",
+    "Daniel Haziza",
+    "Luca Wehrstedt",
+    "Jianyuan Wang",
+    "Timothée Darcet",
+    "Théo Moutakanni",
+    "Leonel Sentana",
+    "Claire Roberts",
+    "Andrea Vedaldi",
+    "Jamie Tolan",
+    "John Brandt",
+    "Camille Couprie",
+    "Julien Mairal",
+    "Hervé Jégou",
+    "Patrick Labatut",
+    "Piotr Bojanowski"
+  ],
+  "methods": [
+    "dinov3",
+    "gram-anchoring"
+  ],
+  "datasets": [
+    "ade20k",
+    "cityscapes",
+    "nyuv2"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2508.10104",
+  "source_version": "v1",
+  "accessed": "2026-11-05",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "DINOv3 — семейство визуальных энкодеров с глобальными и patch-признаками. Gram anchoring восстанавливает локальную согласованность при масштабировании self-supervised training. Основные применения: визуальный поиск, соответствия и обучаемые классификационные/геометрические/сегментационные головы. Сопоставлен с DINOv2 и SAM 1/2/3 по интерфейсу и практической роли; базовый backbone, готовые головы и dino.txt различаются явно.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Gram anchoring сравнивает Gram-матрицы L2-нормированных patch-признаков student и Gram teacher, выбранного из раннего checkpoint и затем периодически обновляемого. Это сохраняет структуру сходства без поэлементного замораживания признаков.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2508.10104v1",
+      "locator": "Sections 4.1–4.3, Eq. 2–3, Figures 5–10"
+    },
+    {
+      "id": "c2",
+      "text": "С frozen backbone и обученным linear probe DINOv3 ViT-7B/16 получает ADE20k 55.9 mIoU, Cityscapes 81.1 mIoU, NYUv2 0.309 RMSE против 49.5, 75.6 и 0.372 у DINOv2 ViT-g/14. Сравнение не выравнивает размер модели и объём pretraining.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2508.10104v1",
+      "locator": "Section 6.1.2, Table 3, PDF p. 19; Appendix D.1–D.2"
+    },
+    {
+      "id": "c3",
+      "text": "Базовый DINOv3 выдаёт визуальные признаки. Официальный релиз отдельно содержит task heads и dino.txt: текстовое выравнивание требует дополнительного обучения поверх frozen vision encoder. Отсутствие backbone finetuning не означает отсутствие supervision у downstream head.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2508.10104v1",
+      "locator": "Sections 5.3, 6.1.2, 6.3; official dinov3 README pretrained heads"
+    },
+    {
+      "id": "c4",
+      "text": "SAM 3 поддерживает promptable concept segmentation: короткая текстовая фраза или визуальный образец задаёт понятие, для совпадающих instances возвращаются маски и, в видео, идентичности. Это другая постановка, чем извлечение general-purpose DINO features.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/README.md",
+      "locator": "README introduction, Model and Getting Started; SAM 3 paper abstract"
+    }
+  ],
+  "relations": [],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "dinov3-table3-ade20k-dinov2",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-ade20k",
+          "model": "DINOv2 ViT-g/14 (1.1B)",
+          "method": "dinov2-frozen-linear-probe",
+          "train_data": "ade20k training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "ade20k evaluation split per Appendix D.1–D.2",
+          "metric": "mIoU",
+          "unit": "percent",
+          "value": 49.5,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": 1024,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "448x448 for DINOv2 / 512x512 for DINOv3"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        },
+        {
+          "id": "dinov3-table3-ade20k-dinov3",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-ade20k",
+          "model": "DINOv3 ViT-7B/16 (6.7B)",
+          "method": "dinov3-frozen-linear-probe",
+          "train_data": "ade20k training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "ade20k evaluation split per Appendix D.1–D.2",
+          "metric": "mIoU",
+          "unit": "percent",
+          "value": 55.9,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": 1024,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "448x448 for DINOv2 / 512x512 for DINOv3"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        },
+        {
+          "id": "dinov3-table3-cityscapes-dinov2",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-cityscapes",
+          "model": "DINOv2 ViT-g/14 (1.1B)",
+          "method": "dinov2-frozen-linear-probe",
+          "train_data": "cityscapes training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "cityscapes evaluation split per Appendix D.1–D.2",
+          "metric": "mIoU",
+          "unit": "percent",
+          "value": 75.6,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": 1024,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "448x448 for DINOv2 / 512x512 for DINOv3"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        },
+        {
+          "id": "dinov3-table3-cityscapes-dinov3",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-cityscapes",
+          "model": "DINOv3 ViT-7B/16 (6.7B)",
+          "method": "dinov3-frozen-linear-probe",
+          "train_data": "cityscapes training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "cityscapes evaluation split per Appendix D.1–D.2",
+          "metric": "mIoU",
+          "unit": "percent",
+          "value": 81.1,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": 1024,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "448x448 for DINOv2 / 512x512 for DINOv3"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        },
+        {
+          "id": "dinov3-table3-nyuv2-dinov2",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-nyuv2",
+          "model": "DINOv2 ViT-g/14 (1.1B)",
+          "method": "dinov2-frozen-linear-probe",
+          "train_data": "nyuv2 training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "nyuv2 evaluation split per Appendix D.1–D.2",
+          "metric": "RMSE",
+          "unit": "dataset_depth_units",
+          "value": 0.372,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": null,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "See Appendix D.2; segmentation token rule not assumed"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        },
+        {
+          "id": "dinov3-table3-nyuv2-dinov3",
+          "claim": "arxiv:2508.10104#c2",
+          "group": "dinov3-v1-table3-nyuv2",
+          "model": "DINOv3 ViT-7B/16 (6.7B)",
+          "method": "dinov3-frozen-linear-probe",
+          "train_data": "nyuv2 training labels for linear predictor + trained batch normalization; backbone frozen",
+          "test_data": "nyuv2 evaluation split per Appendix D.1–D.2",
+          "metric": "RMSE",
+          "unit": "dataset_depth_units",
+          "value": 0.309,
+          "baseline": "DINOv2 ViT-g/14 frozen linear probe",
+          "budget": {
+            "segmentation_patch_tokens": null,
+            "probe_hyperparameter_grid": "3 learning rates x 2 weight decays; AdamW",
+            "wall_time": "not established"
+          },
+          "conditions": {
+            "reproduced": false,
+            "backbone_frozen": true,
+            "probe_supervised": true,
+            "matched_pretraining_compute": false,
+            "matched_model_size": false,
+            "segmentation_input": "See Appendix D.2; segmentation token rule not assumed"
+          },
+          "uncertainty": "CI/std and independent-seed count not established for Table 3",
+          "source": "https://arxiv.org/html/2508.10104v1",
+          "locator": "Section 6.1.2, Table 3, p. 19; Appendix D.1–D.2"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Sections 1, 3.1–3.2, 4.1–4.3, 5.2–5.3, 6.1.2, 6.1.5",
+        "Appendix D.1–D.2",
+        "PDF Table 3 and Figures 9–10 visually",
+        "Official READMEs for DINOv2/DINOv3/SAM1/SAM2/SAM3"
+      ],
+      "not_checked": [
+        "all 67 pages in detail",
+        "full code and training audit",
+        "released weights or inference execution",
+        "independent benchmark reproduction",
+        "SAM 1/2/3 benchmark re-evaluation"
+      ],
+      "comparison_scope": "Capability/interface comparison using official releases; no shared DINOv3-versus-SAM3 accuracy benchmark. SAM3 v1 was submitted after DINOv3 v1. SAM2.1 and SAM3.1 updates are not silently substituted for original generations.",
+      "repo_sources": [
+        {
+          "name": "dinov3",
+          "commit": "6876159a11b4df116f30f667f8c9888617df0751",
+          "url": "https://raw.githubusercontent.com/facebookresearch/dinov3/6876159a11b4df116f30f667f8c9888617df0751/README.md"
+        },
+        {
+          "name": "dinov2",
+          "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+          "url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/README.md"
+        },
+        {
+          "name": "segment-anything",
+          "commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+          "url": "https://raw.githubusercontent.com/facebookresearch/segment-anything/dca509fe793f601edb92606367a655c15ac00fdf/README.md"
+        },
+        {
+          "name": "sam2",
+          "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam2/2b90b9f5ceec907a1c18123530e92e794ad901a4/README.md"
+        },
+        {
+          "name": "sam3",
+          "commit": "f1647e8d0c1d280991f4d1b7d974c2704537fe66",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/README.md"
+        }
+      ],
+      "application_proposal": "SAM mask -> region-pooled DINO features -> vector search or small classifier is an engineering proposal, not an experiment in this review. Novelty search not performed."
+    }
+  }
+}

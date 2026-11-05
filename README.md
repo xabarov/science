@@ -34,6 +34,8 @@ python3 science.py search 'предиктор* OR predictor*' --fts
 
 ## Последние разборы
 
+- [DINOv3, v1](papers/2025/arxiv-2508.10104/review.md) — визуальные признаки,
+  Gram anchoring, прикладные головы и отличия от DINOv2 и SAM 1/2/3.
 - [Hyperagents / DGM-H, v2](papers/2026/arxiv-2603.19461/review.md) — редактируемый
   метаагент, архивный поиск и перенос процедур улучшения между областями.
 - [Mid-Harness, v1](papers/2026/arxiv-2609.39982/review.md) — выбор действия
