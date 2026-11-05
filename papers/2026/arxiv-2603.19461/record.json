@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2603.19461",
+  "kind": "paper",
+  "title": "Hyperagents",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-harnessing",
+    "agent-orchestration",
+    "distribution-shift",
+    "test-time-compute"
+  ],
+  "authors": [
+    "Jenny Zhang",
+    "Bingchen Zhao",
+    "Wannan Yang",
+    "Jakob Foerster",
+    "Jeff Clune",
+    "Minqi Jiang",
+    "Sam Devlin",
+    "Tatiana Shavrina"
+  ],
+  "methods": [
+    "dgm-h",
+    "dgm",
+    "metacognitive-self-modification",
+    "archive-based-search"
+  ],
+  "datasets": [
+    "polyglot",
+    "imo-gradingbench"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2603.19461",
+  "source_version": "v2",
+  "accessed": "2026-11-05",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "Hyperagents / DGM-H объединяют task agent и редактируемый meta agent в общем программном артефакте, сохраняя архив вариантов. Улучшаться может процедура генерации будущих правок при фиксированных LLM и evaluator. v2 показывает task/meta transfer между paper review, reward design и math grading; не доказывает неограниченное или самоускоряющееся улучшение. Важны слабый format-failing старт, отсутствие compute matching и незначимые различия с DGM-custom.",
+  "created": "2026-11-05",
+  "updated": "2026-11-05",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "DGM-H делает редактируемыми task agent и meta agent, включая процедуру будущей самомодификации; сохраняет archive-based exploration. В основных опытах LLM, evaluator/data, внешний бюджет и parent selection фиксированы.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 3, Figure 1; Appendix A.5"
+    },
+    {
+      "id": "c2",
+      "text": "Paper-review test accuracy DGM-H 0.710 (95% CI 0.590–0.750) против DGM-custom 0.590 (0.570–0.650); robotics test score 0.372 против 0.348. Различия с DGM-custom не значимы (p>0.05), хотя DGM-H лучше ряда слабых ablations.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 5.1, Figure 2, pp. 8–9"
+    },
+    {
+      "id": "c3",
+      "text": "При 50 шагах фиксированного метаагента на IMO-GradingBench перенос meta-only даёт median imp@50 0.620 (0.550–0.660), both 0.630 (0.540–0.630), task-only 0.100 (0–0.560), neither 0 (0–0.130), по 5 source runs. Это перенос процедуры улучшения, не zero-shot math score.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 5.2; Appendix D.5, Table 4, p. 39"
+    },
+    {
+      "id": "c4",
+      "text": "После 200 итераций DGM-H на math grading transfer-init имеет median test accuracy 0.640 против scratch 0.610; преимущество не статистически значимо (p>0.05). Это не доказательство самоускоряющегося роста.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 5.3, Figure 4, p. 13"
+    },
+    {
+      "id": "c5",
+      "text": "Нулевой начальный score на paper review/math grading обусловлен в том числе невалидным форматом ответа без task-specific parsing; paper review измеряет согласие с историческим accept/reject, а не качество научной рецензии или фактическую истинность.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Sections 4.2, 5.1–5.2; Appendix C.2, C.4; Appendix F"
+    },
+    {
+      "id": "c6",
+      "text": "В non-coding опытах meta edits выполняет Claude 4.5 Sonnet; task calls используют GPT-4o для paper review, Claude 4.5 Sonnet для reward design и o4-mini для math grading. Стоимость 100-итерационного paper+robotics run оценена в 83.6M tokens, включая 33M на modification; итерации не фиксируют одинаковый compute.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Appendix D.1–D.2, Table 3; Appendix F"
+    },
+    {
+      "id": "c7",
+      "text": "На полном Polyglot DGM-H улучшает pass@1 0.084→0.267 (0.231–0.280) за 80 итераций; исходный DGM в цитируемом сравнении имеет иной старт 0.142 и финал 0.307. Full benchmark содержит training subset, поэтому не целиком untouched test.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 5.1; Appendix C.1; Table 2"
+    },
+    {
+      "id": "c8",
+      "text": "Best discovered math grader улучшает accuracy ProofAutoGrader на полном IMO-GradingBench 0.561→0.601; это оценка отдельного выбранного артефакта на расширенном наборе, не median всех runs и не тот же test-subset результат 0.670→0.700.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/pdf/2603.19461v2",
+      "locator": "Section 5.3; Appendix E.4 Figure 10"
+    }
+  ],
+  "relations": [
+    {
+      "type": "related",
+      "target": "arxiv:2609.24972",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Наше сопоставление: RRSI регулирует предложения/selection harness edits; DGM-H делает сам meta editor редактируемым. Прямого общего сравнения нет."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Оба накапливают программный опыт, но DGM-H использует scored archive search с редактируемым метаагентом; Harness² работает по контрастам на текущей задаче."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Другая реализация улучшения оркестрации: в R²Orch меняются обучаемые параметры, здесь код/процедуры при frozen foundation models."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2609.39982",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Разные уровни: Mid-Harness выбирает action до исполнения, DGM-H генерирует новые task/meta programs между evaluation rounds."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "claim": "arxiv:2603.19461#c3",
+          "group": "hyperagents-v2-meta-transfer-imo",
+          "model": "Meta: Claude 4.5 Sonnet; task: o4-mini",
+          "train_data": "Source: joint paper review + Genesis reward design; target: IMO-GradingBench train 100 / validation 100",
+          "test_data": "IMO-GradingBench held-out test subset 100",
+          "metric": "improvement_at_50",
+          "unit": "fraction",
+          "baseline": "Neither transferred",
+          "budget": {
+            "modification_iterations": 50,
+            "source_runs": 5,
+            "meta_agent_fixed_in_target_run": true
+          },
+          "conditions": {
+            "reproduced": false,
+            "selection_by_validation": true,
+            "iteration_budget_not_compute_matching": true,
+            "source_agent_selected_by_descendant_growth": true
+          },
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Appendix D.5 Table 4, p. 39",
+          "id": "hyperagents-meta-transfer-neither",
+          "method": "Neither",
+          "value": 0,
+          "uncertainty": "Median of 5 runs; reported bootstrap 95% CI [0, 0.13]"
+        },
+        {
+          "claim": "arxiv:2603.19461#c3",
+          "group": "hyperagents-v2-meta-transfer-imo",
+          "model": "Meta: Claude 4.5 Sonnet; task: o4-mini",
+          "train_data": "Source: joint paper review + Genesis reward design; target: IMO-GradingBench train 100 / validation 100",
+          "test_data": "IMO-GradingBench held-out test subset 100",
+          "metric": "improvement_at_50",
+          "unit": "fraction",
+          "baseline": "Neither transferred",
+          "budget": {
+            "modification_iterations": 50,
+            "source_runs": 5,
+            "meta_agent_fixed_in_target_run": true
+          },
+          "conditions": {
+            "reproduced": false,
+            "selection_by_validation": true,
+            "iteration_budget_not_compute_matching": true,
+            "source_agent_selected_by_descendant_growth": true
+          },
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Appendix D.5 Table 4, p. 39",
+          "id": "hyperagents-meta-transfer-task-only",
+          "method": "Task only",
+          "value": 0.1,
+          "uncertainty": "Median of 5 runs; reported bootstrap 95% CI [0, 0.56]"
+        },
+        {
+          "claim": "arxiv:2603.19461#c3",
+          "group": "hyperagents-v2-meta-transfer-imo",
+          "model": "Meta: Claude 4.5 Sonnet; task: o4-mini",
+          "train_data": "Source: joint paper review + Genesis reward design; target: IMO-GradingBench train 100 / validation 100",
+          "test_data": "IMO-GradingBench held-out test subset 100",
+          "metric": "improvement_at_50",
+          "unit": "fraction",
+          "baseline": "Neither transferred",
+          "budget": {
+            "modification_iterations": 50,
+            "source_runs": 5,
+            "meta_agent_fixed_in_target_run": true
+          },
+          "conditions": {
+            "reproduced": false,
+            "selection_by_validation": true,
+            "iteration_budget_not_compute_matching": true,
+            "source_agent_selected_by_descendant_growth": true
+          },
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Appendix D.5 Table 4, p. 39",
+          "id": "hyperagents-meta-transfer-meta-only",
+          "method": "Meta only",
+          "value": 0.62,
+          "uncertainty": "Median of 5 runs; reported bootstrap 95% CI [0.55, 0.66]"
+        },
+        {
+          "claim": "arxiv:2603.19461#c3",
+          "group": "hyperagents-v2-meta-transfer-imo",
+          "model": "Meta: Claude 4.5 Sonnet; task: o4-mini",
+          "train_data": "Source: joint paper review + Genesis reward design; target: IMO-GradingBench train 100 / validation 100",
+          "test_data": "IMO-GradingBench held-out test subset 100",
+          "metric": "improvement_at_50",
+          "unit": "fraction",
+          "baseline": "Neither transferred",
+          "budget": {
+            "modification_iterations": 50,
+            "source_runs": 5,
+            "meta_agent_fixed_in_target_run": true
+          },
+          "conditions": {
+            "reproduced": false,
+            "selection_by_validation": true,
+            "iteration_budget_not_compute_matching": true,
+            "source_agent_selected_by_descendant_growth": true
+          },
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Appendix D.5 Table 4, p. 39",
+          "id": "hyperagents-meta-transfer-both",
+          "method": "Both",
+          "value": 0.63,
+          "uncertainty": "Median of 5 runs; reported bootstrap 95% CI [0.54, 0.63]"
+        },
+        {
+          "id": "hyperagents-paper-review-dgm-h",
+          "claim": "arxiv:2603.19461#c2",
+          "group": "hyperagents-v2-paper-review-test",
+          "model": "GPT-4o task agent; Claude 4.5 Sonnet meta agent where evolved",
+          "train_data": "Paper review train 100 / validation 100, joint optimization with reward design",
+          "test_data": "Paper review held-out test 100",
+          "method": "DGM-H",
+          "metric": "acceptance_prediction_accuracy",
+          "unit": "fraction",
+          "value": 0.71,
+          "baseline": "DGM-custom / AI-Scientist-v2 static",
+          "budget": {
+            "iterations": 100,
+            "runs": 5
+          },
+          "conditions": {
+            "reproduced": false,
+            "zero_start_is_format_failure": false,
+            "model_weights_frozen": true,
+            "matched_compute": false
+          },
+          "uncertainty": "Reported 95% bootstrap CI [0.59, 0.75]; DGM-H vs DGM-custom p>0.05",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.1 Figure 2, pp. 8–9; Appendix C.2"
+        },
+        {
+          "id": "hyperagents-paper-review-dgm-custom",
+          "claim": "arxiv:2603.19461#c2",
+          "group": "hyperagents-v2-paper-review-test",
+          "model": "GPT-4o task agent; Claude 4.5 Sonnet meta agent where evolved",
+          "train_data": "Paper review train 100 / validation 100, joint optimization with reward design",
+          "test_data": "Paper review held-out test 100",
+          "method": "DGM-custom",
+          "metric": "acceptance_prediction_accuracy",
+          "unit": "fraction",
+          "value": 0.59,
+          "baseline": "DGM-custom / AI-Scientist-v2 static",
+          "budget": {
+            "iterations": 100,
+            "runs": 5
+          },
+          "conditions": {
+            "reproduced": false,
+            "zero_start_is_format_failure": false,
+            "model_weights_frozen": true,
+            "matched_compute": false
+          },
+          "uncertainty": "Reported 95% bootstrap CI [0.57, 0.65]; DGM-H vs DGM-custom p>0.05",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.1 Figure 2, pp. 8–9; Appendix C.2"
+        },
+        {
+          "id": "hyperagents-paper-review-ai-scientist-v2-static",
+          "claim": "arxiv:2603.19461#c2",
+          "group": "hyperagents-v2-paper-review-test",
+          "model": "GPT-4o task agent; Claude 4.5 Sonnet meta agent where evolved",
+          "train_data": "Paper review train 100 / validation 100, joint optimization with reward design",
+          "test_data": "Paper review held-out test 100",
+          "method": "AI-Scientist-v2 static",
+          "metric": "acceptance_prediction_accuracy",
+          "unit": "fraction",
+          "value": 0.63,
+          "baseline": "DGM-custom / AI-Scientist-v2 static",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "zero_start_is_format_failure": false,
+            "model_weights_frozen": true,
+            "matched_compute": false
+          },
+          "uncertainty": "Interval not established for this comparator in the checked passage",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.1 Figure 2, pp. 8–9; Appendix C.2"
+        },
+        {
+          "id": "hyperagents-paper-review-initial-task-agent",
+          "claim": "arxiv:2603.19461#c5",
+          "group": "hyperagents-v2-paper-review-test",
+          "model": "GPT-4o task agent; Claude 4.5 Sonnet meta agent where evolved",
+          "train_data": "Paper review train 100 / validation 100, joint optimization with reward design",
+          "test_data": "Paper review held-out test 100",
+          "method": "Initial task agent",
+          "metric": "acceptance_prediction_accuracy",
+          "unit": "fraction",
+          "value": 0,
+          "baseline": "DGM-custom / AI-Scientist-v2 static",
+          "budget": {},
+          "conditions": {
+            "reproduced": false,
+            "zero_start_is_format_failure": true,
+            "model_weights_frozen": true,
+            "matched_compute": false
+          },
+          "uncertainty": "Interval not established for this comparator in the checked passage",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.1 Figure 2, pp. 8–9; Appendix C.2"
+        },
+        {
+          "id": "hyperagents-compound-scratch",
+          "claim": "arxiv:2603.19461#c4",
+          "group": "hyperagents-v2-compound-imo",
+          "model": "o4-mini task / Claude 4.5 Sonnet meta",
+          "train_data": "IMO-GradingBench 100 train /100 val; transfer from paper+robotics",
+          "test_data": "IMO-GradingBench held-out test 100",
+          "method": "Scratch",
+          "metric": "grading_accuracy",
+          "unit": "fraction",
+          "value": 0.61,
+          "baseline": "Scratch DGM-H",
+          "budget": {
+            "iterations": 200,
+            "runs": 5
+          },
+          "conditions": {
+            "reproduced": false,
+            "matched_compute": false
+          },
+          "uncertainty": "Median; reported 95% CI [0.51, 0.68]; comparison p>0.05",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.3 Figure 4, p. 13"
+        },
+        {
+          "id": "hyperagents-compound-transfer",
+          "claim": "arxiv:2603.19461#c4",
+          "group": "hyperagents-v2-compound-imo",
+          "model": "o4-mini task / Claude 4.5 Sonnet meta",
+          "train_data": "IMO-GradingBench 100 train /100 val; transfer from paper+robotics",
+          "test_data": "IMO-GradingBench held-out test 100",
+          "method": "Transfer",
+          "metric": "grading_accuracy",
+          "unit": "fraction",
+          "value": 0.64,
+          "baseline": "Scratch DGM-H",
+          "budget": {
+            "iterations": 200,
+            "runs": 5
+          },
+          "conditions": {
+            "reproduced": false,
+            "matched_compute": false
+          },
+          "uncertainty": "Median; reported 95% CI [0.55, 0.72]; comparison p>0.05",
+          "source": "https://arxiv.org/pdf/2603.19461v2",
+          "locator": "Section 5.3 Figure 4, p. 13"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Main Sections 1, 3–7",
+        "PDF Figures 1–3 visually",
+        "Appendices A.1–A.5, selected C.1–C.4, D.1–D.5, E.4, F",
+        "Initial task_agent.py, meta_agent.py; selected generation/log-isolation logic"
+      ],
+      "not_checked": [
+        "all 63 pages in detail",
+        "full proof/code audit",
+        "experiment logs and statistical-test implementation",
+        "independent benchmark reproduction"
+      ],
+      "code_commit": "59a68f672dfb92c74aeb7e61535d776fb36e172d",
+      "source_snapshot": "PDF v2 with pdftotext -layout registered in manifest; CLI snapshot supports HTML/plain text only",
+      "bibliography_note": "arXiv submission history dates v2 2026-11-01; PDF title page says November 3, 2026. Version pinned explicitly."
+    }
+  }
+}

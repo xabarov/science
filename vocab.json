@@ -207,6 +207,25 @@
       "Verifier distillation",
       "дистилляция верификатора",
       "decision-only verification"
+    ],
+    "dgm-h": [
+      "DGM-H",
+      "DGM-Hyperagents",
+      "Hyperagents"
+    ],
+    "dgm": [
+      "Darwin Gödel Machine",
+      "DGM"
+    ],
+    "metacognitive-self-modification": [
+      "Metacognitive self-modification",
+      "метакогнитивная самомодификация",
+      "editable meta agent"
+    ],
+    "archive-based-search": [
+      "Archive-based search",
+      "архив промежуточных агентов",
+      "stepping stones"
     ]
   },
   "datasets": {
@@ -388,6 +407,14 @@
     "featurebench-mini": [
       "FeatureBench-Mini",
       "FeatureBench Mini"
+    ],
+    "polyglot": [
+      "Aider Polyglot",
+      "Polyglot coding benchmark"
+    ],
+    "imo-gradingbench": [
+      "IMO-GradingBench",
+      "Olympiad-level math grading"
     ]
   }
 }

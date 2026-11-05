@@ -34,6 +34,8 @@ python3 science.py search 'предиктор* OR predictor*' --fts
 
 ## Последние разборы
 
+- [Hyperagents / DGM-H, v2](papers/2026/arxiv-2603.19461/review.md) — редактируемый
+  метаагент, архивный поиск и перенос процедур улучшения между областями.
 - [Mid-Harness, v1](papers/2026/arxiv-2609.39982/review.md) — выбор действия
   до исполнения, pairwise verification, дистилляция и decision-only A/B.
 - [RRSI, v3](papers/2026/arxiv-2609.24972/review.md) — регуляризация поиска

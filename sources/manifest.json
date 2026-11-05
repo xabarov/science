@@ -210,6 +210,39 @@
       "local_path": "attachments/e82aec531f0b48d360fee18aa2c6418f3e8b95c933e60164e6cc80eacadb61f1/source.html",
       "text_path": "attachments/e82aec531f0b48d360fee18aa2c6418f3e8b95c933e60164e6cc80eacadb61f1/text.txt",
       "text_sha256": "baa43b0850e8b9e5acd988f8e6f87e77a6c0377effd50d372cc742af381a5fa1"
+    },
+    {
+      "id": "ad3e7ec49f316e0feb00e9994785b618308e47ea5c3ed53b90cd4642d3af2619",
+      "document": "arxiv:2603.19461",
+      "requested_url": "https://arxiv.org/pdf/2603.19461v2",
+      "resolved_url": "https://arxiv.org/pdf/2603.19461v2",
+      "version": "v2",
+      "retrieved_at": "2026-11-05T09:14:30.830816+00:00",
+      "sha256": "ad3e7ec49f316e0feb00e9994785b618308e47ea5c3ed53b90cd4642d3af2619",
+      "bytes": 8657413,
+      "content_type": "application/pdf",
+      "local_path": "attachments/ad3e7ec49f316e0feb00e9994785b618308e47ea5c3ed53b90cd4642d3af2619/source.pdf",
+      "text_path": "attachments/ad3e7ec49f316e0feb00e9994785b618308e47ea5c3ed53b90cd4642d3af2619/text.txt",
+      "text_sha256": "8dae04df7184225857fcf86128bf6a5b28e0e8491121e862f14580bc25ec3c65",
+      "text_extraction": {
+        "method": "pdftotext -layout",
+        "page_count": 63,
+        "registered_from_local_download": true
+      }
+    },
+    {
+      "id": "e9215559e7f1b8269c4a31e592bacb3ed5ae0ac27c33ce5c849826df13137bf6",
+      "document": "arxiv:2603.19461",
+      "requested_url": "https://raw.githubusercontent.com/facebookresearch/Hyperagents/59a68f672dfb92c74aeb7e61535d776fb36e172d/meta_agent.py",
+      "resolved_url": "https://raw.githubusercontent.com/facebookresearch/Hyperagents/59a68f672dfb92c74aeb7e61535d776fb36e172d/meta_agent.py",
+      "version": "59a68f672dfb92c74aeb7e61535d776fb36e172d",
+      "retrieved_at": "2026-11-05T09:15:23.626012+00:00",
+      "sha256": "e9215559e7f1b8269c4a31e592bacb3ed5ae0ac27c33ce5c849826df13137bf6",
+      "bytes": 844,
+      "content_type": "text/plain",
+      "local_path": "attachments/e9215559e7f1b8269c4a31e592bacb3ed5ae0ac27c33ce5c849826df13137bf6/source.txt",
+      "text_path": "attachments/e9215559e7f1b8269c4a31e592bacb3ed5ae0ac27c33ce5c849826df13137bf6/text.txt",
+      "text_sha256": "e9215559e7f1b8269c4a31e592bacb3ed5ae0ac27c33ce5c849826df13137bf6"
     }
   ]
 }
