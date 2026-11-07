@@ -34,6 +34,8 @@ python3 science.py search 'предиктор* OR predictor*' --fts
 
 ## Последние разборы
 
+- [Harness-S, v1](papers/2026/arxiv-2611.04277/review.md) — обучение policy через
+  selective rescue в sibling harnesses, перенос под исходный H0 и границы публичного релиза.
 - [Early exit после RecursiveMAS: prior art и выбор идей](notes/syntheses/synthesis-latent-compute-ideas/review.md)
   — RecurTrace, frozen-Ouro halting probe и пересмотр приоритета исходного пилота.
 - [RecursiveMAS, v2](papers/2026/arxiv-2604.25917/review.md) — обмен скрытыми

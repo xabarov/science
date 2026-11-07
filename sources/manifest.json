@@ -467,6 +467,76 @@
       "local_path": "attachments/f580ec0b55d2d8d680389a7414b8c6e9d87d8dfddeccaa7f3329c854cf07b02e/source.html",
       "text_path": "attachments/f580ec0b55d2d8d680389a7414b8c6e9d87d8dfddeccaa7f3329c854cf07b02e/text.txt",
       "text_sha256": "6675c06d0e1588b603f96088dc8388b43eb889e986bc3cc8d9685b50d00210ae"
+    },
+    {
+      "id": "a724d8884d58f40653c685af3d2895fc87a8e2a9366ed84d856960f13b70e47c",
+      "document": "arxiv:2611.04277",
+      "requested_url": "https://arxiv.org/html/2611.04277v1",
+      "resolved_url": "https://arxiv.org/html/2611.04277v1",
+      "version": "v1",
+      "retrieved_at": "2026-11-07T13:46:53.548216+00:00",
+      "sha256": "a724d8884d58f40653c685af3d2895fc87a8e2a9366ed84d856960f13b70e47c",
+      "bytes": 463799,
+      "content_type": "text/html",
+      "local_path": "attachments/a724d8884d58f40653c685af3d2895fc87a8e2a9366ed84d856960f13b70e47c/source.html",
+      "text_path": "attachments/a724d8884d58f40653c685af3d2895fc87a8e2a9366ed84d856960f13b70e47c/text.txt",
+      "text_sha256": "c6020547a3b73b098f8944657bc83cfba94ca16d2881d922fea5e54139a974ce"
+    },
+    {
+      "id": "0c39363dd01831228e5c5761d9863ffaae6b0b4d4a6d4007c4ae3c8d1eede66c",
+      "document": "arxiv:2611.04277",
+      "requested_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/README.md",
+      "resolved_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/README.md",
+      "version": "889eabc467be2db17156293e835a5ace850b42c7",
+      "retrieved_at": "2026-11-07T13:46:53.892761+00:00",
+      "sha256": "0c39363dd01831228e5c5761d9863ffaae6b0b4d4a6d4007c4ae3c8d1eede66c",
+      "bytes": 12239,
+      "content_type": "text/plain",
+      "local_path": "attachments/0c39363dd01831228e5c5761d9863ffaae6b0b4d4a6d4007c4ae3c8d1eede66c/source.txt",
+      "text_path": "attachments/0c39363dd01831228e5c5761d9863ffaae6b0b4d4a6d4007c4ae3c8d1eede66c/text.txt",
+      "text_sha256": "0c39363dd01831228e5c5761d9863ffaae6b0b4d4a6d4007c4ae3c8d1eede66c"
+    },
+    {
+      "id": "674dc6d3993c48ea1c660f4e765f5de246a625c7c40e9ecb7afe0c444da3821f",
+      "document": "arxiv:2611.04277",
+      "requested_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/docs/reproduction.md",
+      "resolved_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/docs/reproduction.md",
+      "version": "889eabc467be2db17156293e835a5ace850b42c7",
+      "retrieved_at": "2026-11-07T13:46:54.201698+00:00",
+      "sha256": "674dc6d3993c48ea1c660f4e765f5de246a625c7c40e9ecb7afe0c444da3821f",
+      "bytes": 7644,
+      "content_type": "text/plain",
+      "local_path": "attachments/674dc6d3993c48ea1c660f4e765f5de246a625c7c40e9ecb7afe0c444da3821f/source.txt",
+      "text_path": "attachments/674dc6d3993c48ea1c660f4e765f5de246a625c7c40e9ecb7afe0c444da3821f/text.txt",
+      "text_sha256": "674dc6d3993c48ea1c660f4e765f5de246a625c7c40e9ecb7afe0c444da3821f"
+    },
+    {
+      "id": "b3719bb714b86c275a060451c71789d40cc1308c9f1c425fcabc207f5b765cec",
+      "document": "arxiv:2611.04277",
+      "requested_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/docs/release_status.md",
+      "resolved_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/docs/release_status.md",
+      "version": "889eabc467be2db17156293e835a5ace850b42c7",
+      "retrieved_at": "2026-11-07T13:46:54.531703+00:00",
+      "sha256": "b3719bb714b86c275a060451c71789d40cc1308c9f1c425fcabc207f5b765cec",
+      "bytes": 1068,
+      "content_type": "text/plain",
+      "local_path": "attachments/b3719bb714b86c275a060451c71789d40cc1308c9f1c425fcabc207f5b765cec/source.txt",
+      "text_path": "attachments/b3719bb714b86c275a060451c71789d40cc1308c9f1c425fcabc207f5b765cec/text.txt",
+      "text_sha256": "b3719bb714b86c275a060451c71789d40cc1308c9f1c425fcabc207f5b765cec"
+    },
+    {
+      "id": "609b38511204ac4c4e71810ca0756c25830366c868f29949b105f01387bbf049",
+      "document": "arxiv:2611.04277",
+      "requested_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/src/harness_s/rescue.py",
+      "resolved_url": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/src/harness_s/rescue.py",
+      "version": "889eabc467be2db17156293e835a5ace850b42c7",
+      "retrieved_at": "2026-11-07T13:46:54.854311+00:00",
+      "sha256": "609b38511204ac4c4e71810ca0756c25830366c868f29949b105f01387bbf049",
+      "bytes": 2474,
+      "content_type": "text/plain",
+      "local_path": "attachments/609b38511204ac4c4e71810ca0756c25830366c868f29949b105f01387bbf049/source.txt",
+      "text_path": "attachments/609b38511204ac4c4e71810ca0756c25830366c868f29949b105f01387bbf049/text.txt",
+      "text_sha256": "609b38511204ac4c4e71810ca0756c25830366c868f29949b105f01387bbf049"
     }
   ]
 }

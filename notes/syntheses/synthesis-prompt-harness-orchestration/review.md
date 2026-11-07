@@ -104,3 +104,17 @@ exploration, leakage screen, noise/cost-aware acceptance и pruning. Он доп
 CEPO/Harness²/RRSI не проверена на новизну и не реализована. Предлагаемое сравнение
 не является результатом. Детали метрик и несогласованности аннотации v3 сохранены
 в карточке RRSI.
+
+
+## Дополнение 07.11.2026 Harness-S и перенос поведения в policy
+
+[Harness-S](../../../papers/2026/arxiv-2611.04277/review.md) фиксирует пул
+специализированных sibling harnesses, затем при полном провале H0 группы получает
+новые попытки той же policy под выбранными siblings. Rescue group используется
+для GRPO, а перенос проверяется под исходным H0. Это обучение executor weights
+на разнообразии execution support, а не только улучшение runtime или оркестратора.
+
+Важный контроль — fresh H0 rescue, отличающий эффект sibling diversity от простого
+увеличения sampling. Периодическая актуализация behavior profiles при изменении
+policy уже является частью метода. Публичный AppWorld-релиз по умолчанию использует
+другой rule-based router и ещё не подтверждает точное воспроизведение paper scores.

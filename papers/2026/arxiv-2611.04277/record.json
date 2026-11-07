@@ -1,0 +1,663 @@
+{
+  "schema_version": 1,
+  "id": "arxiv:2611.04277",
+  "kind": "paper",
+  "title": "Harness-S: Learning from Sibling Harnesses for Generalizable Agent Training",
+  "year": 2026,
+  "status": "reviewed",
+  "priority": 1,
+  "topics": [
+    "agent-harnessing",
+    "llm-training",
+    "skill-internalization"
+  ],
+  "authors": [
+    "Kangning Zhang",
+    "Wenxiang Jiao",
+    "Bowen Fang",
+    "Shuai Shao",
+    "Jiachen Zhu",
+    "Rong Shan",
+    "Shijian Wang",
+    "Hao Wang",
+    "Yuan Lu",
+    "Weiwen Liu",
+    "Weinan Zhang"
+  ],
+  "methods": [
+    "harness-s",
+    "complementary-harness-rescue",
+    "grpo"
+  ],
+  "datasets": [
+    "appworld",
+    "swe-gym",
+    "dbbench"
+  ],
+  "aliases": [],
+  "source": "https://arxiv.org/abs/2611.04277",
+  "source_version": "v1",
+  "accessed": "2026-11-07",
+  "reading_scope": "partial",
+  "paper_type": "method",
+  "summary": "Harness-S создаёт фиксированный пул специализированных sibling harnesses и обучает одну policy через selective rescue. Только all-failure группы H0 заменяются свежими попытками той же policy в выбранных siblings; GRPO обновляет policy weights. Улучшение проверяется под исходным H0. Профили полезности периодически обновляются. Проверены PDF Tables 1/2/9/10 и границы публичного AppWorld-релиза, который не равен точному воспроизведению статьи.",
+  "created": "2026-11-07",
+  "updated": "2026-11-07",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Harness-S фиксирует пул sibling implementations после offline evolution. При неудаче всех восьми H0 попыток текущая policy генерирует по одной новой траектории под восемью выбранными auxiliary harnesses с исходного состояния задачи; новая группа заменяет исходную для policy training.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Sections 3.1–3.3, Algorithm 1; Appendix C"
+    },
+    {
+      "id": "c2",
+      "text": "Обучаются параметры общей policy через GRPO/PPO-style clipped token objective. Каждая траектория сохраняет generating harness context; loss исключает injected instructions и tool observations. Группы без различий reward не дают внутри-task reward contrast. Нет reference-model KL; backend importance correction описан отдельно.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Section 3.3 Eq. 6–7; Appendix B Eq. 13–16"
+    },
+    {
+      "id": "c3",
+      "text": "Под исходным H0 Qwen3.5-9B после Harness-S имеет Avg@3 AppWorld 62.34±1.28, SWE-Gym 32.50±1.51, DBBench 73.44±1.67 против plain GRPO 53.31,25.63,67.00. Это mean over three randomized runs и SD для Harness-S, не CI и не reproduction.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Table 1, PDF p.7; Section 4.1"
+    },
+    {
+      "id": "c4",
+      "text": "На AppWorld 4B Top-8 Adaptive profile re-anchoring имеет final H0 Avg@3 56.87 против Top-8 Fixed 52.16. На каждый rescue trigger выделяется по восемь rollouts, но общий compute и частота trigger не обязаны совпадать.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Table 2, PDF p.9; Section 4.4; Appendix C"
+    },
+    {
+      "id": "c5",
+      "text": "В AppWorld 4B за 40 updates Harness-S использует 3032 training rollouts и 67.19 reported GPU-hours против 2560/50.58 у plain GRPO; H0 Avg@3 56.87 против48.98. Full pipeline отдельно сообщает 4010 search rollouts,75.79 GPU-hours и18.69M external API tokens.",
+      "epistemic_status": "reported_result",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Appendix G Tables 9–10, PDF p.21"
+    },
+    {
+      "id": "c6",
+      "text": "Публичный релиз ограничен AppWorld, по умолчанию использует rule router без profiles, а не полный LLM voting protocol статьи. README/docs отдельно раскрывают разницу full20 pool и historical10 subset, checkpoint selection и отсутствие полного GPU end-to-end прогона portable launcher.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://raw.githubusercontent.com/DeepExperience/Harness-S/889eabc467be2db17156293e835a5ace850b42c7/README.md",
+      "locator": "README Reproduction Notes; docs/reproduction.md; docs/release_status.md"
+    },
+    {
+      "id": "c7",
+      "text": "Профили harness utility обновляются вместе с policy checkpoints, а сами harness implementations в RL-стадии фиксированы. Это уже baseline для адаптации к policy nonstationarity; не доказательство контроля early-exit errors при произвольном domain shift.",
+      "epistemic_status": "interpretation",
+      "verification": "source_checked",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Section 3.4 Eq.8–11; Appendix C"
+    }
+  ],
+  "relations": [
+    {
+      "type": "cites",
+      "target": "arxiv:2609.24972",
+      "status": "verified",
+      "source": "https://arxiv.org/html/2611.04277v1",
+      "locator": "Section 2.3; bibliography Xia et al.2026",
+      "note": "RRSI регулирует harness edits; Harness-S использует пул repairs для обучения policy."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.14224",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Harness² адаптирует runtime; Harness-S учит одну policy на свежих траекториях из фиксированного пула."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2610.22740",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Обе работы переносят пользу внешней поддержки в обучаемые параметры, но R²Orch обучает оркестрацию/skills, Harness-S — executor policy через sibling rescue."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2603.19461",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "В DGM-H меняется task/meta program; здесь optimizer и verifier фиксированы, меняется policy и allocation evidence."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2507.04632",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Связь по полезности и цене rollout selection: MoPPS выбирает prompts до генерации; Harness-S запускает rescue после all-failure группы."
+    },
+    {
+      "type": "related",
+      "target": "synthesis:prompt-harness-orchestration",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Добавляет ось transfer из execution support в executor weights."
+    }
+  ],
+  "extra": {
+    "research": {
+      "measurements": [
+        {
+          "id": "harness-s-v1-9b-appworld-0",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-appworld",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO",
+          "train_data": "appworld: 320 train tasks, 150 validation; all methods use common task verifier",
+          "test_data": "appworld: 262 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 53.31,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-appworld-1",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-appworld",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO H0 rescue",
+          "train_data": "appworld: 320 train tasks, 150 validation; all methods use common task verifier",
+          "test_data": "appworld: 262 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 54.83,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-appworld-2",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-appworld",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S H0",
+          "train_data": "appworld: 320 train tasks, 150 validation; all methods use common task verifier",
+          "test_data": "appworld: 262 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 62.34,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.28 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-appworld-3",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-appworld",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S Rank1",
+          "train_data": "appworld: 320 train tasks, 150 validation; all methods use common task verifier",
+          "test_data": "appworld: 262 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 67.05,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "Rank1",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.2 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-swe-gym-0",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-swe-gym",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO",
+          "train_data": "swe-gym: 240 train tasks, 100 validation; all methods use common task verifier",
+          "test_data": "swe-gym: 160 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 25.63,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-swe-gym-1",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-swe-gym",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO H0 rescue",
+          "train_data": "swe-gym: 240 train tasks, 100 validation; all methods use common task verifier",
+          "test_data": "swe-gym: 160 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 26.88,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-swe-gym-2",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-swe-gym",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S H0",
+          "train_data": "swe-gym: 240 train tasks, 100 validation; all methods use common task verifier",
+          "test_data": "swe-gym: 160 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 32.5,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.51 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-swe-gym-3",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-swe-gym",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S Rank1",
+          "train_data": "swe-gym: 240 train tasks, 100 validation; all methods use common task verifier",
+          "test_data": "swe-gym: 160 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 36.25,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "Rank1",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.45 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-dbbench-0",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-dbbench",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO",
+          "train_data": "dbbench: 1600 train tasks, 200 validation; all methods use common task verifier",
+          "test_data": "dbbench: 300 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 67.0,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-dbbench-1",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-dbbench",
+          "model": "Qwen3.5-9B",
+          "method": "GRPO H0 rescue",
+          "train_data": "dbbench: 1600 train tasks, 200 validation; all methods use common task verifier",
+          "test_data": "dbbench: 300 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 67.78,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "No per-cell SD printed for this comparator in Table 1",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-dbbench-2",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-dbbench",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S H0",
+          "train_data": "dbbench: 1600 train tasks, 200 validation; all methods use common task verifier",
+          "test_data": "dbbench: 300 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 73.44,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "H0",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.67 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-v1-9b-dbbench-3",
+          "claim": "arxiv:2611.04277#c3",
+          "group": "harness-s-v1-table1-9b-dbbench",
+          "model": "Qwen3.5-9B",
+          "method": "Harness-S Rank1",
+          "train_data": "dbbench: 1600 train tasks, 200 validation; all methods use common task verifier",
+          "test_data": "dbbench: 300 held-out test tasks",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 75.67,
+          "baseline": "Plain GRPO under H0; H0-rescue control",
+          "budget": {
+            "evaluation_attempts_per_task_per_run": 3,
+            "evaluation_runs": 3,
+            "hardware": "8 NVIDIA H800",
+            "training_updates": "40 for AppWorld; not established here for other benchmarks"
+          },
+          "conditions": {
+            "reproduced": false,
+            "test_harness": "Rank1",
+            "mean_over_randomized_runs": true,
+            "equal_total_compute": false,
+            "router_overhead_included_in_rollout_count": false
+          },
+          "uncertainty": "Across-run SD=1.55 percentage points; n=3 runs",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 1 p.7; Section 4.1; Appendix A"
+        },
+        {
+          "id": "harness-s-cost-plain-grpo",
+          "claim": "arxiv:2611.04277#c5",
+          "group": "harness-s-v1-table9-appworld4b",
+          "model": "Qwen3.5-4B",
+          "method": "Plain GRPO",
+          "train_data": "AppWorld 320 train /150 validation; 40 optimizer updates",
+          "test_data": "AppWorld 262 test tasks, H0",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 48.98,
+          "baseline": "Plain H0 GRPO",
+          "budget": {
+            "training_rollouts": 2560,
+            "reported_training_gpu_hours": 50.58,
+            "updates": 40,
+            "hardware": "8 H800; authors GPU-hour aggregation not independently audited"
+          },
+          "conditions": {
+            "reproduced": false,
+            "equal_updates": true,
+            "equal_total_compute": false,
+            "full_pipeline_costs_excluded": true
+          },
+          "uncertainty": "Table 9 has no additional cell-level intervals",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Appendix G Table 9, p.21"
+        },
+        {
+          "id": "harness-s-cost-h0-rescue",
+          "claim": "arxiv:2611.04277#c5",
+          "group": "harness-s-v1-table9-appworld4b",
+          "model": "Qwen3.5-4B",
+          "method": "H0 rescue",
+          "train_data": "AppWorld 320 train /150 validation; 40 optimizer updates",
+          "test_data": "AppWorld 262 test tasks, H0",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 51.91,
+          "baseline": "Plain H0 GRPO",
+          "budget": {
+            "training_rollouts": 3616,
+            "reported_training_gpu_hours": 97.77,
+            "updates": 40,
+            "hardware": "8 H800; authors GPU-hour aggregation not independently audited"
+          },
+          "conditions": {
+            "reproduced": false,
+            "equal_updates": true,
+            "equal_total_compute": false,
+            "full_pipeline_costs_excluded": true
+          },
+          "uncertainty": "Table 9 has no additional cell-level intervals",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Appendix G Table 9, p.21"
+        },
+        {
+          "id": "harness-s-cost-harness-s",
+          "claim": "arxiv:2611.04277#c5",
+          "group": "harness-s-v1-table9-appworld4b",
+          "model": "Qwen3.5-4B",
+          "method": "Harness-S",
+          "train_data": "AppWorld 320 train /150 validation; 40 optimizer updates",
+          "test_data": "AppWorld 262 test tasks, H0",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 56.87,
+          "baseline": "Plain H0 GRPO",
+          "budget": {
+            "training_rollouts": 3032,
+            "reported_training_gpu_hours": 67.19,
+            "updates": 40,
+            "hardware": "8 H800; authors GPU-hour aggregation not independently audited"
+          },
+          "conditions": {
+            "reproduced": false,
+            "equal_updates": true,
+            "equal_total_compute": false,
+            "full_pipeline_costs_excluded": true
+          },
+          "uncertainty": "Table 9 has no additional cell-level intervals",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Appendix G Table 9, p.21"
+        },
+        {
+          "id": "harness-s-profiles-top8-fixed",
+          "claim": "arxiv:2611.04277#c4",
+          "group": "harness-s-v1-table2-appworld4b-profiles",
+          "model": "Qwen3.5-4B",
+          "method": "Top8 Fixed",
+          "train_data": "AppWorld train; profile evidence from validation only",
+          "test_data": "AppWorld held-out 262 tasks under H0",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 52.16,
+          "baseline": "Top8 fixed-profile rescue",
+          "budget": {
+            "attempts_per_rescue_trigger": 8,
+            "distinct_selected_siblings": 8
+          },
+          "conditions": {
+            "reproduced": false,
+            "equal_per_trigger_rollouts": true,
+            "equal_total_sampling_not_established": true,
+            "implementations_fixed": true
+          },
+          "uncertainty": "Table 2 prints point estimates without separate intervals",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 2 p.9; Section 4.4"
+        },
+        {
+          "id": "harness-s-profiles-top8-adaptive",
+          "claim": "arxiv:2611.04277#c4",
+          "group": "harness-s-v1-table2-appworld4b-profiles",
+          "model": "Qwen3.5-4B",
+          "method": "Top8 Adaptive",
+          "train_data": "AppWorld train; profile evidence from validation only",
+          "test_data": "AppWorld held-out 262 tasks under H0",
+          "metric": "Avg@3",
+          "unit": "percent",
+          "value": 56.87,
+          "baseline": "Top8 fixed-profile rescue",
+          "budget": {
+            "attempts_per_rescue_trigger": 8,
+            "distinct_selected_siblings": 8
+          },
+          "conditions": {
+            "reproduced": false,
+            "equal_per_trigger_rollouts": true,
+            "equal_total_sampling_not_established": true,
+            "implementations_fixed": true
+          },
+          "uncertainty": "Table 2 prints point estimates without separate intervals",
+          "source": "https://arxiv.org/html/2611.04277v1",
+          "locator": "Table 2 p.9; Section 4.4"
+        }
+      ]
+    },
+    "reading_notes": {
+      "checked": [
+        "Sections 1–4.7 and 5",
+        "Appendices A–C, selected D/F/G",
+        "PDF Figure2 p.3, Tables1/2/9/10 pp.7/9/21 visually",
+        "Pinned README, reproduction/release docs, rescue replacement source, public4B config"
+      ],
+      "not_checked": [
+        "all24 pages in equal detail",
+        "full training/code audit",
+        "full pool contents and original run logs",
+        "benchmark reproduction",
+        "statistical significance testing"
+      ],
+      "code_commit": "889eabc467be2db17156293e835a5ace850b42c7",
+      "source_note": "hf papers read used; missing Markdown table cells verified with v1 PDF. Converter Published Time not used as submission date.",
+      "reproduction_boundary": "Paper protocol and public rule-based defaults are distinct; no exact-score reproduction claimed.",
+      "hypothesis_note": "Audit-based low-cost re-anchoring or learned routing is only a candidate; periodic profile refresh already belongs to this paper. No new novelty search or experiment."
+    }
+  }
+}

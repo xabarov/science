@@ -26,7 +26,7 @@
   "paper_type": "",
   "summary": "Проверка prior art по early exit и альтернативам после RecursiveMAS. Простой learned gate понижен в приоритете как научный вклад. Более узкие кандидаты: восстановление контроля ошибок под drift при ограниченном аудите; сохранение чисел/условий/источников в научной коммуникации. Новизна и положительный эффект кандидатов не установлены.",
   "created": "2026-11-05",
-  "updated": "2026-11-05",
+  "updated": "2026-11-07",
   "claims": [
     {
       "id": "c1",
@@ -85,6 +85,14 @@
       "source": "",
       "locator": "",
       "note": "Кандидат ограниченного аудита связан с существующей гипотезой; у неё уже найдены близкие CAD/ATLAS, новизна не установлена."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2611.04277",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Harness-S переносит пользу sibling harnesses в executor policy; profile re-anchoring — близкий baseline для адаптации к policy nonstationarity."
     }
   ],
   "extra": {

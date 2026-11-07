@@ -28,7 +28,7 @@
   "paper_type": "",
   "summary": "Сравнение четырёх способов улучшать агента: CEPO — prompts, Harness² — runtime-обвязка на текущей задаче, RRSI — регуляризованный scored поиск обвязки с OOD-проверкой, R²Orch — обучаемая оркестрация. Сигналы, стоимость и ограничения различаются; интеграции не проверены.",
   "created": "2026-11-02",
-  "updated": "2026-11-05",
+  "updated": "2026-11-07",
   "claims": [
     {
       "id": "c1",
@@ -103,6 +103,14 @@
       "source": "",
       "locator": "",
       "note": "Editable meta agent и перенос процедур улучшения; связь с контролем обратной связи, без прямого общего benchmark."
+    },
+    {
+      "type": "related",
+      "target": "arxiv:2611.04277",
+      "status": "inferred",
+      "source": "",
+      "locator": "",
+      "note": "Harness-S переносит пользу sibling harnesses в executor policy; profile re-anchoring — близкий baseline для адаптации к policy nonstationarity."
     }
   ],
   "extra": {

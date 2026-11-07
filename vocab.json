@@ -284,6 +284,16 @@
     "recurtrace": [
       "RecurTrace",
       "Loop-Time Memory"
+    ],
+    "harness-s": [
+      "Harness-S",
+      "Sibling Harnesses",
+      "обучение на родственных обвязках"
+    ],
+    "complementary-harness-rescue": [
+      "Complementary Harness Rescue Training",
+      "селективное спасение неудачных групп",
+      "harness rescue"
     ]
   },
   "datasets": {
@@ -516,6 +526,15 @@
     ],
     "mathqa": [
       "MathQA"
+    ],
+    "appworld": [
+      "AppWorld"
+    ],
+    "swe-gym": [
+      "SWE-Gym"
+    ],
+    "dbbench": [
+      "DBBench"
     ]
   }
 }
